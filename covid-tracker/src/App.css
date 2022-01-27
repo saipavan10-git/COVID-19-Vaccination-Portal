@@ -1,0 +1,25 @@
+body {
+    background-color: #7277E6;
+    font-family: 'Dongle', sans-serif;
+}
+
+
+h1 {
+    color: white;
+    font-size: 5em;
+    text-align: center;
+
+}
+
+h6 {
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    margin: 0px;
+}
+
+
+.inputStyle {
+    text-align: center;
+
+}
