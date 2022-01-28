@@ -14,8 +14,6 @@ class Homepage extends Component {
             <Fragment>
                 
                     <div>
-                
-                
                 <div className='centered'>
                 <h1>COVID BOOK</h1>
             </div>
