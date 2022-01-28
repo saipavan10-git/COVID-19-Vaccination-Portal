@@ -23,3 +23,23 @@ h6 {
     text-align: center;
 
 }
+
+.MuiSelect-select{
+    color:white;
+}
+
+.MuiSelect-outlined {
+    color:white;
+}
+
+.MuiOutlinedInput-input {
+    color:white;
+}
+
+.MuiInputBase-input {
+    color:white;
+}
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    color:white;
+}
