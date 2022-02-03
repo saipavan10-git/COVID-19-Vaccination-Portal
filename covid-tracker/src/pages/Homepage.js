@@ -35,6 +35,19 @@ function Homepage() {
           >
             Sign up
           </Button>
+          <div style={{ marginTop: "40px" }}></div>
+          <Button
+            variant="outlined"
+            style={{
+              fontSize: "18px",
+              color: "#3876e9",
+              borderColor: "#3876e9",
+            }}
+            component={Link}
+            to="/list"
+          >
+            Vaccine List
+          </Button>
         </div>
       </div>
     </>
