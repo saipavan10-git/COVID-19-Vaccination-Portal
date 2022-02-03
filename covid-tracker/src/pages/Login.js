@@ -12,7 +12,9 @@ function Login() {
     return (
         <>
             <div className='inputStyle'>
-                <h1>COVID BOOK</h1>
+                <h1>CoVi-Book</h1>
+                <h6>Login</h6>
+                <div style={{ marginTop: '20px' }}></div>
 
                 <Formik
                     initialValues={{ email: '', password: '' }}
@@ -31,13 +33,13 @@ function Login() {
                             <Input
                                 onChange={handleChange}
                                 value={values.email}
-                                inputProps={{ style: { fontSize: 40, fontFamily: 'Dongle', color: 'white', width: '300px' } }}
+                                inputProps={{ style: { fontSize: '32px', fontFamily: 'Georgia', color: '#3876e9', width: '300px' } }}
                                 name='email'
                                 placeholder='Email'
                                 type='email'
                                 startAdornment={
                                     <InputAdornment position="start">
-                                        <AccountCircle style={{ fontSize: '32px', color: 'white' }} />
+                                        <AccountCircle style={{ fontSize: '32px', color: '#3876e9' }} />
                                     </InputAdornment>
                                 }
                             />
@@ -51,13 +53,13 @@ function Login() {
                             <Input
                                 onChange={handleChange}
                                 value={values.password}
-                                inputProps={{ style: { fontSize: 40, fontFamily: 'Dongle', color: 'white', width: '300px' } }}
+                                inputProps={{ style: { fontSize: "32px", fontFamily: 'Georgia', color: '#3876e9', width: '300px' } }}
                                 type='password'
                                 name='password'
                                 placeholder='Password'
                                 startAdornment={
                                     <InputAdornment position="start">
-                                        <LockIcon style={{ fontSize: '32px', color: 'white' }} />
+                                        <LockIcon style={{ fontSize: '32px', color: '#3876e9' }} />
                                     </InputAdornment>
                                 }
                             />
@@ -67,18 +69,18 @@ function Login() {
 
                             {/* submit button */}
                             <Button variant="outlined"
-                                style={{ fontSize: "18px", color: "white", borderColor: "white" }}
+                                style={{ fontSize: "18px", color: "#3876e9", borderColor: "#3876e9" }}
                                 type="submit"
                             >Login</Button>
 
                             <span style={{ marginLeft: "30px" }}></span>
                             <Button variant="outlined"
-                                style={{ fontSize: "18px", color: "white", borderColor: "white" }}
+                                style={{ fontSize: "18px", color: "#3876e9", borderColor: "#3876e9" }}
                                 component={Link} to="/signup"
                             >Sign up</Button>
                             <div style={{ marginTop: "20px" }}>
                                 <Button variant="outlined"
-                                    style={{ fontSize: "18px", color: "white", borderColor: "white" }}
+                                    style={{ fontSize: "18px", color: "#3876e9", borderColor: "#3876e9" }}
                                     component={Link} to="/records"
                                 >Records</Button>
                             </div>

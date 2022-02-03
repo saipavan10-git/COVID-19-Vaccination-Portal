@@ -1,45 +1,44 @@
 body {
-    background-color: #7277E6;
-    font-family: 'Dongle', sans-serif;
+  background-image: url(images/19366.jpg);
+  min-width: 100%;
+  min-height: 100%;
+  background-size: cover;
+  font-family: 'Georgia, serif';
 }
 
-
 h1 {
-    color: white;
-    font-size: 5em;
-    text-align: center;
-
+  color: #3876e9;
+  font-size: 3em;
+  text-align: center;
 }
 
 h6 {
-    color: white;
-    font-size: 3em;
-    text-align: center;
-    margin: 0px;
+  color:#3876e9;
+  font-size: 2em;
+  text-align: center;
+  margin: 0%;
 }
-
 
 .inputStyle {
-    text-align: center;
-
+  text-align: center;
 }
 
-.MuiSelect-select{
-    color:white;
+.MuiSelect-select {
+  color: #3876e9;
 }
 
 .MuiSelect-outlined {
-    color:white;
+  color: #3876e9;
 }
 
 .MuiOutlinedInput-input {
-    color:white;
+  color: #3876e9;
 }
 
 .MuiInputBase-input {
-    color:white;
+  color: #3876e9;
 }
 
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-    color:white;
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
+  color: #3876e9;
 }

@@ -5,7 +5,7 @@ function records() {
     return (
         <>
             <div className='inputStyle'>
-                <h1>User Info</h1>
+                <h1>Vaccination Records</h1>
 
                 <h6>Name: ________</h6>
                 <h6>Date of Birth: ________</h6>
@@ -14,10 +14,10 @@ function records() {
                 <h6>Last Vaccine Shots Date: ________</h6>
                 <h6>Next Vaccine Shots Date: ________</h6>
                 <Button variant="outlined"
-                    style={{ fontSize: "18px", color: "white", borderColor: "white", marginTop: "20px" }}>Print</Button>
+                    style={{ fontSize: "18px", color: "#3876e9", borderColor: "#3876e9", marginTop: "20px" }}>Print</Button>
                 <span style={{ marginLeft: "30px" }}></span>
                 <Button variant="outlined"
-                    style={{ fontSize: "18px", color: "white", borderColor: "white", marginTop: "20px" }}
+                    style={{ fontSize: "18px", color: "#3876e9", borderColor: "#3876e9", marginTop: "20px" }}
                     component={Link} to="/">Go Back</Button>
             </div>
         </>

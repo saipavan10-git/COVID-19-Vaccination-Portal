@@ -7,18 +7,18 @@ function Homepage() {
         <>
             <div>
                 <div className='centered'>
-                    <h1>COVID BOOK Homepage</h1>
+                    <h1>CoVi-Book</h1>
                 </div>
                 <div style={{ textAlign: "center" }}>
                     <Button variant="outlined"
-                        style={{ fontSize: "18px", color: "white", borderColor: "white" }}
+                        style={{ fontSize: "18px", color:"#3876e9", borderColor: "#3876e9" }}
                         component={Link} to="/login"
                     >Login</Button>
                     <span style={{ marginLeft: "30px" }}></span>
                     <Button variant="outlined"
-                        style={{ fontSize: "18px", color: "white", borderColor: "white" }}
+                        style={{ fontSize: "18px", color: "#3876e9", borderColor: "#3876e9" }}
                         component={Link} to="/signup"
-                    >Sign up</Button>
+                    >Sign up</Button> 
                 </div>
             </div>
         </>

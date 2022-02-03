@@ -15,7 +15,8 @@ function Signup() {
         <>
             <div>
                 <div>
-                    <h1>COVID BOOK Signup</h1>
+                    <h1>CoVi-Book</h1>
+                    <h6>Sign Up</h6>
                 </div>
 
                 <div className='inputStyle'>
@@ -39,14 +40,14 @@ function Signup() {
 
                                         </InputLabel>
                                         <Input
-                                            inputProps={{ style: { fontSize: 40, fontFamily: 'Dongle', color: 'white', width: '200px' } }}
+                                            inputProps={{ style: { fontSize: '32px', fontFamily: 'Georgia', color: '#3876e9', width: '200px' } }}
                                             name="fName"
                                             placeholder='First Name'
                                             onChange={handleChange}
                                             value={values.fName}
                                             startAdornment={
                                                 <InputAdornment position="start">
-                                                    <BadgeIcon style={{ fontSize: '32px', color: 'white' }} />
+                                                    <BadgeIcon style={{ fontSize: '32px', color: '#3876e9' }} />
                                                 </InputAdornment>
                                             }
                                         />
@@ -56,7 +57,7 @@ function Signup() {
 
                                         </InputLabel>
                                         <Input
-                                            inputProps={{ style: { fontSize: 40, fontFamily: 'Dongle', color: 'white', width: '200px' } }}
+                                            inputProps={{ style: { fontSize: '32px', fontFamily: 'Georgia', color: '#3876e9', width: '200px' } }}
 
                                             name="lName"
                                             placeholder='Last Name'
@@ -64,7 +65,7 @@ function Signup() {
                                             value={values.lName}
                                             startAdornment={
                                                 <InputAdornment position="start">
-                                                    <BadgeIcon style={{ fontSize: '32px', color: 'white' }} />
+                                                    <BadgeIcon style={{ fontSize: '32px', color: '#3876e9' }} />
                                                 </InputAdornment>
                                             }
                                         />
@@ -80,7 +81,7 @@ function Signup() {
 
                                         </InputLabel>
                                         <Input
-                                            inputProps={{ style: { fontSize: 35, fontFamily: 'Dongle', color: 'white', width: '200px' } }}
+                                            inputProps={{ style: { fontSize: '32px', fontFamily: 'Georgia', color: '#3876e9', width: '200px' } }}
                                             type="password"
                                             name="password"
                                             placeholder='Create Password'
@@ -88,7 +89,7 @@ function Signup() {
                                             value={values.password}
                                             startAdornment={
                                                 <InputAdornment position="start">
-                                                    <LockIcon style={{ fontSize: '32px', color: 'white' }} />
+                                                    <LockIcon style={{ fontSize: '32px', color: '#3876e9' }} />
                                                 </InputAdornment>
                                             }
                                         />
@@ -98,13 +99,13 @@ function Signup() {
 
                                         </InputLabel>
                                         <Input
-                                            inputProps={{ style: { fontSize: 35, fontFamily: 'Dongle', color: 'white', width: '200px' } }}
+                                            inputProps={{ style: { fontSize: '32px', fontFamily: 'Georgia', color: '#3876e9', width: '200px' } }}
                                             type="password"
 
                                             placeholder='Confirm Password'
                                             startAdornment={
                                                 <InputAdornment position="start">
-                                                    <LockIcon style={{ fontSize: '32px', color: 'white' }} />
+                                                    <LockIcon style={{ fontSize: '32px', color: '#3876e9' }} />
                                                 </InputAdornment>
                                             }
                                         />
@@ -118,7 +119,7 @@ function Signup() {
 
                                 </InputLabel>
                                 <Input
-                                    inputProps={{ style: { fontSize: 40, fontFamily: 'Dongle', color: 'white', width: '300px' } }}
+                                    inputProps={{ style: { fontSize: '32px', fontFamily: 'Georgia', color: '#3876e9', width: '300px' } }}
                                     type="email"
                                     name="email"
                                     placeholder='Email'
@@ -126,19 +127,19 @@ function Signup() {
                                     value={values.email}
                                     startAdornment={
                                         <InputAdornment position="start">
-                                            <EmailIcon style={{ fontSize: '32px', color: 'white' }} />
+                                            <EmailIcon style={{ fontSize: '32px', color: '#3876e9' }} />
                                         </InputAdornment>
                                     }
                                 />
 
                                 <div style={{ marginTop: '40px' }}></div>
                                 <Button variant="outlined"
-                                    style={{ fontSize: "18px", color: "white", borderColor: "white" }}
+                                    style={{ fontSize: "18px", color: "#3876e9", borderColor: "#3876e9" }}
                                     type='submit'
                                 >Sign up</Button>
                                 <span style={{ marginLeft: "30px" }}></span>
                                 <Button variant="outlined"
-                                    style={{ fontSize: "18px", color: "white", borderColor: "white" }}
+                                    style={{ fontSize: "18px", color: "#3876e9", borderColor: "#3876e9" }}
                                     component={Link} to="/"
                                 >Go back</Button>
                                 <pre>{console.log(values)}</pre>
