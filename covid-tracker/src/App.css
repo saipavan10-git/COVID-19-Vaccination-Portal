@@ -3,7 +3,7 @@ body {
   min-width: 100%;
   min-height: 100%;
   background-size: cover;
-  font-family: 'Georgia, serif';
+  font-family: "Georgia, serif";
 }
 
 h1 {
@@ -13,7 +13,7 @@ h1 {
 }
 
 h6 {
-  color:#3876e9;
+  color: #3876e9;
   font-size: 2em;
   text-align: center;
   margin: 0%;
