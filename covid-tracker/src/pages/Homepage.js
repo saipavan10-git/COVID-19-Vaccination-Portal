@@ -7,15 +7,14 @@ function Homepage() {
     <>
       <div>
         <div className="centered">
-          <h1>CoVi-Book</h1>
-        </div>
-        <div style={{ textAlign: "center" }}>
-          <Button
+          <h1 style={{textAlign:"left",marginLeft: "30px",}}>Co<span class='colorchange'>Vi</span>-Book
+          <Button 
             variant="outlined"
             style={{
-              fontSize: "18px",
+              marginLeft:'980px',
+              fontSize: "20px",
               color: "#3876e9",
-              borderColor: "#3876e9",
+              borderColor: "orange",
             }}
             component={Link}
             to="/login"
@@ -26,15 +25,16 @@ function Homepage() {
           <Button
             variant="outlined"
             style={{
-              fontSize: "18px",
+              fontSize: "20px",
               color: "#3876e9",
-              borderColor: "#3876e9",
+              borderColor: "orange",
             }}
             component={Link}
             to="/signup"
           >
             Sign up
           </Button>
+          </h1>
         </div>
       </div>
     </>
