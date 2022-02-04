@@ -5,20 +5,21 @@ function records() {
   return (
     <>
       <div className="inputStyle">
-        <h1>Vaccination Records</h1>
+      <h1 style={{textAlign:"left",marginLeft: "30px",}}>Co<span class='colorchange'>Vi</span>-Book</h1>
+        <h6><span class='colorchange'>Vaccination-Records</span></h6>
 
-        <h6>Name: ________</h6>
-        <h6>Date of Birth: ________</h6>
-        <h6>SSN: ________</h6>
-        <h6>Vaccine Type: ________</h6>
-        <h6>Last Vaccine Shots Date: ________</h6>
-        <h6>Next Vaccine Shots Date: ________</h6>
+        <h2>Name: ________</h2>
+        <h2>Date of Birth: ________</h2>
+        <h2>SSN: ________</h2>
+        <h2>Vaccine Type: ________</h2>
+        <h2>Last Vaccine Shots Date: ________</h2>
+        <h2>Next Vaccine Shots Date: ________</h2>
         <Button
           variant="outlined"
           style={{
             fontSize: "18px",
             color: "#3876e9",
-            borderColor: "#3876e9",
+            borderColor: "orange",
             marginTop: "20px",
           }}
         >
@@ -30,7 +31,7 @@ function records() {
           style={{
             fontSize: "18px",
             color: "#3876e9",
-            borderColor: "#3876e9",
+            borderColor: "orange",
             marginTop: "20px",
           }}
           component={Link}

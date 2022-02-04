@@ -2,16 +2,17 @@ import React from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 
+
 function Homepage() {
   return (
-    <>
-      <div>
-        <div className="centered">
-          <h1 style={{textAlign:"left",marginLeft: "30px",}}>Co<span class='colorchange'>Vi</span>-Book
-          <Button 
+    <div>
+      <div className="centered">
+        <h1 style={{ textAlign: "left", marginLeft: "30px" }}>
+          Co<span class="colorchange">Vi</span>-Book
+          <Button
             variant="outlined"
             style={{
-              marginLeft:'980px',
+              marginLeft: "980px",
               fontSize: "20px",
               color: "#3876e9",
               borderColor: "orange",
@@ -34,10 +35,9 @@ function Homepage() {
           >
             Sign up
           </Button>
-          </h1>
-        </div>
+        </h1>
       </div>
-    </>
+    </div>
   );
 }
 
