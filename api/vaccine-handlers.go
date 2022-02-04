@@ -2,8 +2,10 @@ package main
 
 import (
 	"backend/models"
+	"encoding/json"
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -47,4 +49,19 @@ func (app *application) getAllVaccines(w http.ResponseWriter, r *http.Request) {
 
 	app.writeJSON(w, http.StatusOK, p5, "vaccines")
 
+}
+
+func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
+
+	var vaccine models.Vaccine
+
+	err := json.NewDecoder(r.Body).Decode(&vaccine)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	//print vaccine info from front end
+	log.Println(vaccine)
+	log.Println("Vaccine with ID ", vaccine.ID, " is booked.")
+	log.Println("Detailed Info:", vaccine.Name, ",", vaccine.VaccineNum, "-dose.")
 }
