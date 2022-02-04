@@ -15,7 +15,7 @@ function Homepage() {
               marginLeft: "980px",
               fontSize: "20px",
               color: "#3876e9",
-              borderColor: "orange",
+              borderColor: "#3876e9",
             }}
             component={Link}
             to="/login"
@@ -26,9 +26,9 @@ function Homepage() {
           <Button
             variant="outlined"
             style={{
-              fontSize: "20px",
+              fontSize: "18px",
               color: "#3876e9",
-              borderColor: "orange",
+              borderColor: "#3876e9",
             }}
             component={Link}
             to="/signup"
