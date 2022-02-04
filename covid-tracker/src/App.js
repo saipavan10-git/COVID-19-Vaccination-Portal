@@ -5,6 +5,7 @@ import Records from "./pages/Records";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import VaccineList from "./pages/VaccineList";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/records" element={<Records />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/list" element={<VaccineList />} />
       </Routes>
     </Router>
   );

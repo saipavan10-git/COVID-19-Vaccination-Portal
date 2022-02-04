@@ -7,14 +7,15 @@ function Homepage() {
     <>
       <div>
         <div className="centered">
-          <h1 style={{textAlign:"left",marginLeft: "30px",}}>Co<span class='colorchange'>Vi</span>-Book
-          <Button 
+          <h1>CoVi-Book</h1>
+        </div>
+        <div style={{ textAlign: "center" }}>
+          <Button
             variant="outlined"
             style={{
-              marginLeft:'980px',
-              fontSize: "20px",
+              fontSize: "18px",
               color: "#3876e9",
-              borderColor: "orange",
+              borderColor: "#3876e9",
             }}
             component={Link}
             to="/login"
@@ -25,16 +26,28 @@ function Homepage() {
           <Button
             variant="outlined"
             style={{
-              fontSize: "20px",
+              fontSize: "18px",
               color: "#3876e9",
-              borderColor: "orange",
+              borderColor: "#3876e9",
             }}
             component={Link}
             to="/signup"
           >
             Sign up
           </Button>
-          </h1>
+          <div style={{ marginTop: "40px" }}></div>
+          <Button
+            variant="outlined"
+            style={{
+              fontSize: "18px",
+              color: "#3876e9",
+              borderColor: "#3876e9",
+            }}
+            component={Link}
+            to="/list"
+          >
+            Vaccine List
+          </Button>
         </div>
       </div>
     </>
