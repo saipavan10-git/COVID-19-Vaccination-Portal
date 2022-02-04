@@ -15,7 +15,7 @@ function Homepage() {
               marginLeft: "980px",
               fontSize: "20px",
               color: "#3876e9",
-              borderColor: "#3876e9",
+              borderColor: "orange",
             }}
             component={Link}
             to="/login"
@@ -28,7 +28,7 @@ function Homepage() {
             style={{
               fontSize: "18px",
               color: "#3876e9",
-              borderColor: "#3876e9",
+              borderColor: "orange",
             }}
             component={Link}
             to="/signup"
