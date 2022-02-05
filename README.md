@@ -5,9 +5,9 @@ In this project we are designing a web application where users can book their va
 
 • Yichong Ma
 
-•	Sai Pavan K
+•	Sai Pavan Kamma
 
-•	Venky Tanneru
+•	Venkateswarlu Tanneru
 
 •	Lalith Phani Srinivas Kandregula
 
