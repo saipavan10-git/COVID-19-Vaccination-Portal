@@ -56,11 +56,8 @@ export default class VaccineList extends Component {
       return (
         <Fragment>
           <div>
-
-
-            <table style={{ width: "200px" }}>
+            <table style={{ width: "500px" }}>
               <tr>
-
                 <th>ID</th>
                 <th>Vaccine Name</th>
                 <th>Dose #</th>
@@ -75,18 +72,17 @@ export default class VaccineList extends Component {
                   <td>{m.vaccine_num}</td>
                   <td>{m.state}</td>
                   <td>{m.zip_code}</td>
-                  <td><button
-                    onClick={() => {
-                      sayHello(m);
-                    }}
-                  >
-                    Book
-                  </button></td>
+                  <td>
+                    <button
+                      onClick={() => {
+                        sayHello(m);
+                      }}
+                    >
+                      Book
+                    </button>
+                  </td>
                 </tr>
-              )
-              )}
-
-
+              ))}
             </table>
           </div>
         </Fragment>
