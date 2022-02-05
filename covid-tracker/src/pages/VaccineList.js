@@ -1,9 +1,4 @@
 import React, { Component, Fragment } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 
 export default class VaccineList extends Component {
   state = {
@@ -61,36 +56,38 @@ export default class VaccineList extends Component {
       return (
         <Fragment>
           <div>
-            <Table style={{ width: "200px" }}>
-              <TableBody>
-                <TableRow>
-                  <TableHead>ID</TableHead>
-                  <TableHead>Vaccine Name</TableHead>
-                  <TableHead>Dose #</TableHead>
-                  <TableHead>State</TableHead>
-                  <TableHead>Zip Code</TableHead>
-                  <TableHead>Appointment</TableHead>
-                </TableRow>
-                {vaccines.map((m) => (
-                  <TableRow key={m.id}>
-                    <TableCell>{m.id}</TableCell>
-                    <TableCell>{m.vaccine_name}</TableCell>
-                    <TableCell>{m.vaccine_num}</TableCell>
-                    <TableCell>{m.state}</TableCell>
-                    <TableCell>{m.zip_code}</TableCell>
-                    <TableCell>
-                      <button
-                        onClick={() => {
-                          sayHello(m);
-                        }}
-                      >
-                        Book
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
+
+
+            <table style={{ width: "200px" }}>
+              <tr>
+
+                <th>ID</th>
+                <th>Vaccine Name</th>
+                <th>Dose #</th>
+                <th>State</th>
+                <th>Zip Code</th>
+                <th>Appointment</th>
+              </tr>
+              {vaccines.map((m) => (
+                <tr key={m.id}>
+                  <td>{m.id}</td>
+                  <td>{m.vaccine_name}</td>
+                  <td>{m.vaccine_num}</td>
+                  <td>{m.state}</td>
+                  <td>{m.zip_code}</td>
+                  <td><button
+                    onClick={() => {
+                      sayHello(m);
+                    }}
+                  >
+                    Book
+                  </button></td>
+                </tr>
+              )
+              )}
+
+
+            </table>
           </div>
         </Fragment>
       );
