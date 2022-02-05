@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/gin-gonic/gin"
 )
 
 type config struct {
@@ -25,9 +27,15 @@ type application struct {
 	logger *log.Logger
 }
 
+func Cors() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Add("Access-Control-Allow-Origin", "*")
+		c.Next()
+	}
+}
 func main() {
 	var cfg config
-
+	router := gin.Default()
 	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "Application environment (development|production)")
 	flag.Parse()
@@ -53,4 +61,5 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
+	router.Use(Cors())
 }
