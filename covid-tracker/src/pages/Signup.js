@@ -9,186 +9,205 @@ import EmailIcon from "@mui/icons-material/Email";
 import BadgeIcon from "@mui/icons-material/Badge";
 import Grid from "@mui/material/Grid";
 import { Formik } from "formik";
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 
 function Signup() {
   return (
-    <div>
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar>
+          <Toolbar>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+              <a component={Link} href="/" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+            </Typography>
+            <Button color="inherit" component={Link}
+              to="/login">Login</Button>
+            <Button color="inherit" component={Link}
+              to="/signup">Sign up</Button>
+            <Button color="inherit" component={Link}
+              to="/list">Vaccine List</Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
       <div>
-        <h1 style={{ textAlign: "left", marginLeft: "30px" }}>
-          Co<span class="colorchange">Vi</span>-Book
-        </h1>
-        <h6>
-          Sign<span class="colorchange">Up</span>
-        </h6>
-      </div>
+        <div>
+          <div className="space"></div>
+          <h1>
+            Sign <span class="colorchange">Up</span>
+          </h1>
+        </div>
 
-      <div className="inputStyle">
-        <Formik
-          initialValues={{ fName: "", lName: "", email: "", password: "" }}
-          onSubmit={(values) => {
-            console.log(values);
-          }}
-        >
-          {({ values, handleChange, handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
-              <Grid container spacing={1} justifyContent="center">
-                <Grid item xs={3}>
-                  <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
-                  <Input
-                    inputProps={{
-                      style: {
-                        fontSize: "32px",
-                        fontFamily: "Georgia",
-                        color: "#3876e9",
-                        width: "200px",
-                      },
-                    }}
-                    name="fName"
-                    placeholder="First Name"
-                    onChange={handleChange}
-                    value={values.fName}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <BadgeIcon
-                          style={{ fontSize: "32px", color: "#3876e9" }}
-                        />
-                      </InputAdornment>
-                    }
-                  />
+        <div className="inputStyle">
+          <Formik
+            initialValues={{ fName: "", lName: "", email: "", password: "" }}
+            onSubmit={(values) => {
+              console.log(values);
+            }}
+          >
+            {({ values, handleChange, handleSubmit }) => (
+              <form onSubmit={handleSubmit}>
+                <Grid container spacing={1} justifyContent="center">
+                  <Grid item xs={3}>
+                    <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
+                    <Input
+                      inputProps={{
+                        style: {
+                          fontSize: "30px",
+                          fontFamily: "Georgia",
+                          color: "#3876e9",
+                          width: "200px",
+                        },
+                      }}
+                      name="fName"
+                      placeholder="First Name"
+                      onChange={handleChange}
+                      value={values.fName}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <BadgeIcon
+                            style={{ fontSize: "32px", color: "#3876e9" }}
+                          />
+                        </InputAdornment>
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
+                    <Input
+                      inputProps={{
+                        style: {
+                          fontSize: "30px",
+                          fontFamily: "Georgia",
+                          color: "#3876e9",
+                          width: "200px",
+                        },
+                      }}
+                      name="lName"
+                      placeholder="Last Name"
+                      onChange={handleChange}
+                      value={values.lName}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <BadgeIcon
+                            style={{ fontSize: "32px", color: "#3876e9" }}
+                          />
+                        </InputAdornment>
+                      }
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={3}>
-                  <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
-                  <Input
-                    inputProps={{
-                      style: {
-                        fontSize: "32px",
-                        fontFamily: "Georgia",
-                        color: "#3876e9",
-                        width: "200px",
-                      },
-                    }}
-                    name="lName"
-                    placeholder="Last Name"
-                    onChange={handleChange}
-                    value={values.lName}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <BadgeIcon
-                          style={{ fontSize: "32px", color: "#3876e9" }}
-                        />
-                      </InputAdornment>
-                    }
-                  />
-                </Grid>
-              </Grid>
-              <div style={{ marginTop: "20px" }}></div>
-              <div style={{ marginTop: "20px" }}></div>
+                <div style={{ marginTop: "20px" }}></div>
+                <div style={{ marginTop: "20px" }}></div>
 
-              <Grid container spacing={1} justifyContent="center">
-                <Grid item xs={3}>
-                  <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
-                  <Input
-                    inputProps={{
-                      style: {
-                        fontSize: "32px",
-                        fontFamily: "Georgia",
-                        color: "#3876e9",
-                        width: "200px",
-                      },
-                    }}
-                    type="password"
-                    name="password"
-                    placeholder="Create Password"
-                    onChange={handleChange}
-                    value={values.password}
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <LockIcon
-                          style={{ fontSize: "32px", color: "#3876e9" }}
-                        />
-                      </InputAdornment>
-                    }
-                  />
+                <Grid container spacing={1} justifyContent="center">
+                  <Grid item xs={3}>
+                    <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
+                    <Input
+                      inputProps={{
+                        style: {
+                          fontSize: "30px",
+                          fontFamily: "Georgia",
+                          color: "#3876e9",
+                          width: "200px",
+                        },
+                      }}
+                      type="password"
+                      name="password"
+                      placeholder="Create Password"
+                      onChange={handleChange}
+                      value={values.password}
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <LockIcon
+                            style={{ fontSize: "32px", color: "#3876e9" }}
+                          />
+                        </InputAdornment>
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={3}>
+                    <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
+                    <Input
+                      inputProps={{
+                        style: {
+                          fontSize: "30px",
+                          fontFamily: "Georgia",
+                          color: "#3876e9",
+                          width: "200px",
+                        },
+                      }}
+                      type="password"
+                      placeholder="Confirm Password"
+                      startAdornment={
+                        <InputAdornment position="start">
+                          <LockIcon
+                            style={{ fontSize: "32px", color: "#3876e9" }}
+                          />
+                        </InputAdornment>
+                      }
+                    />
+                  </Grid>
                 </Grid>
-                <Grid item xs={3}>
-                  <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
-                  <Input
-                    inputProps={{
-                      style: {
-                        fontSize: "32px",
-                        fontFamily: "Georgia",
-                        color: "#3876e9",
-                        width: "200px",
-                      },
-                    }}
-                    type="password"
-                    placeholder="Confirm Password"
-                    startAdornment={
-                      <InputAdornment position="start">
-                        <LockIcon
-                          style={{ fontSize: "32px", color: "#3876e9" }}
-                        />
-                      </InputAdornment>
-                    }
-                  />
-                </Grid>
-              </Grid>
 
-              <div style={{ marginTop: "20px" }}></div>
-              <div style={{ marginTop: "20px" }}></div>
-              <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
-              <Input
-                inputProps={{
-                  style: {
-                    fontSize: "32px",
-                    fontFamily: "Georgia",
+                <div style={{ marginTop: "40px" }}></div>
+
+                <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
+                <Input
+                  inputProps={{
+                    style: {
+                      fontSize: "30px",
+                      fontFamily: "Georgia",
+                      color: "#3876e9",
+                      width: "300px",
+                    },
+                  }}
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  value={values.email}
+                  startAdornment={
+                    <InputAdornment position="start">
+                      <EmailIcon style={{ fontSize: "32px", color: "#3876e9" }} />
+                    </InputAdornment>
+                  }
+                />
+
+                <div style={{ marginTop: "40px" }}></div>
+                <Button
+                  variant="outlined"
+                  style={{
+                    fontSize: "18px",
                     color: "#3876e9",
-                    width: "300px",
-                  },
-                }}
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={handleChange}
-                value={values.email}
-                startAdornment={
-                  <InputAdornment position="start">
-                    <EmailIcon style={{ fontSize: "32px", color: "#3876e9" }} />
-                  </InputAdornment>
-                }
-              />
-
-              <div style={{ marginTop: "40px" }}></div>
-              <Button
-                variant="outlined"
-                style={{
-                  fontSize: "18px",
-                  color: "#3876e9",
-                  borderColor: "orange",
-                }}
-                type="submit"
-              >
-                Sign up
-              </Button>
-              <span style={{ marginLeft: "30px" }}></span>
-              <Button
-                variant="outlined"
-                style={{
-                  fontSize: "18px",
-                  color: "#3876e9",
-                  borderColor: "orange",
-                }}
-                component={Link}
-                to="/"
-              >
-                Go back
-              </Button>
-              <pre>{console.log(values)}</pre>
-            </form>
-          )}
-        </Formik>
+                    borderColor: "orange",
+                  }}
+                  type="submit"
+                >
+                  Sign up
+                </Button>
+                <span style={{ marginLeft: "30px" }}></span>
+                <Button
+                  variant="outlined"
+                  style={{
+                    fontSize: "18px",
+                    color: "#3876e9",
+                    borderColor: "orange",
+                  }}
+                  component={Link}
+                  to="/"
+                >
+                  Go back
+                </Button>
+                <pre>{console.log(values)}</pre>
+              </form>
+            )}
+          </Formik>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

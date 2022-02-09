@@ -1,5 +1,10 @@
 import React, { Component, Fragment } from "react";
-
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 export default class VaccineList extends Component {
   state = {
     vaccines: [],
@@ -51,10 +56,26 @@ export default class VaccineList extends Component {
       );
     }
     if (!isLoaded) {
-      return <p>Loading...</p>;
+      return <p>Loading...Please open backend server.</p>;
     } else {
       return (
-        <Fragment>
+        <>
+          <div className="space"></div>
+          <Box sx={{ flexGrow: 1 }}>
+            <AppBar>
+              <Toolbar>
+                <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                  <a component={Link} href="/" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+                </Typography>
+                <Button color="inherit" component={Link}
+                  to="/login">Login</Button>
+                <Button color="inherit" component={Link}
+                  to="/signup">Sign up</Button>
+                <Button color="inherit" component={Link}
+                  to="/list">Vaccine List</Button>
+              </Toolbar>
+            </AppBar>
+          </Box>
           <div>
             <table style={{ width: "500px" }}>
               <tr>
@@ -85,7 +106,7 @@ export default class VaccineList extends Component {
               ))}
             </table>
           </div>
-        </Fragment>
+        </>
       );
     }
   }
