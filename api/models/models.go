@@ -7,3 +7,14 @@ type Vaccine struct {
 	State      string `json:"state"`
 	ZipCode    int    `json:"zip_code"`
 }
+
+type User struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	Fname    string `json:"fName"`
+	Lname    string `json:"lName"`
+}
+
+type SearchVaccine struct {
+	Result string `json:"search"`
+}

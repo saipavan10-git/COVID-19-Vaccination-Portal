@@ -3,40 +3,29 @@ package main
 import (
 	"backend/models"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"log"
 	"net/http"
-	"strconv"
 
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/julienschmidt/httprouter"
 )
 
-func (app *application) getOneVaccine(w http.ResponseWriter, r *http.Request) {
+var results string
 
+func (app *application) getOneVaccine(w http.ResponseWriter, r *http.Request) {
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
 	params := httprouter.ParamsFromContext(r.Context())
 	fmt.Println(params)
-	id, err := strconv.Atoi(params.ByName("id"))
-	if err != nil {
-		app.logger.Print(errors.New("invalid ID parameter"))
-		app.errorJSON(w, err)
-		return
-	}
+	id := params.ByName("id")
 
-	app.logger.Println("id is", id)
+	var p1 []models.Vaccine
+	db.Where("name = ?", id).Find(&p1)
+	app.writeJSON(w, http.StatusOK, p1, "vaccines")
+	log.Println(p1)
 
-	vaccine := models.Vaccine{
-
-		ID:         id,
-		Name:       "Pfizer",
-		VaccineNum: 1,
-		State:      "Florida",
-		ZipCode:    32835,
-	}
-
-	err = app.writeJSON(w, http.StatusOK, vaccine, "vaccine")
 }
 
 func (app *application) getAllVaccines(w http.ResponseWriter, r *http.Request) {
@@ -64,4 +53,51 @@ func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
 	log.Println(vaccine)
 	log.Println("Vaccine with ID ", vaccine.ID, " is booked.")
 	log.Println("Detailed Info:", vaccine.Name, ",", vaccine.VaccineNum, "-dose.")
+}
+
+func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
+
+	var user models.User
+	err := json.NewDecoder(r.Body).Decode(&user)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+	log.Println(user)
+	db.Table("user").Create(&user)
+}
+
+func (app *application) searchRecord(w http.ResponseWriter, r *http.Request) {
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
+
+	var result models.SearchVaccine
+	err := json.NewDecoder(r.Body).Decode(&result)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+
+	results = result.Result
+
+}
+
+func (app *application) searchResult(w http.ResponseWriter, r *http.Request) {
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
+
+	var result models.SearchVaccine
+	err := json.NewDecoder(r.Body).Decode(&result)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+
+	var p1 []models.Vaccine
+	db.Where("name = ?", results).Find(&p1)
+	app.writeJSON(w, http.StatusOK, p1, "vaccines")
+	log.Println(p1)
+
 }

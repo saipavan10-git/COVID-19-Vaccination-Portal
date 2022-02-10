@@ -12,6 +12,18 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 function Login() {
+  // function sayHello(m) {
+  //   const requestOptions = {
+  //     method: "POST",
+  //     body: JSON.stringify(m),
+  //   };
+
+  //   fetch("http://localhost:4000/v1/test", requestOptions)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //     });
+  // }
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -40,6 +52,7 @@ function Login() {
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => {
             console.log(values);
+            // sayHello(values);
           }}
         >
           {({ values, handleChange, handleSubmit }) => (

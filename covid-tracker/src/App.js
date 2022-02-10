@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VaccineList from "./pages/VaccineList";
-
+import SearchResult from "./pages/SearchResult";
 function App() {
   return (
     <Router>
@@ -16,6 +16,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/list" element={<VaccineList />} />
+
       </Routes>
     </Router>
   );
