@@ -6,12 +6,16 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/crypto/bcrypt"
 )
+
+const SecretKey = "secret"
 
 var results string
 
@@ -88,7 +92,6 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 
 	err := json.NewDecoder(r.Body).Decode(&user)
-
 	if err != nil {
 		app.errorJSON(w, err)
 		return
@@ -110,11 +113,27 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 		app.writeJSON(w, http.StatusOK, "Incorrect password", "message")
 		return
 	} else {
-		app.writeJSON(w, http.StatusOK, "Matched", "message")
-		return
+
+		claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
+			Issuer:    user.Email,
+			ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
+		})
+
+		token, _ := claims.SignedString([]byte(SecretKey))
+
+		if err != nil {
+			app.writeJSON(w, http.StatusOK, "Could not log in", "message")
+			return
+		} else {
+			log.Println(token)
+			app.writeJSON(w, http.StatusOK, token, "token")
+
+		}
+
 	}
 
 }
+
 func (app *application) searchRecord(w http.ResponseWriter, r *http.Request) {
 	db, _ := gorm.Open("sqlite3", "./vaccine.db")
 	defer db.Close()

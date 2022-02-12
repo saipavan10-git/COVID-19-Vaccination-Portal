@@ -62,4 +62,5 @@ func main() {
 		log.Println(err)
 	}
 	router.Use(Cors())
+
 }
