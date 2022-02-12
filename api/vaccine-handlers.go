@@ -7,11 +7,10 @@ import (
 	"log"
 	"net/http"
 
-	"golang.org/x/crypto/bcrypt"
-
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/julienschmidt/httprouter"
+	"golang.org/x/crypto/bcrypt"
 )
 
 var results string
@@ -62,9 +61,9 @@ func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	var user models.User
-	log.Println(r.Body)
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
+
 		app.errorJSON(w, err)
 		return
 	}
@@ -77,11 +76,45 @@ func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
 		Fname:    user.Fname,
 		Lname:    user.Lname,
 	}
-	log.Println(encryptedUser)
 
 	db.Table("user").Create(&encryptedUser)
+
 }
 
+func (app *application) login(w http.ResponseWriter, r *http.Request) {
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
+
+	var user models.User
+
+	err := json.NewDecoder(r.Body).Decode(&user)
+
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+
+	var findUser models.User
+	db.Table("user").Where("email = ?", user.Email).Take(&findUser)
+
+	var empty models.User
+	log.Println(findUser)
+
+	if findUser == empty {
+
+		app.writeJSON(w, http.StatusOK, "User not found", "message")
+		return
+	}
+
+	if err := bcrypt.CompareHashAndPassword([]byte(findUser.Password), []byte(user.Password)); err != nil {
+		app.writeJSON(w, http.StatusOK, "Incorrect password", "message")
+		return
+	} else {
+		app.writeJSON(w, http.StatusOK, "Matched", "message")
+		return
+	}
+
+}
 func (app *application) searchRecord(w http.ResponseWriter, r *http.Request) {
 	db, _ := gorm.Open("sqlite3", "./vaccine.db")
 	defer db.Close()
