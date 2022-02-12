@@ -7,6 +7,8 @@ import (
 	"log"
 	"net/http"
 
+	"golang.org/x/crypto/bcrypt"
+
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/julienschmidt/httprouter"
@@ -60,13 +62,24 @@ func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 
 	var user models.User
+	log.Println(r.Body)
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
 	}
-	log.Println(user)
-	db.Table("user").Create(&user)
+
+	encryptedPassword, _ := bcrypt.GenerateFromPassword([]byte(user.Password), 14)
+
+	encryptedUser := models.User{
+		Email:    user.Email,
+		Password: string(encryptedPassword),
+		Fname:    user.Fname,
+		Lname:    user.Lname,
+	}
+	log.Println(encryptedUser)
+
+	db.Table("user").Create(&encryptedUser)
 }
 
 func (app *application) searchRecord(w http.ResponseWriter, r *http.Request) {
