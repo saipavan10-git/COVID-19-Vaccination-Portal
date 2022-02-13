@@ -3,6 +3,7 @@ package main
 import (
 	"backend/models"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -110,7 +111,7 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := bcrypt.CompareHashAndPassword([]byte(findUser.Password), []byte(user.Password)); err != nil {
-		app.writeJSON(w, http.StatusOK, "Incorrect password", "message")
+		app.errorJSON(w, errors.New("unauthorized"))
 		return
 	} else {
 

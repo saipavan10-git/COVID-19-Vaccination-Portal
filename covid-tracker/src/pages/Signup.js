@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -13,8 +13,28 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-
+import * as Yup from 'yup';
 function Signup() {
+  const [inputPassError, setInputPassError] = useState(false);
+  const [inputEmailError, setInputEmailError] = useState(false);
+  const [inputFNameError, setInputFNameError] = useState(false);
+  const [inputLNameError, setInputLNameError] = useState(false);
+  const [inputRePassError, setInputRePassError] = useState(false);
+  const validate = Yup.object({
+    email: Yup.string()
+      .email('Email is invalid')
+      .required('Email is required'),
+
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 charaters')
+      .required('Password is required'),
+
+    fName: Yup.string().required('First name is required'),
+    lName: Yup.string().required('Last name is required'),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password'), null], 'Password must match')
+      .required('Confirm password is required'),
+  })
   function sayHello(m) {
     const requestOptions = {
       method: "POST",
@@ -54,18 +74,20 @@ function Signup() {
 
         <div className="inputStyle">
           <Formik
-            initialValues={{ fName: "", lName: "", email: "", password: "" }}
+            initialValues={{ fName: "", lName: "", email: "", password: "", confirmPassword: "" }}
             onSubmit={(values) => {
               console.log(values);
               sayHello(values);
             }}
+            validationSchema={validate}
           >
-            {({ values, handleChange, handleSubmit }) => (
+            {({ values, handleChange, handleSubmit, errors, touched }) => (
               <form onSubmit={handleSubmit}>
                 <Grid container spacing={1} justifyContent="center">
                   <Grid item xs={3}>
                     <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
                     <Input
+                      error={inputFNameError}
                       inputProps={{
                         style: {
                           fontSize: "30px",
@@ -76,7 +98,7 @@ function Signup() {
                       }}
                       name="fName"
                       placeholder="First Name"
-                      onChange={handleChange}
+                      onChange={(e) => { handleChange(e); setInputFNameError(false); }}
                       value={values.fName}
                       startAdornment={
                         <InputAdornment position="start">
@@ -86,10 +108,14 @@ function Signup() {
                         </InputAdornment>
                       }
                     />
+                    {errors.fName && touched.fName ? (setInputFNameError(true), (
+                      <div style={{ color: "red" }}>{errors.fName}</div>
+                    )) : null}
                   </Grid>
                   <Grid item xs={3}>
                     <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
                     <Input
+                      error={inputLNameError}
                       inputProps={{
                         style: {
                           fontSize: "30px",
@@ -100,7 +126,7 @@ function Signup() {
                       }}
                       name="lName"
                       placeholder="Last Name"
-                      onChange={handleChange}
+                      onChange={(e) => { handleChange(e); setInputLNameError(false); }}
                       value={values.lName}
                       startAdornment={
                         <InputAdornment position="start">
@@ -110,6 +136,9 @@ function Signup() {
                         </InputAdornment>
                       }
                     />
+                    {errors.lName && touched.lName ? (setInputLNameError(true), (
+                      <div style={{ color: "red" }}>{errors.lName}</div>
+                    )) : null}
                   </Grid>
                 </Grid>
                 <div style={{ marginTop: "20px" }}></div>
@@ -119,6 +148,7 @@ function Signup() {
                   <Grid item xs={3}>
                     <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
                     <Input
+                      error={inputPassError}
                       inputProps={{
                         style: {
                           fontSize: "30px",
@@ -130,7 +160,7 @@ function Signup() {
                       type="password"
                       name="password"
                       placeholder="Create Password"
-                      onChange={handleChange}
+                      onChange={(e) => { handleChange(e); setInputPassError(false); }}
                       value={values.password}
                       startAdornment={
                         <InputAdornment position="start">
@@ -140,10 +170,15 @@ function Signup() {
                         </InputAdornment>
                       }
                     />
+                    {errors.password && touched.password ? (setInputPassError(true), (
+                      <div style={{ color: "red" }}>{errors.password}</div>
+                    )) : null}
                   </Grid>
                   <Grid item xs={3}>
                     <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
                     <Input
+                      error={inputRePassError}
+                      onChange={(e) => { handleChange(e); setInputRePassError(false); console.log(inputRePassError); }}
                       inputProps={{
                         style: {
                           fontSize: "30px",
@@ -153,6 +188,8 @@ function Signup() {
                         },
                       }}
                       type="password"
+                      name="confirmPassword"
+                      value={values.confirmPassword}
                       placeholder="Confirm Password"
                       startAdornment={
                         <InputAdornment position="start">
@@ -161,7 +198,9 @@ function Signup() {
                           />
                         </InputAdornment>
                       }
-                    />
+                    />{errors.confirmPassword && touched.confirmPassword ? (setInputRePassError(true), (
+                      <div style={{ color: "red" }}>{errors.confirmPassword}</div>
+                    )) : null}
                   </Grid>
                 </Grid>
 
@@ -169,6 +208,7 @@ function Signup() {
 
                 <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
                 <Input
+                  error={inputEmailError}
                   inputProps={{
                     style: {
                       fontSize: "30px",
@@ -180,7 +220,7 @@ function Signup() {
                   type="email"
                   name="email"
                   placeholder="Email"
-                  onChange={handleChange}
+                  onChange={(e) => { handleChange(e); setInputEmailError(false); }}
                   value={values.email}
                   startAdornment={
                     <InputAdornment position="start">
@@ -188,6 +228,9 @@ function Signup() {
                     </InputAdornment>
                   }
                 />
+                {errors.email && touched.email ? (setInputEmailError(true), (
+                  <div style={{ color: "red" }}>{errors.email}</div>
+                )) : null}
 
                 <div style={{ marginTop: "40px" }}></div>
                 <Button

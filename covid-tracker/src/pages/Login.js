@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -6,12 +6,30 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import LockIcon from "@mui/icons-material/Lock";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
+
 function Login() {
+
+
+  const [inputPassError, setInputPassError] = useState(false);
+  const [inputEmailError, setInputEmailError] = useState(false);
+  const validate = Yup.object({
+    email: Yup.string()
+      .email('Email is invalid')
+      .required('Email is required'),
+
+    password: Yup.string()
+      .min(6, 'Password must be at least 6 charaters')
+      .required('Password is required'),
+  })
+
+  let navigate = useNavigate();
   function sayHello(m) {
     const requestOptions = {
       method: "POST",
@@ -22,8 +40,12 @@ function Login() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+
+        navigate('/test');
       });
   }
+
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -49,17 +71,20 @@ function Login() {
         <div style={{ marginTop: "20px" }}></div>
 
         <Formik
+
           initialValues={{ email: "", password: "" }}
           onSubmit={(values) => {
             console.log(values);
             sayHello(values);
           }}
+          validationSchema={validate}
         >
-          {({ values, handleChange, handleSubmit }) => (
-            <form onSubmit={handleSubmit}>
+          {({ values, handleChange, handleSubmit, errors, touched }) => (
+            <Form onSubmit={handleSubmit}>
               <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
               <Input
-                onChange={handleChange}
+                error={inputEmailError}
+                onChange={(e) => { handleChange(e); setInputEmailError(false); }}
                 value={values.email}
                 inputProps={{
                   style: {
@@ -80,13 +105,18 @@ function Login() {
                   </InputAdornment>
                 }
               />
+              {errors.email && touched.email ? (setInputEmailError(true), (
+                <div style={{ color: "red" }}>{errors.email}</div>
+              )) : null}
+
               {/* make space between email and password input */}
               <div style={{ marginTop: "20px" }}></div>
 
               {/* input password */}
               <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
               <Input
-                onChange={handleChange}
+                error={inputPassError}
+                onChange={(e) => { handleChange(e); setInputPassError(false); }}
                 value={values.password}
                 inputProps={{
                   style: {
@@ -105,6 +135,10 @@ function Login() {
                   </InputAdornment>
                 }
               />
+
+              {errors.password && touched.password ? ((setInputPassError(true),
+                <div style={{ color: "red" }}>{errors.password}</div>
+              )) : null}
 
               {/* make space between email and password input */}
               <div style={{ marginTop: "40px" }}></div>
@@ -151,7 +185,7 @@ function Login() {
               </div>
               {/* console log values */}
               <pre>{console.log(values)}</pre>
-            </form>
+            </Form>
           )}
         </Formik>
       </div>
