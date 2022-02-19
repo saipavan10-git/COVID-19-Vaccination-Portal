@@ -16,7 +16,7 @@ import * as Yup from 'yup';
 
 function Login() {
 
-
+  const [redirect, setRedirect] = useState(false);
   const [inputPassError, setInputPassError] = useState(false);
   const [inputEmailError, setInputEmailError] = useState(false);
   const validate = Yup.object({
@@ -34,6 +34,7 @@ function Login() {
     const requestOptions = {
       method: "POST",
       body: JSON.stringify(m),
+      credentials: "include",
     };
 
     fetch("http://localhost:4000/v1/login", requestOptions)
@@ -41,10 +42,13 @@ function Login() {
       .then((data) => {
         console.log(data);
 
-        navigate('/test');
-      });
-  }
 
+      });
+    setRedirect(true);
+  }
+  if (redirect) {
+    navigate('/test');
+  }
 
   return (
     <>

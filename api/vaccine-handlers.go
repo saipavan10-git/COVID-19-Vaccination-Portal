@@ -119,7 +119,6 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 		app.errorJSON(w, errors.New("unauthorized"))
 		return
 	} else {
-
 		claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
 			Issuer:    user.Email,
 			ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
@@ -151,7 +150,7 @@ func (app *application) user(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		if err == http.ErrNoCookie {
 			// If the cookie is not set, return an unauthorized status
-
+			app.errorJSON(w, err)
 			w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
@@ -222,4 +221,15 @@ func (app *application) findUser(w http.ResponseWriter, r *http.Request) {
 	var u1 []models.User
 	db.Find(&u1)
 	log.Println(u1)
+}
+
+func (app *application) logout(w http.ResponseWriter, r *http.Request) {
+	http.SetCookie(w, &http.Cookie{
+		Name:     "token",
+		Value:    "",
+		Expires:  time.Now().Add(-time.Hour),
+		HttpOnly: true,
+	})
+
+	return
 }

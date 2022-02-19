@@ -14,12 +14,14 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 function Signup() {
   const [inputPassError, setInputPassError] = useState(false);
   const [inputEmailError, setInputEmailError] = useState(false);
   const [inputFNameError, setInputFNameError] = useState(false);
   const [inputLNameError, setInputLNameError] = useState(false);
   const [inputRePassError, setInputRePassError] = useState(false);
+  const [redirect, setRedirect] = useState(false);
   const validate = Yup.object({
     email: Yup.string()
       .email('Email is invalid')
@@ -35,6 +37,7 @@ function Signup() {
       .oneOf([Yup.ref('password'), null], 'Password must match')
       .required('Confirm password is required'),
   })
+  let navigate = useNavigate();
   function sayHello(m) {
     const requestOptions = {
       method: "POST",
@@ -46,6 +49,13 @@ function Signup() {
       .then((data) => {
         console.log(data);
       });
+
+    setRedirect(true);
+
+  }
+
+  if (redirect) {
+    navigate('/login');
   }
   return (
     <>

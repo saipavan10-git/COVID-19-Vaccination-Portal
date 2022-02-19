@@ -34,6 +34,7 @@ func Cors() gin.HandlerFunc {
 		c.Next()
 	}
 }
+
 func main() {
 
 	var cfg config
