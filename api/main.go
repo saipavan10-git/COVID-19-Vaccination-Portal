@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
 
 type config struct {
@@ -34,6 +35,7 @@ func Cors() gin.HandlerFunc {
 	}
 }
 func main() {
+
 	var cfg config
 	router := gin.Default()
 	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")

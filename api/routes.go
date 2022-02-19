@@ -17,6 +17,7 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodPost, "/v1/login", app.login)
 	router.HandlerFunc(http.MethodPost, "/v1/test/result", app.searchRecord)
 	router.HandlerFunc(http.MethodGet, "/v1/test/result", app.searchResult)
-
+	router.HandlerFunc(http.MethodGet, "/v1/user", app.user)
+	router.HandlerFunc(http.MethodGet, "/v1/findUser", app.findUser)
 	return app.enableCORS(router)
 }

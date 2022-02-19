@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Formik } from "formik";
 import Input from "@mui/material/Input";
 export default class VaccineList extends Component {
 
@@ -14,14 +13,12 @@ export default class VaccineList extends Component {
     isLoaded: false,
   };
 
-
-
   constructor(props) {
     super(props);
     this.state = { value: '', searchTerm: "" };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
   }
 
   handleChange(event) {
@@ -30,11 +27,10 @@ export default class VaccineList extends Component {
 
   }
 
-  handleSubmit(event) {
+  handleSearch(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
-
 
   componentDidMount() {
     fetch("http://localhost:4000/v1/vaccines")
@@ -111,7 +107,7 @@ export default class VaccineList extends Component {
           <div>
             <div className="searchVaccine">
 
-              <form onSubmit={this.handleSubmit}>
+              <form onSubmit={this.handleSearch}>
                 <Input
                   onChange={this.handleChange}
                   value={this.state.value}
@@ -144,7 +140,7 @@ export default class VaccineList extends Component {
                   <th>Appointment</th>
                 </tr>
                 {vaccines.filter((val) => {
-                  if (this.state.searchTerm == "") {
+                  if (this.state.searchTerm === "") {
                     return val;
                   } else if (val.vaccine_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
                     return val;

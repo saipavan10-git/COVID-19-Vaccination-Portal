@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
@@ -9,13 +9,13 @@ import Box from '@mui/material/Box';
 function Homepage() {
   const [jwt, setJwt] = useState("");
   let showOrNot;
-  if (jwt == "") {
+  if (jwt === "") {
     showOrNot = <Button color="inherit" component={Link}
       to="/login">Login</Button>
   }
 
   let status;
-  if (jwt == "") {
+  if (jwt === "") {
     status = <h2>Currently you are not signed in.</h2>
   } else
     status = <h2>Currently you are signed in.</h2>

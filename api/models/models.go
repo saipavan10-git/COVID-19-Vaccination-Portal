@@ -10,7 +10,7 @@ type Vaccine struct {
 
 type User struct {
 	Email    string `json:"email"`
-	Password string `json:"password"`
+	Password string `json:"-"`
 	Fname    string `json:"fName"`
 	Lname    string `json:"lName"`
 }

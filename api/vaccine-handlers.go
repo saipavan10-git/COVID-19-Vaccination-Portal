@@ -62,13 +62,15 @@ func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
-	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+
+	db, _ := gorm.Open("sqlite3", "./user.db")
 	defer db.Close()
+	db.AutoMigrate(&models.User{})
 
 	var user models.User
 	err := json.NewDecoder(r.Body).Decode(&user)
+	log.Println(user)
 	if err != nil {
-
 		app.errorJSON(w, err)
 		return
 	}
@@ -82,15 +84,18 @@ func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
 		Lname:    user.Lname,
 	}
 
-	db.Table("user").Create(&encryptedUser)
+	db.Create(&encryptedUser)
 
 }
 
 func (app *application) login(w http.ResponseWriter, r *http.Request) {
-	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	db, _ := gorm.Open("sqlite3", "./user.db")
 	defer db.Close()
 
 	var user models.User
+	var result []models.User
+	db.Find(&result)
+	log.Println(result)
 
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
@@ -99,10 +104,10 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var findUser models.User
-	db.Table("user").Where("email = ?", user.Email).Take(&findUser)
+
+	db.Where("email = ?", user.Email).Take(&findUser)
 
 	var empty models.User
-	log.Println(findUser)
 
 	if findUser == empty {
 
@@ -126,13 +131,55 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 			app.writeJSON(w, http.StatusOK, "Could not log in", "message")
 			return
 		} else {
+
 			log.Println(token)
+			http.SetCookie(w, &http.Cookie{
+				Name:     "token",
+				Value:    token,
+				Expires:  time.Now().Add(time.Hour * 24),
+				HttpOnly: true,
+			})
 			app.writeJSON(w, http.StatusOK, token, "token")
-
 		}
+	}
+}
 
+func (app *application) user(w http.ResponseWriter, r *http.Request) {
+	db, _ := gorm.Open("sqlite3", "./user.db")
+	defer db.Close()
+	c, err := r.Cookie("token")
+	if err != nil {
+		if err == http.ErrNoCookie {
+			// If the cookie is not set, return an unauthorized status
+
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	tknStr := c.Value
+
+	tkn, err := jwt.ParseWithClaims(tknStr, &jwt.StandardClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(SecretKey), nil
+	})
+
+	if err != nil {
+		if err == jwt.ErrSignatureInvalid {
+			w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+		w.WriteHeader(http.StatusBadRequest)
+		return
 	}
 
+	claims := tkn.Claims.(*jwt.StandardClaims)
+	var user models.User
+	log.Println(claims.Issuer)
+
+	db.Where("email = ?", claims.Issuer).Take(&user)
+	log.Println(user)
+	app.writeJSON(w, http.StatusOK, user, "message")
 }
 
 func (app *application) searchRecord(w http.ResponseWriter, r *http.Request) {
@@ -166,4 +213,13 @@ func (app *application) searchResult(w http.ResponseWriter, r *http.Request) {
 	app.writeJSON(w, http.StatusOK, p1, "vaccines")
 	log.Println(p1)
 
+}
+
+func (app *application) findUser(w http.ResponseWriter, r *http.Request) {
+	db, _ := gorm.Open("sqlite3", "./user.db")
+	defer db.Close()
+
+	var u1 []models.User
+	db.Find(&u1)
+	log.Println(u1)
 }
