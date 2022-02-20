@@ -14,8 +14,7 @@ import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
-function Login() {
-
+function Login(props) {
 
   const [inputPassError, setInputPassError] = useState(false);
   const [inputEmailError, setInputEmailError] = useState(false);
@@ -34,14 +33,26 @@ function Login() {
     const requestOptions = {
       method: "POST",
       body: JSON.stringify(m),
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
     };
 
-    fetch("http://localhost:4000/v1/login", requestOptions)
+    const response = fetch("http://localhost:4000/v1/login", requestOptions)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        if (data.error) {
+          alert(
+            data.error.message
+          )
+        } else {
 
-        navigate('/test');
+          props.setName("h");
+          navigate('/test');
+        }
+
+
+
+
       });
   }
 

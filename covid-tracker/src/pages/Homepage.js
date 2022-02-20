@@ -6,19 +6,32 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
-function Homepage() {
-  const [jwt, setJwt] = useState("");
-  let showOrNot;
-  if (jwt == "") {
-    showOrNot = <Button color="inherit" component={Link}
-      to="/login">Login</Button>
+function Homepage(props) {
+  const logOut = async () => {
+    await fetch('http://localhost:4000/v1/logout', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+    });
+    props.setName('');
   }
 
+  let showOrNot;
+  let showOrNot2;
   let status;
-  if (jwt == "") {
+  let logout;
+  if (!props.name) {
+    showOrNot = <Button color="inherit" component={Link}
+      to="/login">Login</Button>
+    showOrNot2 = <Button color="inherit" component={Link}
+      to="/signup">Sign up</Button>
     status = <h2>Currently you are not signed in.</h2>
-  } else
-    status = <h2>Currently you are signed in.</h2>
+
+  } else {
+    logout = <Button color="inherit" onClick={logOut}>log out</Button>
+    status = <h2>Currently you are signed in as {props.name}</h2>
+  }
+
   return (
     <div>
       <Box sx={{ flexGrow: 1 }}>
@@ -28,10 +41,10 @@ function Homepage() {
               <a component={Link} href="/" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
             </Typography>
             {showOrNot}
-            <Button color="inherit" component={Link}
-              to="/signup">Sign up</Button>
+            {showOrNot2}
             <Button color="inherit" component={Link}
               to="/list">Vaccine List</Button>
+            {logout}
           </Toolbar>
         </AppBar>
       </Box>

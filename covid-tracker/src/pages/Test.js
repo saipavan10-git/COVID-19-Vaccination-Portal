@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
+function Test(props) {
 
-function Test() {
 
-    const [jwt, setJwt] = useState("Current Logged out");
-    const val = "logged in"
-    let choice;
-
-    if (jwt == "Current Logged out") {
-        choice = <button onClick={() => setJwt(val)}>Login</button>
-    } else {
-        choice = <button onClick={() => setJwt("Current Logged out")}>Log out</button>
-    }
     return (
-        <>
-            <h1>{jwt}</h1>
-            <h2>{choice}</h2>
-        </>
-    );
+        <div>
+            {console.log(props.name)}
+            {props.name ? <h1>{props.name}</h1> : <h1>nothing</h1>}
+            <Button variant="contained" component={Link}
+                to="/">Home</Button>
+        </div>
+    )
+
 }
 
 export default Test;
