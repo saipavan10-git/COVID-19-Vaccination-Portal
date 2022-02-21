@@ -53,14 +53,39 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 100%;
+
 }
 
 td, th {
   border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+  text-align: center;
+  padding: 20px;
+  font-size: 20px;
+  border-left:none;
+  border-top:none;
+  border-right:none;
 }
 
 .colorchange{
   color: orange;
 }
+
+.space {
+  margin-top: 80px;
+}
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.centerTable {
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.searchVaccine {
+  text-align: center;
+}
+ 
