@@ -3,13 +3,13 @@ In this project we are designing a web application where users can book their va
 
 ## Team Members
 
-• Yichong Ma @mayichong
+• Yichong Ma (@mayichong)
 
-•	Sai Pavan Kamma @saipavan10-git
+•	Sai Pavan Kamma (@saipavan10-git)
 
-•	Venkateswarlu Tanneru @Vtanneru
+•	Venkateswarlu Tanneru (@Vtanneru)
 
-•	Lalith Phani Srinivas Kandregula @Klps-1248
+•	Lalith Phani Srinivas Kandregula (@Klps-1248)
 
 
 ## Technologies Used
