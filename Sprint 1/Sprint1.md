@@ -1,4 +1,4 @@
-# Sprint 1
+# Sprint 1 Accomplishments 
 **WorkFlow**
 * Updated User Stories as Issues
 * Assigned with Various issues to work on throughout sprint1
@@ -26,3 +26,12 @@
 ## Demo
 
 Link to Working Demo for Sprint 1 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%201/Sprint1.mp4)
+
+## Team Members
+• Yichong Ma (@mayichong)
+
+• Sai Pavan Kamma (@saipavan10-git)
+
+• Venkateswarlu Tanneru (@Vtanneru)
+
+• Lalith Phani Srinivas Kandregula (@Klps-1248)
