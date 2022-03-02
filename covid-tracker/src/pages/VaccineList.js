@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Formik } from "formik";
 import Input from "@mui/material/Input";
 export default class VaccineList extends Component {
 
@@ -144,7 +143,7 @@ export default class VaccineList extends Component {
                   <th>Appointment</th>
                 </tr>
                 {vaccines.filter((val) => {
-                  if (this.state.searchTerm == "") {
+                  if (this.state.searchTerm === "") {
                     return val;
                   } else if (val.vaccine_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
                     return val;
