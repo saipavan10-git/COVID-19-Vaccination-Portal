@@ -88,4 +88,16 @@ a, a:visited, a:hover, a:active {
 .searchVaccine {
   text-align: center;
 }
+
+.centerButton {
+  text-align: center;
+}
+
+p {
+  font-size: 30px;
+}
+
+.space40 {
+  margin-top: 40px;
+}
  

@@ -28,6 +28,8 @@ function Homepage(props) {
     status = <h2>Currently you are not signed in.</h2>
 
   } else {
+    showOrNot = <Button color="inherit" component={Link}
+      to="/user">Profile</Button>
     logout = <Button color="inherit" onClick={logOut}>log out</Button>
     status = <h2>Currently you are signed in as {props.name}</h2>
   }
@@ -49,9 +51,6 @@ function Homepage(props) {
         </AppBar>
       </Box>
       <div className="space"></div>
-      <h1>
-        Homepage
-      </h1>
       {status}
       <div className="centered">
 
