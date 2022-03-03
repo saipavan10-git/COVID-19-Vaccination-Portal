@@ -138,6 +138,7 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) user(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("cors used")
 	db, _ := gorm.Open("sqlite3", "./user.db")
 	defer db.Close()
 	c, err := r.Cookie("token")
