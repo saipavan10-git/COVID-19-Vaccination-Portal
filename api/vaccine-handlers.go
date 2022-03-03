@@ -156,18 +156,17 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) user(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("cors used")
 	db, _ := gorm.Open("sqlite3", "./user.db")
 	defer db.Close()
 	c, err := r.Cookie("token")
 	if err != nil {
 		if err == http.ErrNoCookie {
 			// If the cookie is not set, return an unauthorized status
-			app.errorJSON(w, err)
-			w.WriteHeader(http.StatusUnauthorized)
+			// app.errorJSON(w, err)
+			// w.WriteHeader(http.StatusUnauthorized)
 			return
 		}
-		w.WriteHeader(http.StatusBadRequest)
+		// w.WriteHeader(http.StatusBadRequest)
 		return
 	}
 	tknStr := c.Value
