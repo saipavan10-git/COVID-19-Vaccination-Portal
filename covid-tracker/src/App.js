@@ -19,17 +19,24 @@ function App() {
         const response = await fetch('http://localhost:4000/v1/user', {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
-        })
-        const content = await response.json();
+        });
 
-        if (content) {
-          if (content.message) {
-            setName(content.message.fName);
-            set2Name(content.message.lName);
-            setEmail(content.message.email);
+        try {
+          if (response) {
+            const content = await response.json();
+            console.log(typeof (content));
+            if (content) {
+              if (content.message) {
+                setName(content.message.fName);
+                set2Name(content.message.lName);
+                setEmail(content.message.email);
+              }
+            }
           }
-        } else
-          console.log("NO USER");
+          else
+            console.log("NO USER");
+        } catch {
+        };
 
       }
     )();
