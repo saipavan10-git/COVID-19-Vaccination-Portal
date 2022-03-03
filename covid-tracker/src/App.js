@@ -15,13 +15,13 @@ function App() {
         const response = await fetch('http://localhost:4000/v1/user', {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
-        });
-
+        })
         const content = await response.json();
 
         if (content) {
-          console.log(content.message.fName);
-          setName(content.message.fName);
+          if (content.message) {
+            setName(content.message.fName);
+          }
         } else
           console.log("NO USER");
 
