@@ -23,8 +23,17 @@ type AppStatus struct {
 }
 
 type application struct {
-	config config
+	config *config
 	logger *log.Logger
+	srv    *http.Server
+}
+
+func (app *application) start(port int) error {
+	app.logger.Println("Starting server on port", app.config.port)
+	if err := app.srv.ListenAndServe(); err != nil {
+		return err
+	}
+	return nil
 }
 
 func Cors() gin.HandlerFunc {
@@ -33,35 +42,35 @@ func Cors() gin.HandlerFunc {
 		c.Next()
 	}
 }
-
-func main() {
+func Config() *config {
 	var cfg config
-	router := gin.Default()
 	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "Application environment (development|production)")
 	flag.Parse()
+	return &cfg
+}
 
+func initApp(cfg *config) *application {
 	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
-
-	app := &application{
+	app := application{
 		config: cfg,
 		logger: logger,
 	}
-
-	srv := &http.Server{
+	app.srv = &http.Server{
 		Addr:         fmt.Sprintf(":%d", cfg.port),
 		Handler:      app.routes(),
 		IdleTimeout:  time.Minute,
 		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
 	}
+	return &app
+}
 
-	logger.Println("Starting server on port", cfg.port)
-
-	err := srv.ListenAndServe()
+func main() {
+	cfg := Config()
+	app := initApp(cfg)
+	err := app.start(4000)
 	if err != nil {
 		log.Println(err)
 	}
-	router.Use(Cors())
-
 }

@@ -33,17 +33,38 @@ func (app *application) getOneVaccine(w http.ResponseWriter, r *http.Request) {
 	log.Println(p1)
 
 }
-
-func (app *application) getAllVaccines(w http.ResponseWriter, r *http.Request) {
+func (app *application) getOneVaccineProcess() ([]models.Vaccine, error) {
 	db, _ := gorm.Open("sqlite3", "./vaccine.db")
 	defer db.Close()
 
 	var p5 []models.Vaccine
-	db.Find(&p5)
+	err := db.Find(&p5).Error
 	fmt.Println(p5)
+	if err != nil {
+		return nil, err
+	}
+	return p5, nil
+}
 
+func (app *application) getAllVaccines(w http.ResponseWriter, r *http.Request) {
+	p5, err := app.getAllVaccinesProcess()
+	if err != nil {
+		app.errorJSON(w, err)
+	}
 	app.writeJSON(w, http.StatusOK, p5, "vaccines")
+}
 
+func (app *application) getAllVaccinesProcess() ([]models.Vaccine, error) {
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
+
+	var p5 []models.Vaccine
+	err := db.Find(&p5).Error
+	fmt.Println(p5)
+	if err != nil {
+		return nil, err
+	}
+	return p5, nil
 }
 
 func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
@@ -68,13 +89,11 @@ func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 	err := json.NewDecoder(r.Body).Decode(&user)
 	if err != nil {
-
 		app.errorJSON(w, err)
 		return
 	}
 
 	encryptedPassword, _ := bcrypt.GenerateFromPassword([]byte(user.Password), 14)
-
 	encryptedUser := models.User{
 		Email:    user.Email,
 		Password: string(encryptedPassword),
@@ -83,7 +102,6 @@ func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	db.Create(&encryptedUser)
-
 }
 
 func (app *application) login(w http.ResponseWriter, r *http.Request) {
