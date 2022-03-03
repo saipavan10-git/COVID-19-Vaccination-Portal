@@ -6,9 +6,13 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VaccineList from "./pages/VaccineList";
-import Test from "./pages/Test";
+import UserInfo from "./pages/UserInfo";
+import UpdateUser from "./pages/updateUser";
 function App() {
   const [name, setName] = useState('');
+  const [name2, set2Name] = useState('');
+  const [email, setEmail] = useState('');
+
   useEffect(() => {
     (
       async () => {
@@ -17,13 +21,22 @@ function App() {
           credentials: 'include',
         });
 
-        const content = await response.json();
-
-        if (content) {
-          console.log(content.message.fName);
-          setName(content.message.fName);
-        } else
-          console.log("NO USER");
+        try {
+          if (response) {
+            const content = await response.json();
+            console.log(typeof (content));
+            if (content) {
+              if (content.message) {
+                setName(content.message.fName);
+                set2Name(content.message.lName);
+                setEmail(content.message.email);
+              }
+            }
+          }
+          else
+            console.log("NO USER");
+        } catch {
+        };
 
       }
     )();
@@ -35,8 +48,9 @@ function App() {
         <Route path="/records" element={<Records />} />
         <Route path="/login" element={<Login setName={setName} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/list" element={<VaccineList />} />
-        <Route path="/test" element={<Test name={name} />} />
+        <Route path="/list" element={<VaccineList name={name} />} />
+        <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} />} />
+        <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} />} />
       </Routes>
     </Router>
   );

@@ -5,23 +5,30 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-import { Formik } from "formik";
 import Input from "@mui/material/Input";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 export default class VaccineList extends Component {
 
   state = {
     vaccines: [],
     isLoaded: false,
+    isVaccineName: false,
+    isZipCode: false,
+    isDoseNum: false
   };
-
-
 
   constructor(props) {
     super(props);
-    this.state = { value: '', searchTerm: "" };
+    this.state = { value: '', searchTerm: "", placeHolder: "Vaccine Name" };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange1 = this.handleChange1.bind(this);
+    this.handleChange2 = this.handleChange2.bind(this);
+    this.handleChange3 = this.handleChange3.bind(this);
   }
 
   handleChange(event) {
@@ -29,12 +36,20 @@ export default class VaccineList extends Component {
     this.setState({ searchTerm: event.target.value });
 
   }
+  handleChange1() {
+    this.setState({ placeHolder: "Vaccine Name" });
+  }
+  handleChange2() {
+    this.setState({ placeHolder: "Zip Code" });
+  }
+  handleChange3() {
+    this.setState({ placeHolder: "Dose Num" });
+  }
 
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
-
 
   componentDidMount() {
     fetch("http://localhost:4000/v1/vaccines")
@@ -46,6 +61,7 @@ export default class VaccineList extends Component {
         });
 
       });
+
   }
 
   handleSubmit = (evt) => {
@@ -87,6 +103,19 @@ export default class VaccineList extends Component {
       );
     }
 
+    let showOrNot;
+    let showOrNot2;
+    if (!this.props.name) {
+      showOrNot = <Button color="inherit" component={Link}
+        to="/login">Login</Button>
+      showOrNot2 = <Button color="inherit" component={Link}
+        to="/signup">Sign up</Button>
+
+    } else {
+
+    }
+
+
     if (!isLoaded) {
       return <p>Loading...Please open backend server.</p>;
     } else {
@@ -99,12 +128,11 @@ export default class VaccineList extends Component {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                   <a component={Link} href="/" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
                 </Typography>
+                {showOrNot}
+                {showOrNot2}
+
                 <Button color="inherit" component={Link}
-                  to="/login">Login</Button>
-                <Button color="inherit" component={Link}
-                  to="/signup">Sign up</Button>
-                <Button color="inherit" component={Link}
-                  to="/list">Vaccine List</Button>
+                  to="/">Home</Button>
               </Toolbar>
             </AppBar>
           </Box>
@@ -112,6 +140,24 @@ export default class VaccineList extends Component {
             <div className="searchVaccine">
 
               <form onSubmit={this.handleSubmit}>
+
+                <span style={{ marginRight: "20px" }}></span>
+                <FormControl>
+
+                  <RadioGroup
+                    row
+                    aria-labelledby="demo-radio-buttons-group-label"
+                    defaultValue="vaccineName"
+                    name="radio-buttons-group"
+                  >
+                    <FormControlLabel value="vaccineName" control={<Radio />} label="Vaccine Name" onChange={this.handleChange1} />
+                    <FormControlLabel value="zipCode" control={<Radio />} label="Zip Code" onChange={this.handleChange2} />
+                    <FormControlLabel value="doseNum" control={<Radio />} label="Dose #" onChange={this.handleChange3} />
+                  </RadioGroup>
+                </FormControl>
+                <div></div>
+                <span style={{ fontSize: "30px" }}>Search:</span>
+                <span style={{ marginRight: "30px" }}></span>
                 <Input
                   onChange={this.handleChange}
                   value={this.state.value}
@@ -124,12 +170,12 @@ export default class VaccineList extends Component {
                     },
                   }}
                   name="search"
-                  placeholder="Vaccine Name"
+                  placeholder={this.state.placeHolder}
                   type="search"
 
                 />
-                <span style={{ marginRight: "20px" }}></span>
-                <Button variant="contained" type="submit">Search</Button>
+
+
               </form>
 
             </div>
@@ -144,9 +190,27 @@ export default class VaccineList extends Component {
                   <th>Appointment</th>
                 </tr>
                 {vaccines.filter((val) => {
+
+                  let option = "";
+                  let check = false;
+                  if (this.state.placeHolder == "Vaccine Name") {
+                    option = val.vaccine_name;
+                    check = option.toLowerCase().includes(this.state.searchTerm.toLowerCase());
+
+                  }
+                  if (this.state.placeHolder == "Zip Code") {
+                    option = val.zip_code + "";
+                    check = option.includes(this.state.searchTerm);
+                  }
+                  if (this.state.placeHolder == "Dose Num") {
+                    option = val.vaccine_num + "";
+                    check = option.includes(this.state.searchTerm);
+                  }
+
                   if (this.state.searchTerm == "") {
                     return val;
-                  } else if (val.vaccine_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())) {
+                  }
+                  else if (check) {
                     return val;
                   }
                 }).map((m) => (
@@ -164,7 +228,6 @@ export default class VaccineList extends Component {
                         variant="contained">
                         Book
                       </Button>
-
                     </td>
                   </tr>
                 ))}

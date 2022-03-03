@@ -14,7 +14,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import * as Yup from 'yup';
+import { useNavigate } from 'react-router-dom';
 function Signup() {
+  let navigate = useNavigate();
   const [inputPassError, setInputPassError] = useState(false);
   const [inputEmailError, setInputEmailError] = useState(false);
   const [inputFNameError, setInputFNameError] = useState(false);
@@ -45,7 +47,9 @@ function Signup() {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+
       });
+    navigate('/login');
   }
   return (
     <>
