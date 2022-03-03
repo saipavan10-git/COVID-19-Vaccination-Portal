@@ -47,7 +47,7 @@ function Login(props) {
         } else {
 
           props.setName("h");
-          navigate('/test');
+          navigate('/user');
         }
 
 

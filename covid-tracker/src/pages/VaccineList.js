@@ -103,6 +103,19 @@ export default class VaccineList extends Component {
       );
     }
 
+    let showOrNot;
+    let showOrNot2;
+    if (!this.props.name) {
+      showOrNot = <Button color="inherit" component={Link}
+        to="/login">Login</Button>
+      showOrNot2 = <Button color="inherit" component={Link}
+        to="/signup">Sign up</Button>
+
+    } else {
+
+    }
+
+
     if (!isLoaded) {
       return <p>Loading...Please open backend server.</p>;
     } else {
@@ -115,12 +128,11 @@ export default class VaccineList extends Component {
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                   <a component={Link} href="/" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
                 </Typography>
+                {showOrNot}
+                {showOrNot2}
+
                 <Button color="inherit" component={Link}
-                  to="/login">Login</Button>
-                <Button color="inherit" component={Link}
-                  to="/signup">Sign up</Button>
-                <Button color="inherit" component={Link}
-                  to="/list">Vaccine List</Button>
+                  to="/">Home</Button>
               </Toolbar>
             </AppBar>
           </Box>
