@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import {Route} from 'react-router';
-import Login from "./Login";
-import { User } from "@auth0/auth0-react";
+// import {Route} from 'react-router';
+// import Login from "./Login";
+// import { User } from "@auth0/auth0-react";
 
 
 function Homepage(props) {
-  const logOut = async () => {
-    await fetch('http://localhost:4000/v1/logout', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      credentials: 'include',
-    });
-    props.setName('');
-  }
+  // const logOut = async () => {
+  //   await fetch('http://localhost:4000/v1/logout', {
+  //     method: 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     credentials: 'include',
+  //   });
+  //   props.setName('');
+  // }
 
   let showOrNot;
   let showOrNot2;
