@@ -20,8 +20,8 @@ function Homepage(props) {
   //   props.setName('');
   // }
 
-  // let showOrNot;
-  // let showOrNot2;
+  let showOrNot;
+  let showOrNot2;
   let status;
   let logout;
   // if (!props.name) {
@@ -45,8 +45,8 @@ function Homepage(props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <a component={Link} href={!props.name ? "/login" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
             </Typography>
-            {/* {showOrNot}
-            {showOrNot2} */}
+            {showOrNot}
+            {showOrNot2}
             <Button color="inherit" component={Link}
               to="/list">Vaccine List</Button>
             {logout}
