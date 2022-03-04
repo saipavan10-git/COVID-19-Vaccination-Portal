@@ -1,16 +1,18 @@
 package main
 
-import "encoding/json"
-import "net/http"
+import (
+	"encoding/json"
+	"net/http"
+)
 
-func (app *application) statusHandler(w http.ResponseWriter, r * http.Request) {
-	currentStatus := AppStatus {
-		Status: "Available",
+func (app *application) statusHandler(w http.ResponseWriter, r *http.Request) {
+	currentStatus := AppStatus{
+		Status:      "Available",
 		Environment: app.config.env,
-		Version: "1.0.0",
+		Version:     "1.0.0",
 	}
 
-	js, err := json.MarshalIndent(currentStatus, "","\t")
+	js, err := json.MarshalIndent(currentStatus, "", "\t")
 	if err != nil {
 		app.logger.Println(err)
 

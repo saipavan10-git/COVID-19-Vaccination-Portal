@@ -14,8 +14,8 @@ func Test(t *testing.T) {
 	if err != nil {
 		t.Errorf(err.Error())
 	}
-	if len(allVaccine) != 8 {
-		t.Errorf("p5 length unexpected")
+	if len(allVaccine) == 0 {
+		t.Errorf("Number of records error")
 	}
 
 }
@@ -25,8 +25,8 @@ func Test1(t *testing.T) {
 	if err != nil {
 		t.Errorf(err.Error())
 	}
-	if len(allVaccine) != 8 {
-		t.Errorf("p5 length unexpected")
+	if len(allVaccine) < 10 {
+		t.Errorf("Number of records error")
 	}
 
 }
