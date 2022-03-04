@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@auth0/auth0-react": "^1.9.0"
+    "@auth0/auth0-react": "^1.9.0",
+    "cypress": "^9.5.1"
   }
 }
