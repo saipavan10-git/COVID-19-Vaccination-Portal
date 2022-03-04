@@ -24,6 +24,7 @@ func Test3(t *testing.T) {
 	if err != nil {
 		t.Errorf(err.Error())
 	}
+	//smodels.
 	if len(allVaccine) != 15 {
 		t.Errorf("p5 length unexpected")
 	}
