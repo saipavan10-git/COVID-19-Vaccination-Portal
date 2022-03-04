@@ -55,6 +55,8 @@ function Homepage(props) {
       </Box>
       <div className="space"></div>
       {status}
+      <h1>Welcome to Covi-Book!</h1>
+      <h2>A website you can check your vaccination info and more!</h2>
       <div className="centered">
 
       </div>

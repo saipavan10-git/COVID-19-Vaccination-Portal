@@ -51,13 +51,8 @@ function Login(props) {
           navigate('/user');
         }
 
-
-
-
       });
   }
-
-
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
