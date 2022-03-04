@@ -126,13 +126,13 @@ export default class VaccineList extends Component {
             <AppBar>
               <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  <a component={Link} href={!this.props.name ? "/login" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+                  <a component={Link} href={!this.props.name ? "/user" : "/login"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
                 </Typography>
                 {showOrNot}
                 {showOrNot2}
 
                 <Button color="inherit" component={Link}
-                  to={!this.props.name ? "/login" : "/user"}>Home</Button>
+                  to={!this.props.name ? "/user" : "/login"}>Home</Button>
               </Toolbar>
             </AppBar>
           </Box>
@@ -193,21 +193,21 @@ export default class VaccineList extends Component {
 
                   let option = "";
                   let check = false;
-                  if (this.state.placeHolder == "Vaccine Name") {
+                  if (this.state.placeHolder === "Vaccine Name") {
                     option = val.vaccine_name;
                     check = option.toLowerCase().includes(this.state.searchTerm.toLowerCase());
 
                   }
-                  if (this.state.placeHolder == "Zip Code") {
+                  if (this.state.placeHolder === "Zip Code") {
                     option = val.zip_code + "";
                     check = option.includes(this.state.searchTerm);
                   }
-                  if (this.state.placeHolder == "Dose Num") {
+                  if (this.state.placeHolder === "Dose Num") {
                     option = val.vaccine_num + "";
                     check = option.includes(this.state.searchTerm);
                   }
 
-                  if (this.state.searchTerm == "") {
+                  if (this.state.searchTerm === "") {
                     return val;
                   }
                   else if (check) {
