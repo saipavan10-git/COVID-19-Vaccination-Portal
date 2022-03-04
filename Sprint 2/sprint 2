@@ -1,1 +1,5 @@
 This file shows everyting implemented in sprint 2
+ 
+ Steps to run the backend:
+ `cd api`
+ `go run .`
