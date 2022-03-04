@@ -20,16 +20,16 @@ function UserInfo(props) {
     }));
 
 
-    let navigate = useNavigate();
-    const logOut = async () => {
-        await fetch('http://localhost:4000/v1/logout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-        });
-        props.setName('');
-        navigate('/');
-    }
+    // let navigate = useNavigate();
+    // const logOut = async () => {
+    //     await fetch('http://localhost:4000/v1/logout', {
+    //         method: 'POST',
+    //         headers: { 'Content-Type': 'application/json' },
+    //         credentials: 'include',
+    // //     });
+    //     props.setName('');
+    //     navigate('/');
+    // }
     let showOrNot;
     let showOrNot2;
 
@@ -43,7 +43,7 @@ function UserInfo(props) {
 
 
     } else {
-        logout = <Button color="inherit" onClick={logOut}>log out</Button>
+        logout = <Button color="inherit" component={Link} to="/login" >log out</Button>
 
     }
 
@@ -54,7 +54,7 @@ function UserInfo(props) {
                     <AppBar>
                         <Toolbar>
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                <a component={Link} href="/" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+                                <a component={Link} href="/user" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
                             </Typography>
                             {showOrNot}
                             {showOrNot2}

@@ -7,6 +7,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import {Route} from 'react-router';
 import Login from "./Login";
+import { User } from "@auth0/auth0-react";
 
 
 function Homepage(props) {
@@ -23,19 +24,18 @@ function Homepage(props) {
   let showOrNot2;
   let status;
   let logout;
-  if (!props.name) {
-    // showOrNot = <Button color="inherit" component={Link}
-    //   to="/login">Login</Button>
-    // showOrNot2 = <Button color="inherit" component={Link}
-    //   to="/signup">Sign up</Button>
-    // status = <h2>Currently you are not signed in.</h2>
-    <Route component={Login()} path="/login"/>
-  } else {
-    showOrNot = <Button color="inherit" component={Link}
-      to="/user">Profile</Button>
-    logout = <Button color="inherit" onClick={logOut}>log out</Button>
-    // status = <h2>Currently you are signed in as {props.name}</h2>
-  }
+  // if (!props.name) {
+  //   showOrNot = <Button color="inherit" component={Link}
+  //     to="/login">Login</Button>
+  //   showOrNot2 = <Button color="inherit" component={Link}
+  //     to="/signup">Sign up</Button>
+  //   // status = <h2>Currently you are not signed in.</h2>
+  // } else {
+  //   showOrNot = <Button color="inherit" component={Link}
+  //     to="/user">Profile</Button>
+  //   logout = <Button color="inherit" onClick={logOut}>log out</Button>
+  //   // status = <h2>Currently you are signed in as {props.name}</h2>
+  // }
 
   return (
     <div>
@@ -43,7 +43,7 @@ function Homepage(props) {
         <AppBar>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a component={Login()} href="/login" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+              <a component={Link} href={!props.name ? "/login" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
             </Typography>
             {showOrNot}
             {showOrNot2}
