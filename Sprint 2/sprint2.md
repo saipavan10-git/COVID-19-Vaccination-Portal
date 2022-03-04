@@ -1,27 +1,25 @@
 # Sprint 2 Accomplishments 
-**WorkFlow**
-* Updated User Stories as Issues
-* Assigned with Various issues to work on throughout sprint1
-* Updated project work on github with commits and verification
+**Functionalities Implemented**
+* Integarting Back End and with Front End
+* Added Redirection of webpages
+* Added Login and SignUp Webpages and stored data in Database
+* Added Unit Tests for Backend
+* Cypress Testing for FrontEnd is Implemented
 
 **Front-End**
-* Created Homepage using React Native
-* Built Landing page with Login, Signup and Records
-* Availability of Vaccine Data List is Dinamically Updated
-* Vaccine slot Booking Page is Developed with various locations
-* Selection of Dosage is Updated on the Vaccine List Page
+* Created Landing page after user login
+* Redirection from Home and Vaccine list page is done
+* Vaccine list page is created
+* User Info and real time statistics are included in landing page
+* Cypress Test is done over different functionalities
 
 **Back-End**
-* Created DataBase for the vaccine slot data
-* Insatllation Procedure of Go and rest packages were established on WIKI page
-* Craeted and Updated with REST Api to send data from Back End
-* SQLite tables were automigrated using GORM
-* Facilitated communication between to different ports
+* Added additional data in the database
+* Created a database for user login info
+* Used API's to send data from front end to databse and vice versa
+* Booking records are stored in database and data updation is done dynamically
+* Unit tests were done to check the functioning 
 
-**Linking Back End and Front End**
-* Established connection between Front end and Back end
-* Tested the Sample data and data extraction from the DataBase 
-* Recieved the data at Backend
 
 ## Demo
 
