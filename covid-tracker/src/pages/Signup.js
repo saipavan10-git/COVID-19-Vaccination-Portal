@@ -57,12 +57,12 @@ function Signup() {
         <AppBar>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a component={Link} href="/" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+              <a component={Link} href="/signup" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
             </Typography>
-            <Button color="inherit" component={Link}
+            {/* <Button color="inherit" component={Link}
               to="/login">Login</Button>
             <Button color="inherit" component={Link}
-              to="/signup">Sign up</Button>
+              to="/signup">Sign up</Button> */}
             <Button color="inherit" component={Link}
               to="/list">Vaccine List</Button>
           </Toolbar>
@@ -257,9 +257,9 @@ function Signup() {
                     borderColor: "orange",
                   }}
                   component={Link}
-                  to="/"
+                  to="/login"
                 >
-                  Go back
+                  Login
                 </Button>
                 <pre>{console.log(values)}</pre>
               </form>

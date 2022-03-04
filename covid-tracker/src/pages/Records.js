@@ -35,7 +35,7 @@ function records() {
             marginTop: "20px",
           }}
           component={Link}
-          to="/"
+          to="/login"
         >
           Go Back
         </Button>

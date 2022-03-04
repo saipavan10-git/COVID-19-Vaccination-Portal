@@ -126,13 +126,13 @@ export default class VaccineList extends Component {
             <AppBar>
               <Toolbar>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                  <a component={Link} href="/" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+                  <a component={Link} href={!this.props.name ? "/login" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
                 </Typography>
                 {showOrNot}
                 {showOrNot2}
 
                 <Button color="inherit" component={Link}
-                  to="/">Home</Button>
+                  to={!this.props.name ? "/login" : "/user"}>Home</Button>
               </Toolbar>
             </AppBar>
           </Box>
