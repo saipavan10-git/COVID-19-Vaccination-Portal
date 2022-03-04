@@ -1,6 +1,6 @@
 # Sprint 2 Accomplishments 
 **Functionalities Implemented**
-* Integarting Back End and with Front End
+* Integarting Back End with Front End
 * Added Redirection of webpages
 * Added Login and SignUp Webpages and stored data in Database
 * Added Unit Tests for Backend
