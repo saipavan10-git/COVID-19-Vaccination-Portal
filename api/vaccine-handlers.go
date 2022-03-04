@@ -233,5 +233,5 @@ func (app *application) logout(w http.ResponseWriter, r *http.Request) {
 		HttpOnly: true,
 	})
 
-	return
+	//return
 }

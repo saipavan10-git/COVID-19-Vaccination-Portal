@@ -11,7 +11,7 @@ import (
 
 func (app *application) routes() http.Handler {
 	router := httprouter.New()
-
+	m()
 	router.HandlerFunc(http.MethodGet, "/status", app.statusHandler)
 	router.HandlerFunc(http.MethodGet, "/v1/vaccine/:id", app.getOneVaccine)
 	router.HandlerFunc(http.MethodGet, "/v1/vaccines", app.getAllVaccines)
@@ -22,7 +22,6 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodPost, "/v1/test/result", app.searchRecord)
 	router.HandlerFunc(http.MethodGet, "/v1/test/result", app.searchResult)
 	router.HandlerFunc(http.MethodPost, "/v1/logout", app.logout)
-
 	return app.enableCORS(router)
 }
 func m() {

@@ -4,24 +4,23 @@ import (
 	"testing"
 )
 
-var app *application
+//var app *application
 
 func init() {
 	app = initApp(&config{4000, "development"})
 }
-func Test(t *testing.T) {
-	allVaccine, err := app.getAllVaccinesProcess()
+func Test2(t *testing.T) {
+	getOneVacc, err := app.getOneVaccineProcess()
 	if err != nil {
 		t.Errorf(err.Error())
 	}
-	if len(allVaccine) != 15 {
-		t.Errorf("p5 length unexpected")
+	if getOneVacc == nil {
+		t.Error("Error retrieving vaccine process")
 	}
-
 }
 
-func Test1(t *testing.T) {
-	allVaccine, err := app.getAllVaccinesProcess()
+func Test3(t *testing.T) {
+	allVaccine, err := app.getOneVaccineProcess()
 	if err != nil {
 		t.Errorf(err.Error())
 	}
