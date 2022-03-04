@@ -37,6 +37,7 @@ function Login(props) {
       headers: { 'Content-Type': 'application/json' },
     };
 
+    // eslint-disable-next-line no-unused-vars
     const response = fetch("http://localhost:4000/v1/login", requestOptions)
       .then((response) => response.json())
       .then((data) => {
