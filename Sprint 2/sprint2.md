@@ -1,8 +1,8 @@
 # Sprint 2 Accomplishments 
 **Functionalities Implemented**
-* Integarting Back End and with Front End
-* Added Redirection of webpages
-* Added Login and SignUp Webpages and stored data in Database
+* Integrated Back End and Front End
+* Added navigation pages from the home page
+* Added Login and SignUp Webpages and stored data in Database, data is sent through REST API's
 * Added Unit Tests for Backend
 * Cypress Testing for FrontEnd is Implemented
 
@@ -12,12 +12,13 @@
 * Vaccine list page is created
 * User Info and real time statistics are included in landing page
 * Cypress Test is done over different functionalities
+* Login and Singup functionality implemented 
 
 **Back-End**
 * Added additional data in the database
 * Created a database for user login info
-* Used API's to send data from front end to databse and vice versa
-* Booking records are stored in database and data updation is done dynamically
+* Desgined REST API's to send data from front end to databse and vice versa
+* Booking records are stored in database and data updation is done dynamically, data is persisted and fetched from SQLite tables related to the module.
 * Unit tests were done to check the functioning 
 
 
