@@ -24,7 +24,7 @@
 
 ## Demo
 
-Link to Working Demo for Sprint 2 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%202/Sprint%202.mp4)
+Link to Working Demo for Sprint 2 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%202/Sprint%202.mp4) and demo for cypress testing can be found [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%202/Sprint%202%20Cypress%20testing%20.mp4)
 
 ## Team Members
 • Yichong Ma (@mayichong)
