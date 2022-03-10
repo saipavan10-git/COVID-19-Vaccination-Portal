@@ -132,7 +132,7 @@ export default class VaccineList extends Component {
                 {showOrNot2}
 
                 <Button color="inherit" component={Link}
-                  to={!this.props.name ? "/user" : "/login"}>Home</Button>
+                  to={this.props.name ? "/user" : "/login"}>Home</Button>
               </Toolbar>
             </AppBar>
           </Box>

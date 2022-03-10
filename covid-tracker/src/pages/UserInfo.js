@@ -5,7 +5,7 @@ import { Button } from "@mui/material";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
@@ -19,20 +19,18 @@ function UserInfo(props) {
         color: theme.palette.text.secondary,
     }));
 
-
-    // let navigate = useNavigate();
-    // const logOut = async () => {
-    //     await fetch('http://localhost:4000/v1/logout', {
-    //         method: 'POST',
-    //         headers: { 'Content-Type': 'application/json' },
-    //         credentials: 'include',
-    // //     });
-    //     props.setName('');
-    //     navigate('/');
-    // }
+    let navigate = useNavigate();
+    const logOut = async () => {
+        await fetch('http://localhost:4000/v1/logout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+        });
+        props.setName('');
+        navigate('/');
+    }
     let showOrNot;
     let showOrNot2;
-
     let logout;
     let nothing = ", please sign in";
     if (!props.name) {
@@ -41,10 +39,8 @@ function UserInfo(props) {
         showOrNot2 = <Button color="inherit" component={Link}
             to="/signup">Sign up</Button>
 
-
     } else {
-        logout = <Button color="inherit" component={Link} to="/login" >log out</Button>
-
+        logout = <Button color="inherit" component={Link} to="/login" onClick={logOut}>log out</Button>
     }
 
     return (
