@@ -46,9 +46,8 @@ function Login(props) {
             data.error.message
           )
         } else {
-
-          props.setName("h");
           navigate('/user');
+          window.location.reload();
         }
 
       });

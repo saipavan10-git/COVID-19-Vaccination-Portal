@@ -10,6 +10,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+
 export default class VaccineList extends Component {
 
   state = {
@@ -30,6 +31,7 @@ export default class VaccineList extends Component {
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleChange3 = this.handleChange3.bind(this);
   }
+
 
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -64,6 +66,7 @@ export default class VaccineList extends Component {
 
   }
 
+
   handleSubmit = (evt) => {
     evt.preventDefault();
 
@@ -80,27 +83,42 @@ export default class VaccineList extends Component {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
+
       });
   };
 
   render() {
 
     const { vaccines, isLoaded } = this.state;
-    function sayHello(m) {
-
+    function sayHello(m, u) {
       const requestOptions = {
         method: "POST",
         body: JSON.stringify(m),
       };
 
-      fetch("http://localhost:4000/v1/booking", requestOptions)
-        .then((response) => response.json())
+      const requestUser = {
+        method: "POST",
+        body: JSON.stringify(u),
+      };
+
+      fetch("http://localhost:4000/v1/receive", requestUser)
+        .then((response) => response.text())
         .then((data) => {
-          console.log(data);
-        });
-      alert(
-        `Congrats! You booked ${m.vaccine_name} vaccine, ${m.vaccine_num}-dose. Please bring your valid ID/Driver's license and your insurance card with you.`
-      );
+          if (data) { alert(`Please sign in to book an appointment.`); }
+          console.log(data.error);
+        }).then(fetch("http://localhost:4000/v1/booking", requestOptions)
+          .then((data) => {
+            if (data.ok) {
+              alert(
+                `Congrats! You booked ${m.vaccine_name} vaccine, ${m.vaccine_num}-dose. Please bring your valid ID/Driver's license and your insurance card with you.`
+              );
+              window.location.reload(false);
+            } else {
+              alert(
+                `Something went wrong. Please try again`
+              );
+            }
+          }));
     }
 
     let showOrNot;
@@ -132,7 +150,7 @@ export default class VaccineList extends Component {
                 {showOrNot2}
 
                 <Button color="inherit" component={Link}
-                  to={!this.props.name ? "/user" : "/login"}>Home</Button>
+                  to={this.props.name ? "/user" : "/login"}>Home</Button>
               </Toolbar>
             </AppBar>
           </Box>
@@ -182,7 +200,6 @@ export default class VaccineList extends Component {
             <table className="centerTable" >
               <tbody>
                 <tr>
-                  <th>ID</th>
                   <th>Vaccine Name</th>
                   <th>Dose #</th>
                   <th>State</th>
@@ -215,20 +232,20 @@ export default class VaccineList extends Component {
                   }
                 }).map((m) => (
                   <tr key={m.id}>
-                    <td>{m.id}</td>
-                    <td>{m.vaccine_name}</td>
-                    <td>{m.vaccine_num}</td>
-                    <td>{m.state}</td>
-                    <td>{m.zip_code}</td>
-                    <td>
-                      <Button
-                        onClick={() => {
-                          sayHello(m);
-                        }}
-                        variant="contained">
-                        Book
-                      </Button>
-                    </td>
+                    {m.available == 1 ? <><td>{m.vaccine_name}</td>
+                      <td>{m.vaccine_num}</td>
+                      <td>{m.state}</td>
+                      <td>{m.zip_code}</td>
+                      <td>
+                        <Button
+                          onClick={() => {
+                            sayHello(m, this.props.email);
+                          }}
+                          variant="contained">
+                          Book
+                        </Button>
+                      </td></> : <></>}
+
                   </tr>
                 ))}
               </tbody>
