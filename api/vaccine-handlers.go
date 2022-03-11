@@ -215,7 +215,7 @@ func (app *application) user(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 
 	db.Where("email = ?", claims.Issuer).Take(&user)
-
+	i = claims.Issuer
 	app.writeJSON(w, http.StatusOK, user, "message")
 }
 
@@ -280,4 +280,28 @@ func (app *application) receiveFront(w http.ResponseWriter, r *http.Request) {
 	} else {
 		app.errorJSON(w, errors.New("please sign in"))
 	}
+}
+
+func (app *application) getAppoint(w http.ResponseWriter, r *http.Request) {
+
+	dbAppoint, _ := gorm.Open("sqlite3", "./appointment.db")
+	defer dbAppoint.Close()
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
+	var user models.UserAppoint
+
+	log.Println("WTF")
+	time.Sleep(1 * time.Second)
+	if i != "\"\"" {
+		dbAppoint.Where("email = ?", i).Take(&user)
+		var vaccine models.Vaccine
+		db.Where("id = ?", user.ID).Take(&vaccine)
+		log.Println("Hey", vaccine)
+		app.writeJSON(w, 200, vaccine, "message")
+
+	} else {
+		app.errorJSON(w, errors.New("no appointment"))
+
+	}
+
 }

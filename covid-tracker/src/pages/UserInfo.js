@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 // import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
@@ -11,6 +11,10 @@ import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 function UserInfo(props) {
+
+    useEffect(() => {
+
+    });
 
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
@@ -29,21 +33,24 @@ function UserInfo(props) {
         props.setName('');
         props.setEmail('');
         props.set2Name('');
+
         navigate('/');
     }
     let showOrNot;
     let showOrNot2;
     let logout;
-
+    let vaccine;
     let nothing = ", please sign in";
     if (!props.name) {
         showOrNot = <Button color="inherit" component={Link}
             to="/login">Login</Button>
         showOrNot2 = <Button color="inherit" component={Link}
             to="/signup">Sign up</Button>
-
+        vaccine = <>{props.vaccine}</>
     } else {
+
         logout = <Button color="inherit" component={Link} to="/login" onClick={logOut}>log out</Button>
+        vaccine = <>Nothing bro</>
     }
 
     return (
@@ -83,7 +90,12 @@ function UserInfo(props) {
                         </Grid>
                         <Grid item xs={3} md={3}>
                             <Item>
-                                <span className="app-text">Your current appointment: </span></Item>
+                                <span className="app-text">Your current appointment: <>
+                                    <div className="space40">Vaccine Name: {props.vaccine}</div>
+                                    <div className="space40">Dose Num: {props.vaccineNum}</div>
+                                    <div className="space40">State: {props.state}</div>
+                                    <div className="space40">Zip Code: {props.zipCode}</div>
+                                </></span></Item>
 
                         </Grid>
                         <Grid item xs={4} md={4}>
