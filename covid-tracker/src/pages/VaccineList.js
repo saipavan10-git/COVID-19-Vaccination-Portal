@@ -10,6 +10,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+
 export default class VaccineList extends Component {
 
   state = {
@@ -30,6 +31,7 @@ export default class VaccineList extends Component {
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleChange3 = this.handleChange3.bind(this);
   }
+
 
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -102,17 +104,21 @@ export default class VaccineList extends Component {
       fetch("http://localhost:4000/v1/receive", requestUser)
         .then((response) => response.text())
         .then((data) => {
+          if (data) { alert(`Please sign in to book an appointment.`); }
           console.log(data.error);
         }).then(fetch("http://localhost:4000/v1/booking", requestOptions)
           .then((data) => {
-            console.log(data);
+            if (data.ok) {
+              alert(
+                `Congrats! You booked ${m.vaccine_name} vaccine, ${m.vaccine_num}-dose. Please bring your valid ID/Driver's license and your insurance card with you.`
+              );
+              window.location.reload(false);
+            } else {
+              alert(
+                `Something went wrong. Please try again`
+              );
+            }
           }));
-
-
-      alert(
-        `Congrats! You booked ${m.vaccine_name} vaccine, ${m.vaccine_num}-dose. Please bring your valid ID/Driver's license and your insurance card with you.`
-      );
-
     }
 
     let showOrNot;

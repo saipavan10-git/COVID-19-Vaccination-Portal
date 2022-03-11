@@ -8,6 +8,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -71,9 +72,11 @@ func (app *application) getAllVaccinesProcess() ([]models.Vaccine, error) {
 
 func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
 	db, _ := gorm.Open("sqlite3", "./vaccine.db")
-	// dbUser, _ := gorm.Open("sqlite3", "./user.db")
-	time.Sleep(3 * time.Second)
 	defer db.Close()
+	dbAppoint, _ := gorm.Open("sqlite3", "./appointment.db")
+	defer dbAppoint.Close()
+	dbAppoint.AutoMigrate(&models.UserAppoint{})
+	time.Sleep(3 * time.Second)
 	var vaccine models.Vaccine
 	log.Println("2")
 
@@ -83,14 +86,23 @@ func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	log.Println(vaccine)
-	log.Println("this is ", i)
 
 	if i != "\"\"" {
 		db.Model(&vaccine).Update("available", 0)
 		log.Println("Vaccine with ID ", vaccine.ID, " is booked.")
 		log.Println("Detailed Info:", vaccine.Name, ",", vaccine.VaccineNum, "-dose.")
 		log.Println("Availability: ", vaccine.Available)
+
+		trimmedString := strings.Trim(i, "\"")
+
+		appointment := models.UserAppoint{
+			Email: trimmedString,
+			ID:    vaccine.ID,
+		}
+
+		dbAppoint.Create(&appointment)
 		i = "\"\""
+		app.writeJSON(w, 200, &vaccine, "Great")
 	} else {
 		app.errorJSON(w, errors.New("no user"))
 	}
@@ -255,9 +267,6 @@ func (app *application) logout(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) receiveFront(w http.ResponseWriter, r *http.Request) {
-	db, _ := gorm.Open("sqlite3", "./appointment.db")
-	defer db.Close()
-	db.AutoMigrate(&models.UserAppoint{})
 
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {
@@ -271,5 +280,4 @@ func (app *application) receiveFront(w http.ResponseWriter, r *http.Request) {
 	} else {
 		app.errorJSON(w, errors.New("please sign in"))
 	}
-
 }
