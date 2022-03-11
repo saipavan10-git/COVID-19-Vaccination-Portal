@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -19,6 +20,7 @@ import (
 const SecretKey = "secret"
 
 var results string
+var i string = "\"\""
 
 func (app *application) getOneVaccine(w http.ResponseWriter, r *http.Request) {
 	db, _ := gorm.Open("sqlite3", "./vaccine.db")
@@ -68,18 +70,30 @@ func (app *application) getAllVaccinesProcess() ([]models.Vaccine, error) {
 }
 
 func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
-
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	// dbUser, _ := gorm.Open("sqlite3", "./user.db")
+	time.Sleep(3 * time.Second)
+	defer db.Close()
 	var vaccine models.Vaccine
+	log.Println("2")
 
 	err := json.NewDecoder(r.Body).Decode(&vaccine)
 	if err != nil {
 		app.errorJSON(w, err)
 		return
 	}
-	//print vaccine info from front end
 	log.Println(vaccine)
-	log.Println("Vaccine with ID ", vaccine.ID, " is booked.")
-	log.Println("Detailed Info:", vaccine.Name, ",", vaccine.VaccineNum, "-dose.")
+	log.Println("this is ", i)
+
+	if i != "\"\"" {
+		db.Model(&vaccine).Update("available", 0)
+		log.Println("Vaccine with ID ", vaccine.ID, " is booked.")
+		log.Println("Detailed Info:", vaccine.Name, ",", vaccine.VaccineNum, "-dose.")
+		log.Println("Availability: ", vaccine.Available)
+		i = "\"\""
+	} else {
+		app.errorJSON(w, errors.New("no user"))
+	}
 }
 
 func (app *application) recordSignup(w http.ResponseWriter, r *http.Request) {
@@ -150,6 +164,7 @@ func (app *application) login(w http.ResponseWriter, r *http.Request) {
 				HttpOnly: true,
 			})
 			app.writeJSON(w, http.StatusOK, token, "token")
+
 		}
 	}
 
@@ -226,12 +241,35 @@ func (app *application) searchResult(w http.ResponseWriter, r *http.Request) {
 }
 
 func (app *application) logout(w http.ResponseWriter, r *http.Request) {
+
+	i = "\"\""
+
 	http.SetCookie(w, &http.Cookie{
 		Name:     "token",
 		Value:    "",
 		Expires:  time.Now().Add(-time.Hour),
 		HttpOnly: true,
 	})
-
+	log.Println(i)
 	//return
+}
+
+func (app *application) receiveFront(w http.ResponseWriter, r *http.Request) {
+	db, _ := gorm.Open("sqlite3", "./appointment.db")
+	defer db.Close()
+	db.AutoMigrate(&models.UserAppoint{})
+
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err)
+	}
+
+	if string(body) != "\"\"" {
+		i = string(body)
+		log.Println(i)
+		log.Println("1")
+	} else {
+		app.errorJSON(w, errors.New("please sign in"))
+	}
+
 }

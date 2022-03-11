@@ -18,6 +18,8 @@ function Homepage(props) {
       credentials: 'include',
     });
     props.setName('');
+    props.setEmail('');
+    props.set2Name('');
   }
 
   let showOrNot;

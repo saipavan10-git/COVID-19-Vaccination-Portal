@@ -27,11 +27,14 @@ function UserInfo(props) {
             credentials: 'include',
         });
         props.setName('');
+        props.setEmail('');
+        props.set2Name('');
         navigate('/');
     }
     let showOrNot;
     let showOrNot2;
     let logout;
+
     let nothing = ", please sign in";
     if (!props.name) {
         showOrNot = <Button color="inherit" component={Link}
@@ -70,7 +73,7 @@ function UserInfo(props) {
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2}>
 
-                        <Grid item xs={6} md={4}>
+                        <Grid item xs={4} md={4}>
                             <Item>
                                 <p>Below are your basic information:</p>
                                 <p>First Name: {props.name}</p>
@@ -78,7 +81,12 @@ function UserInfo(props) {
                                 <p>Email address: {props.email}</p></Item>
 
                         </Grid>
-                        <Grid item xs={6} md={8}>
+                        <Grid item xs={3} md={3}>
+                            <Item>
+                                <span className="app-text">Your current appointment: </span></Item>
+
+                        </Grid>
+                        <Grid item xs={4} md={4}>
                             <Item>
                                 <h3>What would you like to do?</h3>
                                 <div className="space40"></div>

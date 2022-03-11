@@ -44,12 +44,12 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Homepage name={name} setName={setName} />} />
+        <Route path="/" element={<Homepage name={name} setName={setName} set2Name={set2Name} setEmail={setEmail} />} />
         <Route path="/records" element={<Records />} />
         <Route path="/login" element={<Login setName={setName} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/list" element={<VaccineList name={name} />} />
-        <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} />} />
+        <Route path="/list" element={<VaccineList name={name} email={email} />} />
+        <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} />} />
         <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} />} />
       </Routes>
     </Router>
