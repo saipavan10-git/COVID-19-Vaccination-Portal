@@ -7,7 +7,7 @@ import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VaccineList from "./pages/VaccineList";
 import UserInfo from "./pages/UserInfo";
-import UpdateUser from "./pages/updateUser";
+import UpdateUser from "./pages/UpdateUser";
 function App() {
   const [name, setName] = useState('');
   const [name2, set2Name] = useState('');
