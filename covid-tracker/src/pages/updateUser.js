@@ -25,11 +25,21 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-
+const linkTarget = {
+    pathname: "/user",
+    key: Math.random(), // we could use Math.random, but that's not guaranteed unique.
+    state: {
+        applied: true
+    }
+}
 function UpdateUser(props) {
-    const [valueDate, setValue] = useState(new Date('2014-08-18T21:11:54'));
+    let a = props.birthdate;
+    console.log(a);
+    const [valueDate, setValueDate] = useState(a);
+
     const handleBirthChange = (newValue) => {
-        setValue(newValue);
+        setValueDate(newValue);
+        props.setBirthDate(newValue);
     };
     let navigate = useNavigate();
     function sayHello(m) {
@@ -43,11 +53,7 @@ function UpdateUser(props) {
             .then((data) => {
                 console.log(data);
             });
-
-        navigate('/user');
-        window.location.reload();
-        window.location.reload();
-        window.location.reload();
+        setTimeout(() => navigate(linkTarget), 1000);
 
     }
 
@@ -57,10 +63,12 @@ function UpdateUser(props) {
                 <h1>Update your information:</h1>
                 <Formik
                     enableReinitialize
-                    initialValues={{ fName: props.name, lName: props.name2, email: props.email, password: "", confirmPassword: "", birthdate: valueDate, SSN: undefined }}
+                    initialValues={{ fName: props.name, lName: props.name2, email: props.email, password: "", confirmPassword: "", birthdate: valueDate, SSN: props.SSN }}
                     onSubmit={(values) => {
                         console.log(values);
                         sayHello(values);
+                        props.setName(values.fName);
+                        props.set2Name(values.lName);
                     }}
                 >
                     {({ values, handleChange, handleSubmit, errors, touched }) => (

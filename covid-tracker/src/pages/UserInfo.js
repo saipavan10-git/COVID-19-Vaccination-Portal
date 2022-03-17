@@ -12,10 +12,6 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
 function UserInfo(props) {
 
-    useEffect(() => {
-
-    });
-
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
         padding: theme.spacing(1),
@@ -75,8 +71,6 @@ function UserInfo(props) {
                     Welcome {props.name ? props.name : nothing}
 
                 </h1>
-
-
                 <Box sx={{ flexGrow: 1 }}>
                     <Grid container spacing={2}>
 

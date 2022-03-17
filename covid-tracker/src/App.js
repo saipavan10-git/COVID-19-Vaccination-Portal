@@ -18,6 +18,9 @@ function App() {
   const [zipCode, setZipCode] = useState('');
   const [state, setState] = useState('');
   const [vaccineId, setVaccineId] = useState('');
+  const [SSN, setSSN] = useState('');
+  const [birthdate, setBirthDate] = useState('');
+  const [change, setChange] = useState('');
   useEffect(() => {
     (
       async () => {
@@ -36,6 +39,8 @@ function App() {
                 setName(content.message.fName);
                 set2Name(content.message.lName);
                 setEmail(content.message.email);
+                setBirthDate(content.message.birthDate);
+                setSSN(content.message.SSN);
               }
             }
           }
@@ -78,16 +83,16 @@ function App() {
       ();
   }, []);
   return (
-    <Router>
+    <Router >
       <Routes>
         <Route path="/" element={<Homepage name={name} setName={setName} set2Name={set2Name} setEmail={setEmail} />} />
         <Route path="/records" element={<Records />} />
         <Route path="/login" element={<Login setName={setName} name={name} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/list" element={<VaccineList name={name} email={email} />} />
-        <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} />} />
-        <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} />} />
-        <Route path="/middleware" element={<Middleware />} />
+        <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} change={change} />} />
+        <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} SSN={SSN} birthdate={birthdate} setBirthDate={setBirthDate} setName={setName} set2Name={set2Name} />} />
+        <Route path="/middleware" element={<Middleware change={change} setChange={setChange} />} />
       </Routes>
     </Router>
   );

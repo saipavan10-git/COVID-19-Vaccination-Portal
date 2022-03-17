@@ -215,6 +215,7 @@ func (app *application) user(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 
 	db.Where("email = ?", claims.Issuer).Take(&user)
+	log.Println("123123123", user)
 	i = claims.Issuer
 	app.writeJSON(w, http.StatusOK, user, "message")
 }
@@ -330,8 +331,7 @@ func (app *application) updateUser(w http.ResponseWriter, r *http.Request) {
 		SSN:       user.SSN,
 	}
 
-	log.Println(encryptedUser.Email)
-	log.Println(encryptedUser.Fname)
+	log.Println(encryptedUser)
 	db.Model(&user).Where("email = ?", encryptedUser.Email).Update("fname", encryptedUser.Fname)
 	db.Model(&user).Where("email = ?", encryptedUser.Email).Update("lname", encryptedUser.Lname)
 	db.Model(&user).Where("email = ?", encryptedUser.Email).Update("birthdate", encryptedUser.Birthdate)
