@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
@@ -9,17 +9,14 @@ import Input from "@mui/material/Input";
 import LockIcon from "@mui/icons-material/Lock";
 import EmailIcon from "@mui/icons-material/Email";
 import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import TimePicker from '@mui/lab/TimePicker';
-import DateTimePicker from '@mui/lab/DateTimePicker';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import MobileDatePicker from '@mui/lab/MobileDatePicker';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
+import { useNavigate } from 'react-router-dom';
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -30,10 +27,29 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 function UpdateUser(props) {
-    const [value, setValue] = React.useState(new Date(''));
+    const [valueDate, setValue] = useState(new Date('2014-08-18T21:11:54'));
     const handleBirthChange = (newValue) => {
         setValue(newValue);
     };
+    let navigate = useNavigate();
+    function sayHello(m) {
+        const requestOptions = {
+            method: "POST",
+            body: JSON.stringify(m),
+        };
+
+        fetch("http://localhost:4000/v1/updateUser", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
+
+        navigate('/user');
+        window.location.reload();
+        window.location.reload();
+        window.location.reload();
+
+    }
 
     return (
         <>
@@ -41,9 +57,10 @@ function UpdateUser(props) {
                 <h1>Update your information:</h1>
                 <Formik
                     enableReinitialize
-                    initialValues={{ fName: props.name, lName: props.name2, email: props.email, password: "", confirmPassword: "", birthdate: value, SSN: "" }}
+                    initialValues={{ fName: props.name, lName: props.name2, email: props.email, password: "", confirmPassword: "", birthdate: valueDate, SSN: undefined }}
                     onSubmit={(values) => {
                         console.log(values);
+                        sayHello(values);
                     }}
                 >
                     {({ values, handleChange, handleSubmit, errors, touched }) => (
@@ -215,6 +232,7 @@ function UpdateUser(props) {
                                                 value={values.birthdate}
                                                 onChange={handleBirthChange}
                                                 renderInput={(params) => <TextField {...params} />}
+                                                type="date"
                                             />
                                         </Stack>
                                     </LocalizationProvider>
@@ -234,7 +252,6 @@ function UpdateUser(props) {
                                                 width: "200px",
 
                                             },
-                                            maxLength: 4,
                                         }}
 
                                         type="number"

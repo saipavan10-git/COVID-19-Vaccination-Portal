@@ -10,10 +10,12 @@ type Vaccine struct {
 }
 
 type User struct {
-	Email    string `json:"email"`
-	Password string `json:"password"`
-	Fname    string `json:"fName"`
-	Lname    string `json:"lName"`
+	Email     string `json:"email"`
+	Password  string `json:"password"`
+	Fname     string `json:"fName"`
+	Lname     string `json:"lName"`
+	Birthdate string `json:"birthDate"`
+	SSN       int    `json:"SSN"`
 }
 
 type UserAppoint struct {

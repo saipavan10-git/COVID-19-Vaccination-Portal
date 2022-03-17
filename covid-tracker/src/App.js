@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VaccineList from "./pages/VaccineList";
 import UserInfo from "./pages/UserInfo";
 import UpdateUser from "./pages/UpdateUser";
+import Middleware from "./pages/Middleware";
 function App() {
   const [name, setName] = useState('');
   const [name2, set2Name] = useState('');
@@ -86,6 +87,7 @@ function App() {
         <Route path="/list" element={<VaccineList name={name} email={email} />} />
         <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} />} />
         <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} />} />
+        <Route path="/middleware" element={<Middleware />} />
       </Routes>
     </Router>
   );
