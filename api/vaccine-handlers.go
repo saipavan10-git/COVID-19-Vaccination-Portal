@@ -215,6 +215,7 @@ func (app *application) user(w http.ResponseWriter, r *http.Request) {
 	var user models.User
 
 	db.Where("email = ?", claims.Issuer).Take(&user)
+	log.Println("123123123", user)
 	i = claims.Issuer
 	app.writeJSON(w, http.StatusOK, user, "message")
 }
@@ -304,4 +305,39 @@ func (app *application) getAppoint(w http.ResponseWriter, r *http.Request) {
 
 	}
 
+}
+
+func (app *application) updateUser(w http.ResponseWriter, r *http.Request) {
+
+	db, _ := gorm.Open("sqlite3", "./user.db")
+	defer db.Close()
+
+	var user models.User
+
+	err := json.NewDecoder(r.Body).Decode(&user)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+
+	encryptedPassword, _ := bcrypt.GenerateFromPassword([]byte(user.Password), 14)
+
+	encryptedUser := models.User{
+		Email:     user.Email,
+		Password:  string(encryptedPassword),
+		Fname:     user.Fname,
+		Lname:     user.Lname,
+		Birthdate: user.Birthdate,
+		SSN:       user.SSN,
+	}
+
+	log.Println(encryptedUser)
+	db.Model(&user).Where("email = ?", encryptedUser.Email).Update("fname", encryptedUser.Fname)
+	db.Model(&user).Where("email = ?", encryptedUser.Email).Update("lname", encryptedUser.Lname)
+	db.Model(&user).Where("email = ?", encryptedUser.Email).Update("birthdate", encryptedUser.Birthdate)
+	db.Model(&user).Where("email = ?", encryptedUser.Email).Update("ssn", encryptedUser.SSN)
+
+	if len(user.Password) != 0 {
+		db.Model(&user).Where("email = ?", encryptedUser.Email).Update("password", encryptedUser.Password)
+	}
 }
