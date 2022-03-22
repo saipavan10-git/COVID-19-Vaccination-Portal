@@ -11,6 +11,11 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 export default class VaccineList extends Component {
 
   state = {
@@ -18,20 +23,30 @@ export default class VaccineList extends Component {
     isLoaded: false,
     isVaccineName: false,
     isZipCode: false,
-    isDoseNum: false
+    isDoseNum: false,
+    openWindow: false
   };
 
   constructor(props) {
     super(props);
-    this.state = { value: '', searchTerm: "", placeHolder: "Vaccine Name" };
+    this.state = { value: '', searchTerm: "", placeHolder: "Vaccine Name", openWindow: false };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange1 = this.handleChange1.bind(this);
     this.handleChange2 = this.handleChange2.bind(this);
     this.handleChange3 = this.handleChange3.bind(this);
+    this.handleClickOpen = this.handleClickOpen.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
+  handleClickOpen() {
+    this.setState({ openWindow: true })
+  }
+
+  handleClose() {
+    this.setState({ openWindow: false })
+  }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -89,7 +104,7 @@ export default class VaccineList extends Component {
 
   render() {
 
-    const { vaccines, isLoaded } = this.state;
+    const { vaccines, isLoaded, openWindow } = this.state;
     function sayHello(m, u) {
       const requestOptions = {
         method: "POST",
@@ -192,8 +207,6 @@ export default class VaccineList extends Component {
                   type="search"
 
                 />
-
-
               </form>
 
             </div>
@@ -237,6 +250,7 @@ export default class VaccineList extends Component {
                       <td>{m.state}</td>
                       <td>{m.zip_code}</td>
                       <td>
+
                         <Button
                           onClick={() => {
                             sayHello(m, this.props.email);
@@ -244,6 +258,7 @@ export default class VaccineList extends Component {
                           variant="contained">
                           Book
                         </Button>
+
                       </td></> : <></>}
 
                   </tr>

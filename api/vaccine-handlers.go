@@ -291,7 +291,6 @@ func (app *application) getAppoint(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 	var user models.UserAppoint
 
-	log.Println("WTF")
 	time.Sleep(1 * time.Second)
 	if i != "\"\"" {
 		dbAppoint.Where("email = ?", i).Take(&user)
@@ -322,12 +321,14 @@ func (app *application) updateUser(w http.ResponseWriter, r *http.Request) {
 
 	encryptedPassword, _ := bcrypt.GenerateFromPassword([]byte(user.Password), 14)
 
+	editedBirthdate := user.Birthdate[0:10]
+	log.Println(editedBirthdate)
 	encryptedUser := models.User{
 		Email:     user.Email,
 		Password:  string(encryptedPassword),
 		Fname:     user.Fname,
 		Lname:     user.Lname,
-		Birthdate: user.Birthdate,
+		Birthdate: editedBirthdate,
 		SSN:       user.SSN,
 	}
 
@@ -340,4 +341,28 @@ func (app *application) updateUser(w http.ResponseWriter, r *http.Request) {
 	if len(user.Password) != 0 {
 		db.Model(&user).Where("email = ?", encryptedUser.Email).Update("password", encryptedUser.Password)
 	}
+}
+
+func (app *application) deleteBooking(w http.ResponseWriter, r *http.Request) {
+	dbAppoint, _ := gorm.Open("sqlite3", "./appointment.db")
+	defer dbAppoint.Close()
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
+
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		panic(err)
+	}
+	var user models.UserAppoint
+
+	log.Println(string(body))
+	AllList := strings.Fields(string(body))
+
+	log.Println(AllList[0])
+	log.Println(AllList[1])
+	dbAppoint.Where("email = ?", AllList[0]).Delete(&user)
+
+	var vaccine models.Vaccine
+	db.Where("id = ?", AllList[1]).Find(&vaccine)
+	db.Model(&vaccine).Update("available", 1)
 }

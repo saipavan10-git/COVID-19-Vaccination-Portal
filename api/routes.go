@@ -25,7 +25,7 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodPost, "/v1/receive", app.receiveFront)
 	router.HandlerFunc(http.MethodGet, "/v1/appoint", app.getAppoint)
 	router.HandlerFunc(http.MethodPost, "/v1/updateUser", app.updateUser)
-
+	router.HandlerFunc(http.MethodPost, "/v1/deleteBooking", app.deleteBooking)
 	return app.enableCORS(router)
 }
 
