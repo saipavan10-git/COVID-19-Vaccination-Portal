@@ -34,9 +34,7 @@ const linkTarget = {
 }
 function UpdateUser(props) {
     let a = props.birthdate;
-    console.log(a);
     const [valueDate, setValueDate] = useState(a);
-
     const handleBirthChange = (newValue) => {
         setValueDate(newValue);
         props.setBirthDate(newValue);
@@ -53,6 +51,7 @@ function UpdateUser(props) {
             .then((data) => {
                 console.log(data);
             });
+
         setTimeout(() => navigate(linkTarget), 1000);
 
     }
@@ -69,6 +68,8 @@ function UpdateUser(props) {
                         sayHello(values);
                         props.setName(values.fName);
                         props.set2Name(values.lName);
+                        props.setBirthDate((String(values.birthdate).substring(4, 15)));
+
                     }}
                 >
                     {({ values, handleChange, handleSubmit, errors, touched }) => (

@@ -40,6 +40,7 @@ function App() {
                 set2Name(content.message.lName);
                 setEmail(content.message.email);
                 setBirthDate(content.message.birthDate);
+                console.log(content.message.birthDate);
                 setSSN(content.message.SSN);
               }
             }
@@ -90,7 +91,7 @@ function App() {
         <Route path="/login" element={<Login setName={setName} name={name} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/list" element={<VaccineList name={name} email={email} />} />
-        <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} change={change} />} />
+        <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} change={change} birthdate={birthdate} />} />
         <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} SSN={SSN} birthdate={birthdate} setBirthDate={setBirthDate} setName={setName} set2Name={set2Name} />} />
         <Route path="/middleware" element={<Middleware change={change} setChange={setChange} />} />
       </Routes>
