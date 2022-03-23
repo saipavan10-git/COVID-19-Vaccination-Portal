@@ -176,12 +176,12 @@ function UserInfo(props) {
                                     to="/list">Click me to schedule an appointment! </Button>
                                 <div className="space40" ></div>
                                 <Button variant="contained" component={Link}
-                                    to="/update">Click me to update information! (WIP)</Button>
+                                    to="/update">Click me to update information! </Button>
                                 <div className="space40"></div>
                                 <Button variant="contained" component={Link}
                                     to="/records">Click me to get your certificate! (WIP)</Button>
                                 <div className="space40"></div>
-                                <a target="_blank" href="https://www.google.com/search?q=covid+cases&oq=covid+cases&aqs=chrome.0.69i59j0i402l2j0i433i512l2j69i60l3.1015j0j7&sourceid=chrome&ie=UTF-8"><Button variant="contained">Click me to check covid cases/news! (WIP)</Button></a>
+                                <Button variant="contained" component={Link} to="/covidcaseall">Click me to check covid cases/news! (WIP)</Button>
                             </Item>
                         </Grid>
                     </Grid>

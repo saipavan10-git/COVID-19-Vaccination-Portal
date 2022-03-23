@@ -17,6 +17,10 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -65,14 +69,25 @@ function UpdateUser(props) {
         catch (err) {
             console.log(err);
         }
-
-
-
     }
 
     return (
         <>
             <div>
+                <Box sx={{ flexGrow: 1 }}>
+                    <AppBar>
+                        <Toolbar>
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                <a component={Link} href="/user" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+                            </Typography>
+
+                            <Button color="inherit" component={Link}
+                                to="/list">Vaccine List</Button>
+
+                        </Toolbar>
+                    </AppBar>
+                </Box>
+                <div className="space"></div>
                 <h1>Update your information:</h1>
                 <Formik
                     enableReinitialize
