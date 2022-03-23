@@ -319,16 +319,15 @@ func (app *application) updateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Println(user.Birthdate)
 	encryptedPassword, _ := bcrypt.GenerateFromPassword([]byte(user.Password), 14)
 
-	editedBirthdate := user.Birthdate[0:10]
-	log.Println(editedBirthdate)
 	encryptedUser := models.User{
 		Email:     user.Email,
 		Password:  string(encryptedPassword),
 		Fname:     user.Fname,
 		Lname:     user.Lname,
-		Birthdate: editedBirthdate,
+		Birthdate: user.Birthdate,
 		SSN:       user.SSN,
 	}
 

@@ -32,27 +32,41 @@ const linkTarget = {
         applied: true
     }
 }
+
 function UpdateUser(props) {
     let a = props.birthdate;
     const [valueDate, setValueDate] = useState(a);
     const handleBirthChange = (newValue) => {
-        setValueDate(newValue);
-        props.setBirthDate(newValue);
+        let dateToString = newValue.toString();
+        let splitDate = dateToString.substring(4, 15);
+
+        console.log(splitDate);
+        setValueDate(splitDate);
+        props.setBirthDate(splitDate);
     };
     let navigate = useNavigate();
+
     function sayHello(m) {
+        console.log(m.birthdate);
         const requestOptions = {
             method: "POST",
             body: JSON.stringify(m),
         };
 
-        fetch("http://localhost:4000/v1/updateUser", requestOptions)
-            .then((response) => response.json())
-            .then((data) => {
-                console.log(data);
-            });
+        try {
+            fetch("http://localhost:4000/v1/updateUser", requestOptions)
 
-        setTimeout(() => navigate(linkTarget), 1000);
+                .then((data) => {
+                    console.log(data);
+                });
+
+            setTimeout(() => navigate(linkTarget), 1000);
+        }
+        catch (err) {
+            console.log(err);
+        }
+
+
 
     }
 
@@ -64,11 +78,11 @@ function UpdateUser(props) {
                     enableReinitialize
                     initialValues={{ fName: props.name, lName: props.name2, email: props.email, password: "", confirmPassword: "", birthdate: valueDate, SSN: props.SSN }}
                     onSubmit={(values) => {
-                        console.log(values);
+                        console.log("Value sent" + values.birthdate);
                         sayHello(values);
                         props.setName(values.fName);
                         props.set2Name(values.lName);
-                        props.setBirthDate((String(values.birthdate).substring(4, 15)));
+                        props.setBirthDate(values.birthdate);
 
                     }}
                 >

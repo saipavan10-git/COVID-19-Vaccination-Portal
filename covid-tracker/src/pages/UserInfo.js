@@ -28,8 +28,15 @@ function UserInfo(props) {
         setOpen(false);
     };
 
-
     let splitBirthDate = props.birthdate.toString();
+
+    if (splitBirthDate == "") {
+        splitBirthDate = "N/A";
+    } else {
+        splitBirthDate = props.birthdate.toString();
+        splitBirthDate = splitBirthDate.replaceAll(" ", "/")
+    }
+
     console.log(props.birthdate);
     const Item = styled(Paper)(({ theme }) => ({
         ...theme.typography.body2,
