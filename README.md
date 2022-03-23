@@ -3,11 +3,12 @@ In this project we are designing a web application where users can book their va
 
 ## Team Members
 
+### Frontend
 • Yichong Ma (@mayichong)
 
-•	Sai Pavan Kamma (@saipavan10-git)
-
 •	Venkateswarlu Tanneru (@Vtanneru)
+### Backend
+•	Sai Pavan Kamma (@saipavan10-git)
 
 •	Lalith Phani Srinivas Kandregula (@Klps-1248)
 
