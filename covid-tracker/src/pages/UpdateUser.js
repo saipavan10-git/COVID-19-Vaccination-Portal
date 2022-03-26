@@ -17,10 +17,6 @@ import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router-dom';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -36,68 +32,43 @@ const linkTarget = {
         applied: true
     }
 }
-
 function UpdateUser(props) {
     let a = props.birthdate;
     const [valueDate, setValueDate] = useState(a);
     const handleBirthChange = (newValue) => {
-        let dateToString = newValue.toString();
-        let splitDate = dateToString.substring(4, 15);
-
-        console.log(splitDate);
-        setValueDate(splitDate);
-        props.setBirthDate(splitDate);
+        setValueDate(newValue);
+        props.setBirthDate(newValue);
     };
     let navigate = useNavigate();
-
     function sayHello(m) {
-        console.log(m.birthdate);
         const requestOptions = {
             method: "POST",
             body: JSON.stringify(m),
         };
 
-        try {
-            fetch("http://localhost:4000/v1/updateUser", requestOptions)
+        fetch("http://localhost:4000/v1/updateUser", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                console.log(data);
+            });
 
-                .then((data) => {
-                    console.log(data);
-                });
+        setTimeout(() => navigate(linkTarget), 1000);
 
-            setTimeout(() => navigate(linkTarget), 1000);
-        }
-        catch (err) {
-            console.log(err);
-        }
     }
 
     return (
         <>
             <div>
-                <Box sx={{ flexGrow: 1 }}>
-                    <AppBar>
-                        <Toolbar>
-                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                <a component={Link} href="/user" className="home">Co<span className="colorchange" >Vi</span>-Book</a>
-                            </Typography>
-
-                            <Button color="inherit" component={Link}
-                                to="/list">Vaccine List</Button>
-
-                        </Toolbar>
-                    </AppBar>
-                </Box>
-                <div className="space"></div>
                 <h1>Update your information:</h1>
                 <Formik
                     enableReinitialize
                     initialValues={{ fName: props.name, lName: props.name2, email: props.email, password: "", confirmPassword: "", birthdate: valueDate, SSN: props.SSN }}
                     onSubmit={(values) => {
-                        console.log("Value sent" + values.birthdate);
+                        console.log(values);
                         sayHello(values);
                         props.setName(values.fName);
                         props.set2Name(values.lName);
-                        props.setBirthDate(values.birthdate);
+                        props.setBirthDate((String(values.birthdate).substring(4, 15)));
 
                     }}
                 >
