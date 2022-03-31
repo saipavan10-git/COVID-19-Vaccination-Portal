@@ -10,7 +10,6 @@ import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/material/styles';
-
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -165,8 +164,7 @@ function UserInfo(props) {
                             <Item>
                                 <h3>What would you like to do?</h3>
                                 <div className="space40"></div>
-                                <Button variant="contained" component={Link}
-                                    to="/list">Schedule an Appointment </Button>
+                                <Button variant="contained" >Schedule an Appointment </Button>
                                 <div className="space40" ></div>
                                 <Button variant="contained" component={Link}
                                     to="/update">Fill Details for Vaccination Certifcate </Button>
@@ -174,7 +172,8 @@ function UserInfo(props) {
                                 {/* <Button variant="contained" component={Link}
                                     to="/records">Click me to get your certificate! (WIP)</Button> */}
                                 <div className="space40"></div>
-                                <a target="_blank" href="https://www.google.com/search?q=covid+cases&oq=covid+cases&aqs=chrome.0.69i59j0i402l2j0i433i512l2j69i60l3.1015j0j7&sourceid=chrome&ie=UTF-8"><Button variant="contained">Covid Statistical data</Button></a>
+                                <Button component={Link}
+                                    to="/covidcaseall" variant="contained">Covid Statistical data</Button>
                             </Item>
                         </Grid>
                     </Grid>

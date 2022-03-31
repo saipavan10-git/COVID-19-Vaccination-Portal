@@ -9,6 +9,10 @@ import VaccineList from "./pages/VaccineList";
 import UserInfo from "./pages/UserInfo";
 import UpdateUser from "./pages/UpdateUser";
 import Middleware from "./pages/Middleware";
+import CovidCase from "./pages/CovidCase";
+import Search from "./pages/Search";
+import SearchResult from "./pages/SearchResult";
+import Code from "./pages/Code";
 function App() {
   const [name, setName] = useState('');
   const [name2, set2Name] = useState('');
@@ -42,7 +46,6 @@ function App() {
                 set2Name(content.message.lName);
                 setEmail(content.message.email);
                 setBirthDate(content.message.birthDate);
-                console.log(content.message.birthDate);
                 setSSN(content.message.SSN);
               }
             }
@@ -96,6 +99,10 @@ function App() {
         <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} change={change} birthdate={birthdate} />} />
         <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} SSN={SSN} birthdate={birthdate} setBirthDate={setBirthDate} setName={setName} set2Name={set2Name} setFirstDose={setFirstDose} setSecondDose={setSecondDose} />} />
         <Route path="/middleware" element={<Middleware change={change} setChange={setChange} />} />
+        <Route path="/covidcaseall" element={<CovidCase />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/searchResult" element={<SearchResult />} />
+        <Route path="/code" element={<Code />} />
       </Routes>
     </Router>
   );
