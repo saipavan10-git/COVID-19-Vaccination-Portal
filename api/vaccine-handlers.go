@@ -7,7 +7,9 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -22,6 +24,8 @@ const SecretKey = "secret"
 
 var results string
 var i string = "\"\""
+var keyword int
+var code int
 
 func (app *application) getOneVaccine(w http.ResponseWriter, r *http.Request) {
 	db, _ := gorm.Open("sqlite3", "./vaccine.db")
@@ -71,6 +75,7 @@ func (app *application) getAllVaccinesProcess() ([]models.Vaccine, error) {
 }
 
 func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
+	code = 0
 	db, _ := gorm.Open("sqlite3", "./vaccine.db")
 	defer db.Close()
 	dbAppoint, _ := gorm.Open("sqlite3", "./appointment.db")
@@ -95,14 +100,31 @@ func (app *application) getBooking(w http.ResponseWriter, r *http.Request) {
 
 		trimmedString := strings.Trim(i, "\"")
 
+		n := true
+		var num int
+		var checkUser models.UserAppoint
+		for n {
+			min := 100000
+			max := 999999
+			num = rand.Intn(max-min) + min
+
+			dbAppoint.Where("code = ?", num).First(&checkUser)
+
+			if checkUser.Code == 0 {
+				n = false
+			}
+		}
+
 		appointment := models.UserAppoint{
 			Email: trimmedString,
 			ID:    vaccine.ID,
+			Code:  num,
 		}
+		code = num
 
 		dbAppoint.Create(&appointment)
 		i = "\"\""
-		app.writeJSON(w, 200, &vaccine, "Great")
+		app.writeJSON(w, 200, &appointment, "Great")
 	} else {
 		app.errorJSON(w, errors.New("no user"))
 	}
@@ -364,4 +386,70 @@ func (app *application) deleteBooking(w http.ResponseWriter, r *http.Request) {
 	var vaccine models.Vaccine
 	db.Where("id = ?", AllList[1]).Find(&vaccine)
 	db.Model(&vaccine).Update("available", 1)
+}
+
+func (app *application) searchCode(w http.ResponseWriter, r *http.Request) {
+	dbAppoint, _ := gorm.Open("sqlite3", "./appointment.db")
+	defer dbAppoint.Close()
+	db, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer db.Close()
+
+	var i models.Search
+
+	err := json.NewDecoder(r.Body).Decode(&i)
+	if err != nil {
+		app.errorJSON(w, err)
+		return
+	}
+
+	log.Println(i.Value)
+	result, _ := strconv.Atoi(i.Value)
+	log.Println(result)
+	keyword = result
+}
+
+func (app *application) displayCert(w http.ResponseWriter, r *http.Request) {
+	dbAppoint, _ := gorm.Open("sqlite3", "./appointment.db")
+	defer dbAppoint.Close()
+	dbUser, _ := gorm.Open("sqlite3", "./user.db")
+	defer dbUser.Close()
+	dbVaccine, _ := gorm.Open("sqlite3", "./vaccine.db")
+	defer dbVaccine.Close()
+
+	var appoint models.UserAppoint
+	var user models.User
+	var vaccine models.Vaccine
+
+	dbAppoint.Where("code = ?", keyword).First(&appoint)
+	log.Printf("Code is %d", keyword)
+	dbVaccine.Where("id = ?", appoint.ID).First(&vaccine)
+	dbUser.Where("email = ?", appoint.Email).First(&user)
+
+	certificate := models.Cert{
+		Email:      appoint.Email,
+		Fname:      user.Fname,
+		Lname:      user.Lname,
+		Birthdate:  user.Birthdate,
+		SSN:        user.SSN,
+		Code:       appoint.Code,
+		Name:       vaccine.Name,
+		VaccineNum: vaccine.VaccineNum,
+		State:      vaccine.State,
+		ZipCode:    vaccine.ZipCode,
+	}
+
+	app.writeJSON(w, 200, &certificate, "Great")
+
+}
+
+func (app *application) code(w http.ResponseWriter, r *http.Request) {
+
+	newCode := fmt.Sprintf("%d", code)
+	log.Println(newCode)
+	appoint := models.Search{
+		Value: newCode,
+	}
+
+	app.writeJSON(w, 200, &appoint, "Great")
+
 }

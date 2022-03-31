@@ -26,6 +26,9 @@ func (app *application) routes() http.Handler {
 	router.HandlerFunc(http.MethodGet, "/v1/appoint", app.getAppoint)
 	router.HandlerFunc(http.MethodPost, "/v1/updateUser", app.updateUser)
 	router.HandlerFunc(http.MethodPost, "/v1/deleteBooking", app.deleteBooking)
+	router.HandlerFunc(http.MethodPost, "/v1/searchCode", app.searchCode)
+	router.HandlerFunc(http.MethodGet, "/v1/displayCert", app.displayCert)
+	router.HandlerFunc(http.MethodGet, "/v1/code", app.code)
 	return app.enableCORS(router)
 }
 

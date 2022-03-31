@@ -297,7 +297,7 @@ function UpdateUser(props) {
 
                                     }}
                                     component={Link}
-                                    to="/records"
+                                    to="/search"
                                 >
                                     Generate Certifiacate
                                 </Button>
@@ -316,7 +316,7 @@ function UpdateUser(props) {
                                 >
                                     Back
                                 </Button>
-                                
+
                             </div>
                         </Form>
                     )}

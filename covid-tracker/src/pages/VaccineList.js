@@ -11,11 +11,6 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 export default class VaccineList extends Component {
 
   state = {
@@ -120,14 +115,16 @@ export default class VaccineList extends Component {
         .then((response) => response.text())
         .then((data) => {
           if (data) { alert(`Please sign in to book an appointment.`); }
-          console.log(data.error);
+
         }).then(fetch("http://localhost:4000/v1/booking", requestOptions)
           .then((data) => {
             if (data.ok) {
+              console.log(data);
               alert(
                 `Congrats! You booked ${m.vaccine_name} vaccine, ${m.vaccine_num}-dose. Please bring your valid ID/Driver's license and your insurance card with you.`
               );
-              window.location.reload(false);
+              window.location.replace("http://localhost:3000/code")
+              // window.location.reload(false);
             } else {
               alert(
                 `Something went wrong. Please try again`
