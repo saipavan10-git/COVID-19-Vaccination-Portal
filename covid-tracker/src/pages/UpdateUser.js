@@ -34,22 +34,10 @@ const linkTarget = {
 }
 function UpdateUser(props) {
     let a = props.birthdate;
-    let b = props.FirstDose;
-    let c = props.SecondDose;
     const [valueDate, setValueDate] = useState(a);
-    const [FDose, setFDose] = useState(b);
-    const [SDose, setSDose] = useState(c);
     const handleBirthChange = (newValue) => {
         setValueDate(newValue);
         props.setBirthDate(newValue);
-    };
-    const handleFirstDoseChange = (newValue) => {
-        setFDose(newValue);
-        props.setFirstDose(newValue);
-    };
-    const handleSecondDoseChange = (newValue) => {
-        setSDose(newValue);
-        props.setSecondDose(newValue);
     };
     let navigate = useNavigate();
     function sayHello(m) {
@@ -74,15 +62,13 @@ function UpdateUser(props) {
                 <h1>Update your information:</h1>
                 <Formik
                     enableReinitialize
-                    initialValues={{ fName: props.name, lName: props.name2, email: props.email, password: "", confirmPassword: "", birthdate: valueDate, SSN: props.SSN, FirstDose:FDose, SecondDose:SDose }}
+                    initialValues={{ fName: props.name, lName: props.name2, email: props.email, password: "", confirmPassword: "", birthdate: valueDate, SSN: props.SSN }}
                     onSubmit={(values) => {
                         console.log(values);
                         sayHello(values);
                         props.setName(values.fName);
                         props.set2Name(values.lName);
                         props.setBirthDate((String(values.birthdate).substring(4, 15)));
-                        props.setFirstDose((String(values.FirstDose).substring(4, 15)));
-                        props.setSecondDose((String(values.SecondDose).substring(4, 15)));
 
                     }}
                 >
@@ -176,12 +162,68 @@ function UpdateUser(props) {
                                     />
                                 </Grid>
                             </Grid>
+                            <div style={{ marginTop: "20px" }}></div>
+                            <Grid container spacing={1} justifyContent="center">
+                                <Grid item xs={3}>
+
+                                    <InputLabel htmlFor="input-with-icon-adornment">New Password</InputLabel>
+                                    <Input
+
+                                        onChange={(e) => { handleChange(e) }}
+                                        value={values.password}
+                                        inputProps={{
+                                            style: {
+                                                fontSize: "25px",
+                                                fontFamily: "Georgia",
+                                                color: "#3876e9",
+                                                width: "300px",
+                                            },
+                                        }}
+                                        type="password"
+                                        name="password"
+                                        placeholder="Password"
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                <LockIcon style={{ fontSize: "32px", color: "#3876e9" }} />
+                                            </InputAdornment>
+                                        }
+                                    />
+                                </Grid>
+                                {/* make space between email and password input */}
+                                <div style={{ marginTop: "20px" }}></div>
+                                <Grid item xs={3}>
+                                    {/* input password */}
+
+                                    <InputLabel htmlFor="input-with-icon-adornment">Re-enter Password</InputLabel>
+                                    <Input
+
+                                        onChange={(e) => { handleChange(e) }}
+                                        value={values.confirmPassword}
+                                        inputProps={{
+                                            style: {
+                                                fontSize: "25px",
+                                                fontFamily: "Georgia",
+                                                color: "#3876e9",
+                                                width: "300px",
+                                            },
+                                        }}
+                                        type="password"
+                                        name="confirmPassword"
+                                        placeholder="Confirm Password"
+                                        startAdornment={
+                                            <InputAdornment position="start">
+                                                <LockIcon style={{ fontSize: "32px", color: "#3876e9" }} />
+                                            </InputAdornment>
+                                        }
+                                    />
+                                </Grid>
+                            </Grid>
                             <div style={{ marginTop: "40px" }}></div>
                             <div className="inputStyle">
                                 <h3>In order to print your vaccination Card, you need to provide the following:</h3>
                             </div>
                             <div style={{ marginTop: "40px" }}></div>
-                            <Grid container spacing={8} justifyContent="center">
+                            <Grid container spacing={1} justifyContent="center">
                                 <Grid item xs={3}>
                                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                                         <Stack spacing={3}>
@@ -226,54 +268,6 @@ function UpdateUser(props) {
                                         placeholder="SSN Number"
                                     />
 
-                                </Grid>
-                            </Grid>
-                            <div style={{ marginTop: "20px" }}></div>
-
-                            <Grid container spacing={8} justifyContent="center">
-                                <Grid item xs={3}>
-                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                        <Stack spacing={3}>
-                                            <DesktopDatePicker
-                                                inputProps={{
-                                                    style: {
-                                                        fontSize: "25px",
-                                                        fontFamily: "Georgia",
-                                                        color: "#3876e9",
-                                                        width: "200px",
-                                                    },
-                                                }}
-                                                label="First Dose"
-                                                inputFormat="MM/dd/yyyy"
-                                                value={values.FirstDose}
-                                                onChange={handleFirstDoseChange}                                                
-                                                renderInput={(params) => <TextField {...params} />}
-                                                type="date"
-                                            />
-                                        </Stack>
-                                    </LocalizationProvider>
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                        <Stack spacing={8}>
-                                            <DesktopDatePicker
-                                                inputProps={{
-                                                    style: {
-                                                        fontSize: "25px",
-                                                        fontFamily: "Georgia",
-                                                        color: "#3876e9",
-                                                        width: "200px",
-                                                    },
-                                                }}
-                                                label="Second Dose"
-                                                inputFormat="MM/dd/yyyy"
-                                                value={values.SecondDose}
-                                                onChange={handleSecondDoseChange}
-                                                renderInput={(params) => <TextField {...params} />}
-                                                type="date"
-                                            />
-                                        </Stack>
-                                    </LocalizationProvider>
                                 </Grid>
                             </Grid>
                             <div style={{ marginTop: "80px" }}></div>
