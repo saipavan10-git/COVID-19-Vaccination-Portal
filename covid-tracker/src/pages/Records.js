@@ -3,7 +3,7 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 function records() {
   return (
-    <>
+    
       <div className="inputStyle">
       <h1 style={{textAlign:"left",marginLeft: "30px",}}>Co<span class='colorchange'>Vi</span>-Book</h1>
         <h6><span class='colorchange'>Vaccination-Records</span></h6>
@@ -35,12 +35,12 @@ function records() {
             marginTop: "20px",
           }}
           component={Link}
-          to="/login"
+          to="/user"
         >
           Go Back
         </Button>
       </div>
-    </>
+  
   );
 }
 
