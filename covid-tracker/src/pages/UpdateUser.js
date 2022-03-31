@@ -248,7 +248,7 @@ function UpdateUser(props) {
                                 </Grid>
                                 <Grid item xs={3}>
 
-                                    <span className="SSN">SSN: ***-**-</span>
+                                    <span className="SSN" >SSN: </span>
 
                                     <Input
                                         onChange={(e) => { handleChange(e) }}
@@ -265,8 +265,7 @@ function UpdateUser(props) {
 
                                         type="number"
                                         name="SSN"
-                                        placeholder="Last 4 Digit SSN"
-
+                                        placeholder="SSN Number"
                                     />
 
                                 </Grid>
@@ -285,8 +284,24 @@ function UpdateUser(props) {
                                     }}
                                     type="submit"
                                 >
-                                    Apply
+                                    Update Data
                                 </Button>
+
+                                <span style={{ marginLeft: "30px" }}></span>
+                                <Button
+                                    variant="outlined"
+                                    style={{
+                                        fontSize: "18px",
+                                        color: "#3876e9",
+                                        borderColor: "orange",
+
+                                    }}
+                                    component={Link}
+                                    to="/records"
+                                >
+                                    Generate Certifiacate
+                                </Button>
+
                                 <span style={{ marginLeft: "30px" }}></span>
                                 <Button
                                     variant="outlined"
@@ -301,6 +316,7 @@ function UpdateUser(props) {
                                 >
                                     Back
                                 </Button>
+                                
                             </div>
                         </Form>
                     )}

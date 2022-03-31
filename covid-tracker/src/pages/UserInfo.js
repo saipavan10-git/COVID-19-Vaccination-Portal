@@ -81,7 +81,7 @@ function UserInfo(props) {
     } else {
 
         logout = <Button color="inherit" component={Link} to="/login" onClick={logOut}>log out</Button>
-        vaccine = <>Nothing bro</>
+        vaccine = <Button color="inherit" component={Link} to="/Certificate" onClick={logOut}>log out</Button>
     }
 
     if (props.vaccineId) {
@@ -166,15 +166,15 @@ function UserInfo(props) {
                                 <h3>What would you like to do?</h3>
                                 <div className="space40"></div>
                                 <Button variant="contained" component={Link}
-                                    to="/list">Click me to schedule an appointment! </Button>
+                                    to="/list">Schedule an Appointment </Button>
                                 <div className="space40" ></div>
                                 <Button variant="contained" component={Link}
-                                    to="/update">Click me to update information! (WIP)</Button>
+                                    to="/update">Fill Details for Vaccination Certifcate </Button>
                                 <div className="space40"></div>
-                                <Button variant="contained" component={Link}
-                                    to="/records">Click me to get your certificate! (WIP)</Button>
+                                {/* <Button variant="contained" component={Link}
+                                    to="/records">Click me to get your certificate! (WIP)</Button> */}
                                 <div className="space40"></div>
-                                <a target="_blank" href="https://www.google.com/search?q=covid+cases&oq=covid+cases&aqs=chrome.0.69i59j0i402l2j0i433i512l2j69i60l3.1015j0j7&sourceid=chrome&ie=UTF-8"><Button variant="contained">Click me to check covid cases/news! (WIP)</Button></a>
+                                <a target="_blank" href="https://www.google.com/search?q=covid+cases&oq=covid+cases&aqs=chrome.0.69i59j0i402l2j0i433i512l2j69i60l3.1015j0j7&sourceid=chrome&ie=UTF-8"><Button variant="contained">Covid Statistical data</Button></a>
                             </Item>
                         </Grid>
                     </Grid>
