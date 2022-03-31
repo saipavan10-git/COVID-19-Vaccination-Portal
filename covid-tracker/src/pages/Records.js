@@ -1,19 +1,19 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-function records() {
+function records(props) {
   return (
     
       <div className="inputStyle">
       <h1 style={{textAlign:"left",marginLeft: "30px",}}>Co<span class='colorchange'>Vi</span>-Book</h1>
         <h6><span class='colorchange'>Vaccination-Records</span></h6>
 
-        <h2>Name: ________</h2>
-        <h2>Date of Birth: ________</h2>
-        <h2>SSN: ________</h2>
-        <h2>Vaccine Type: ________</h2>
-        <h2>Last Vaccine Shots Date: ________</h2>
-        <h2>Next Vaccine Shots Date: ________</h2>
+        <h2>Name: {props.name}</h2>
+        <h2>Date of Birth: {props.birthdate}</h2>
+        <h2>SSN: {props.SSN}</h2>
+        <h2>Vaccine Type: _______</h2>
+        <h2>Last Vaccine Shots Date: {props.firstDose}</h2>
+        <h2>Next Vaccine Shots Date: {props.secondDose}</h2>
         <Button
           variant="outlined"
           style={{
