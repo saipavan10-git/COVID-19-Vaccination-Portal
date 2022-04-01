@@ -47,3 +47,47 @@ func (app *application) routes() http.Handler {
 // 	}))
 // 	router.Run()
 // }
+
+// Future reference
+// router := gin.Default()
+// 	router.Use(Cors())
+// 	protected := router.Group("")
+// 	//utils.ConnectDatabase()
+// 	// public := router.Group("/auth")
+// 	// public.POST("/login", app.login)
+// 	// public.POST("/register", controllers.UserRegistration)
+
+// 	protected.Use(ginRouter())
+// 	protected.GET("/status", app.statusHandler)
+// 	protected.GET("/v1/vaccine/:id", app.getOneVaccine)
+// 	protected.GET("/v1/vaccines", app.getAllVaccines)
+// 	protected.GET("/v1/user", app.user)
+// 	protected.GET("/v1/test/result", app.searchResult)
+// 	protected.GET("/v1/appoint", app.getAppoint)
+// 	protected.POST("/v1/test/result", app.searchRecord)
+// 	protected.POST("/v1/booking", app.getBooking)
+// 	protected.POST("/v1/test", app.recordSignup)
+// 	protected.POST("/v1/deleteBooking", app.deleteBooking)
+// 	protected.POST("/v1/updateUser", app.updateUser)
+// 	protected.POST("/v1/receive", app.receiveFront)
+// 	protected.POST("/v1/logout", app.logout)
+
+// 	//router.HandlerFunc(http.MethodGet, "/status", app.statusHandler)
+// 	// router.HandlerFunc(http.MethodGet, "/v1/vaccine/:id", app.getOneVaccine)
+// 	// router.HandlerFunc(http.MethodGet, "/v1/vaccines", app.getAllVaccines)
+// 	// router.HandlerFunc(http.MethodPost, "/v1/booking", app.getBooking)
+// 	// router.HandlerFunc(http.MethodPost, "/v1/test", app.recordSignup)
+// 	// router.HandlerFunc(http.MethodPost, "/v1/login", app.login)
+// 	// router.HandlerFunc(http.MethodGet, "/v1/user", app.user)
+// 	// router.HandlerFunc(http.MethodPost, "/v1/test/result", app.searchRecord)
+// 	// router.HandlerFunc(http.MethodGet, "/v1/test/result", app.searchResult)
+// 	// router.HandlerFunc(http.MethodPost, "/v1/logout", app.logout)
+// 	// router.HandlerFunc(http.MethodPost, "/v1/receive", app.receiveFront)
+// 	// router.HandlerFunc(http.MethodGet, "/v1/appoint", app.getAppoint)
+// 	// router.HandlerFunc(http.MethodPost, "/v1/updateUser", app.updateUser)
+// 	// router.HandlerFunc(http.MethodPost, "/v1/deleteBooking", app.deleteBooking)
+// 	router.Run(":8080")
+// }
+
+// func ginRouter() {
+// 	panic("unimplemented")
