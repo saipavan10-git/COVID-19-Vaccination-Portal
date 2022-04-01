@@ -75,32 +75,32 @@ func Test8(t *testing.T) {
 	}
 }
 
-// func Test9(t *testing.T) {
-// 	req := httptest.NewRequest(http.MethodGet, "/v1/vaccines", nil)
-// 	w := httptest.NewRecorder()
-// 	app.login(w, req)
-// 	res := w.Result()
-// 	defer res.Body.Close()
-// 	data, err := ioutil.ReadAll(res.Body)
-// 	if err != nil {
-// 		t.Errorf("expected error to be nil got %v", err)
-// 	}
-// 	if data == nil {
-// 		t.Errorf("expected data not to be nil")
-// 	}
-// }
+func Test9(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/v1/vaccines", nil)
+	w := httptest.NewRecorder()
+	app.login(w, req)
+	res := w.Result()
+	defer res.Body.Close()
+	data, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		t.Errorf("expected error to be nil got %v", err)
+	}
+	if data == nil {
+		t.Errorf("expected data not to be nil")
+	}
+}
 
-// func Test10(t *testing.T) {
-// 	req := httptest.NewRequest(http.MethodGet, "/v1/vaccines", nil)
-// 	w := httptest.NewRecorder()
-// 	app.user(w, req)
-// 	res := w.Result()
-// 	defer res.Body.Close()
-// 	data, err := ioutil.ReadAll(res.Body)
-// 	if err != nil {
-// 		t.Errorf("expected error to be nil got %v", err)
-// 	}
-// 	if data == nil {
-// 		t.Errorf("expected data not to be nil")
-// 	}
-// }
+func Test10(t *testing.T) {
+	req := httptest.NewRequest(http.MethodGet, "/v1/vaccines", nil)
+	w := httptest.NewRecorder()
+	app.user(w, req)
+	res := w.Result()
+	defer res.Body.Close()
+	data, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		t.Errorf("expected error to be nil got %v", err)
+	}
+	if data == nil {
+		t.Errorf("expected data not to be nil")
+	}
+}
