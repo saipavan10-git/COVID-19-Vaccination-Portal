@@ -303,7 +303,7 @@ function UpdateUser(props) {
 
                                     }}
                                     component={Link}
-                                    to="/records"
+                                    to="/Search"
                                 >
                                     Generate Certifiacate
                                 </Button>

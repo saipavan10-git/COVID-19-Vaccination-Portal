@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Formik } from "formik";
 import Input from "@mui/material/Input";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 const linkTarget = {
     pathname: "/searchResult",
@@ -41,34 +41,42 @@ function Search() {
 
                 >{({ values, handleChange, handleSubmit }) => (
                     <form onSubmit={handleSubmit}>
-                        <Input
+                    <Grid container spacing={1} justifyContent="center">
+                        <Grid item xs={1.5}>
+                            <Input
 
-                            inputProps={{
-                                style: {
-                                    fontSize: "30px",
-                                    fontFamily: "Georgia",
+                                inputProps={{
+                                    style: {
+                                        fontSize: "30px",
+                                        fontFamily: "Georgia",
+                                        color: "#3876e9",
+                                        width: "200px",
+                                        textAlign :"center",
+                                    },
+                                }}
+                                name="search"
+                                placeholder="Enter code"
+                                
+                                onChange={(e) => { handleChange(e); }}
+                                value={values.search}
+                            />
+                            <div style={{ marginTop: "20px" }}></div>
+                        </Grid> 
+
+                        <Grid item xs={1.5}>
+                            <Button
+                                variant="outlined"
+                                style={{
+                                    fontSize: "18px",
                                     color: "#3876e9",
-                                    width: "200px",
-                                },
-                            }}
-                            name="search"
-                            placeholder="enter code"
-                            onChange={(e) => { handleChange(e); }}
-                            value={values.search}
-                        />
-
-                        <Button
-                            variant="outlined"
-                            style={{
-                                fontSize: "18px",
-                                color: "#3876e9",
-                                borderColor: "orange",
-                            }}
-                            type="submit"
-                        >
-                            GO
-                        </Button>
-
+                                    borderColor: "orange",
+                                }}
+                                type="submit"
+                            >
+                                GO
+                            </Button>
+                        </Grid>
+                    </Grid>
                     </form>)}</Formik>
             </div>
         </>

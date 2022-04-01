@@ -47,8 +47,6 @@ function Homepage(props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <a component={Link} href={!props.name ? "/login" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
             </Typography>
-            {/* <Button color="inherit" component={Link}
-              to="/search">Records</Button> */}
             {showOrNot}
             {showOrNot2}
             <Button color="inherit" component={Link}

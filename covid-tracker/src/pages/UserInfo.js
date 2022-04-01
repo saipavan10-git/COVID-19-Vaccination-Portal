@@ -139,10 +139,10 @@ function UserInfo(props) {
                     Welcome {props.name ? props.name : nothing}
 
                 </h1>
-                <Box sx={{ flexGrow: 1 }}>
-                    <Grid container spacing={2}>
+                <Box sx={{ flexGrow: 1 }}  >
+                    <Grid container spacing={2} alignItems="center" justifyContent="center" >
 
-                        <Grid item xs={4} md={4}>
+                        <Grid item xs={3} md={4}>
                             <Item>
                                 <p>Below are your basic information:</p>
                                 <p>First Name: {props.name}</p>

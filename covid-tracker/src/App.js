@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Homepage from "./pages/Homepage";
-import Records from "./pages/Records";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -93,7 +92,6 @@ function App() {
     <Router >
       <Routes>
         <Route path="/" element={<Homepage name={name} setName={setName} set2Name={set2Name} setEmail={setEmail} />} />
-        <Route path="/records" element={<Records name={name} birthdate={birthdate} SSN={SSN} firstDose={FirstDose} secondDose={SecondDose}/>} />
         <Route path="/login" element={<Login setName={setName} name={name} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/list" element={<VaccineList name={name} email={email} />} />
