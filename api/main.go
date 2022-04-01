@@ -7,8 +7,6 @@ import (
 	"net/http"
 	"os"
 	"time"
-
-	"github.com/gin-gonic/gin"
 )
 
 type config struct {
@@ -36,12 +34,6 @@ func (app *application) start(port int) error {
 	return nil
 }
 
-func Cors() gin.HandlerFunc {
-	return func(c *gin.Context) {
-		c.Writer.Header().Add("Access-Control-Allow-Origin", "*")
-		c.Next()
-	}
-}
 func Config() *config {
 	var cfg config
 	flag.IntVar(&cfg.port, "port", 4000, "Server port to listen on")

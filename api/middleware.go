@@ -4,10 +4,17 @@ import (
 	"net/http"
 )
 
+// func (app *application) ginRouter() gin.HandlerFunc {
+// 	return func(c *gin.Context) {
+// 		c.JSON(http.StatusOK, gin.H{"msg": "Request authorized"})
+// 	}
+// }
+
 func (app *application) enableCORS(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Aceesss-Control-Allow-Origin", "http://localhost:3000")
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
 		w.Header().Set("Access-Control-Allow-Methods", "POST,GET,OPTIONS,PUT,DELETE")
 
 		next.ServeHTTP(w, r)
@@ -24,7 +31,6 @@ func (app *application) CORS(next http.HandlerFunc) http.HandlerFunc {
 			http.Error(w, "No Content", http.StatusNoContent)
 			return
 		}
-
 		next(w, r)
 	}
 }
