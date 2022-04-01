@@ -164,7 +164,8 @@ function UserInfo(props) {
                             <Item>
                                 <h3>What would you like to do?</h3>
                                 <div className="space40"></div>
-                                <Button variant="contained" >Schedule an Appointment </Button>
+                                <Button variant="contained" component={Link}
+                                    to="/list">Schedule an Appointment </Button>
                                 <div className="space40" ></div>
                                 <Button variant="contained" component={Link}
                                     to="/update">Fill Details for Vaccination Certifcate </Button>
@@ -173,7 +174,7 @@ function UserInfo(props) {
                                     to="/records">Click me to get your certificate! (WIP)</Button> */}
                                 <div className="space40"></div>
                                 <Button component={Link}
-                                    to="/covidcaseall" variant="contained">Covid Statistical data</Button>
+                                    to="/covidcaseall" variant="contained">Covid data dashboard</Button>
                             </Item>
                         </Grid>
                     </Grid>
