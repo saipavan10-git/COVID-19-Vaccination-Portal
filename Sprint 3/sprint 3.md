@@ -23,10 +23,20 @@
 * Appointement Cancellation and slot availbility updated on database
 * Unit tests were done to check the functioning 
 
+## **Screenshots**
+
+### BackEnd Tests
+![Backend tests](https://user-images.githubusercontent.com/92537901/161338056-b2709a81-1406-4118-8f7d-21e159d4b01d.png)
+
+### Slot Booking
+![Slot Booking front and back end](https://user-images.githubusercontent.com/92537901/161338083-8aedbaf9-9b87-4b1c-a5b8-c2e622dd27e6.png)
+
+### Booking Reference Code
+![Booking Reference code](https://user-images.githubusercontent.com/92537901/161338107-e86970de-d3df-4230-bbd8-0252a6093196.png)
 
 ## Demo
 
-Link to Working Demo for Sprint 3 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%202/Sprint%202.mp4)
+Link to Working Demo for Sprint 3 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%203/Sprint%203.mp4)
 
 ## Team Members
 
