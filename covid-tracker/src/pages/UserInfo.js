@@ -68,7 +68,7 @@ function UserInfo(props) {
     let showOrNot;
     let showOrNot2;
     let logout;
-    let vaccine;
+    // let vaccine;
     let nothing = ", please sign in";
     let appointment;
     if (!props.name) {
@@ -76,11 +76,11 @@ function UserInfo(props) {
             to="/login">Login</Button>
         showOrNot2 = <Button color="inherit" component={Link}
             to="/signup">Sign up</Button>
-        vaccine = <>{props.vaccine}</>
+        // vaccine = <>{props.vaccine}</>
     } else {
 
         logout = <Button color="inherit" component={Link} to="/login" onClick={logOut}>log out</Button>
-        vaccine = <Button color="inherit" component={Link} to="/Certificate" onClick={logOut}>log out</Button>
+        // vaccine = <Button color="inherit" component={Link} to="/Certificate" onClick={logOut}>log out</Button>
     }
 
     if (props.vaccineId) {
@@ -148,7 +148,7 @@ function UserInfo(props) {
                                 <p>First Name: {props.name}</p>
                                 <p>Last Name: {props.name2}</p>
                                 <p>Email address: {props.email}</p>
-                                <p>Birth date: {splitBirthDate}</p>
+                                <p>Birth date: {}</p>
 
                             </Item>
 
