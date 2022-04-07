@@ -67,8 +67,9 @@ export default class VaccineList extends Component {
     fetch("http://localhost:4000/v1/vaccines")
       .then((response) => response.json())
       .then((json) => {
+        console.log(json.data);
         this.setState({
-          vaccines: json.vaccines,
+          vaccines: json.data,
           isLoaded: true,
         });
 
@@ -114,7 +115,6 @@ export default class VaccineList extends Component {
       fetch("http://localhost:4000/v1/receive", requestUser)
         .then((response) => response.text())
         .then((data) => {
-          if (data) { alert(`Please sign in to book an appointment.`); }
 
         }).then(fetch("http://localhost:4000/v1/booking", requestOptions)
           .then((data) => {
@@ -217,7 +217,7 @@ export default class VaccineList extends Component {
                   <th>Appointment</th>
                 </tr>
                 {vaccines.filter((val) => {
-
+                  console.log(vaccines);
                   let option = "";
                   let check = false;
                   if (this.state.placeHolder === "Vaccine Name") {
