@@ -44,3 +44,8 @@ type Cert struct {
 	State      string `json:"state"`
 	ZipCode    int    `json:"zip_code"`
 }
+
+type Testing struct {
+	Email string `json:"x"`
+	Code  int    `json:"y"`
+}

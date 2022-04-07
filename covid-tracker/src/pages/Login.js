@@ -30,6 +30,7 @@ function Login(props) {
 
   let navigate = useNavigate();
   function sayHello(m) {
+    console.log(JSON.stringify(m));
     const requestOptions = {
       method: "POST",
       body: JSON.stringify(m),

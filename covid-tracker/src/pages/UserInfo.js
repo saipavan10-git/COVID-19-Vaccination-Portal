@@ -52,9 +52,14 @@ function UserInfo(props) {
     }
 
     function deleteBooking() {
+        let you = {
+            "x": props.email,
+            "y": props.vaccineId,
+        }
         const requestOptions = {
             method: "POST",
-            body: props.email + " " + props.vaccineId,
+            // body: props.email + " " + props.vaccineId,
+            body: JSON.stringify(you),
         };
         fetch("http://localhost:4000/v1/deleteBooking", requestOptions)
             .then((response) => response.json())
@@ -148,7 +153,7 @@ function UserInfo(props) {
                                 <p>First Name: {props.name}</p>
                                 <p>Last Name: {props.name2}</p>
                                 <p>Email address: {props.email}</p>
-                                <p>Birth date: {}</p>
+                                <p>Birth date: { }</p>
 
                             </Item>
 

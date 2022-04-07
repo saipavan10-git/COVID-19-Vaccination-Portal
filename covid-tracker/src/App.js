@@ -29,8 +29,6 @@ function App() {
   useEffect(() => {
     (
       async () => {
-
-
         const response = await fetch('http://localhost:4000/v1/user', {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -68,7 +66,7 @@ function App() {
 
             if (vaccineInfo) {
               if (vaccineInfo.message) {
-                console.log(vaccineInfo.message);
+                console.log(vaccineInfo);
                 setVaccineId(vaccineInfo.message.id);
                 setVaccine(vaccineInfo.message.vaccine_name);
                 setVaccineNum(vaccineInfo.message.vaccine_num);
