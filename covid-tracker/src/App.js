@@ -23,12 +23,12 @@ function App() {
   const [vaccineId, setVaccineId] = useState('');
   const [SSN, setSSN] = useState('');
   const [birthdate, setBirthDate] = useState('');
+  const [FirstDose, setFirstDose] = useState('');
+  const [SecondDose, setSecondDose] = useState('');
   const [change, setChange] = useState('');
   useEffect(() => {
     (
       async () => {
-
-
         const response = await fetch('http://localhost:4000/v1/user', {
           headers: { 'Content-Type': 'application/json' },
           credentials: 'include',
@@ -66,7 +66,7 @@ function App() {
 
             if (vaccineInfo) {
               if (vaccineInfo.message) {
-                console.log(vaccineInfo.message);
+                console.log(vaccineInfo);
                 setVaccineId(vaccineInfo.message.id);
                 setVaccine(vaccineInfo.message.vaccine_name);
                 setVaccineNum(vaccineInfo.message.vaccine_num);
@@ -94,7 +94,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/list" element={<VaccineList name={name} email={email} />} />
         <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} change={change} birthdate={birthdate} />} />
-        <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} SSN={SSN} birthdate={birthdate} setBirthDate={setBirthDate} setName={setName} set2Name={set2Name} />} />
+        <Route path="/update" element={<UpdateUser name={name} name2={name2} email={email} SSN={SSN} birthdate={birthdate} setBirthDate={setBirthDate} setName={setName} set2Name={set2Name} setFDose={setFirstDose} setSDose={setSecondDose} />} />
         <Route path="/middleware" element={<Middleware change={change} setChange={setChange} />} />
         <Route path="/covidcaseall" element={<CovidCase />} />
         <Route path="/search" element={<Search />} />

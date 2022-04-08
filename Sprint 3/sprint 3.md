@@ -1,29 +1,42 @@
 # Sprint 3 Accomplishments 
 **Functionalities Implemented**
-* Integarting Back End with Front End
-* Added Redirection of webpages
-* Added Login and SignUp Webpages and stored data in Database
-* Added Unit Tests for Backend
+* Added Vaccine Certificate Page
+* Updated Vaccine Slot Record Dynamically
+* Added Live Covid data Dashboard
+* Implented Authentication for Vaccine Certificate
+* Squashed Redirecting Bugs and Removed Unnecessary pages
+* Added Unit Tests for backend
 * Cypress Testing for FrontEnd is Implemented
 
 **Front-End**
-* Created Landing page after user login
-* Redirection from Home and Vaccine list page is done
-* Vaccine list page is created
-* User Info and real time statistics are included in landing page
-* Cypress Test is done over different functionalities
+* Added Profile page with Dynamic Data Updation
+* Slot cancellation is Implemented
+* Vaccine Certificate page created
+* User can update data of Last and First Doses
+* Cypress Test is done over different functionalities and pages
 
 **Back-End**
-* Added additional data in the database
-* Created a database for user login info
-* Used API's to send data from front end to databse and vice versa
+* Dynamic data Retrivial for Vaccine Slots
+* User Information stored in the databade
+* Authenticated certificate with a unique code which was generated on random
 * Booking records are stored in database and data updation is done dynamically
+* Appointement Cancellation and slot availbility updated on database
 * Unit tests were done to check the functioning 
 
+## **Screenshots**
+
+### BackEnd Tests
+![Backend tests](https://user-images.githubusercontent.com/92537901/161338056-b2709a81-1406-4118-8f7d-21e159d4b01d.png)
+
+### Slot Booking
+![Slot Booking front and back end](https://user-images.githubusercontent.com/92537901/161338083-8aedbaf9-9b87-4b1c-a5b8-c2e622dd27e6.png)
+
+### Booking Reference Code
+![Booking Reference code](https://user-images.githubusercontent.com/92537901/161338107-e86970de-d3df-4230-bbd8-0252a6093196.png)
 
 ## Demo
 
-Link to Working Demo for Sprint 3 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%202/Sprint%202.mp4)
+Link to Working Demo for Sprint 3 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%203/Sprint%203.mp4)
 
 ## Team Members
 

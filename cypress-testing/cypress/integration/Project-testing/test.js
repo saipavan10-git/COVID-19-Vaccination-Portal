@@ -1,16 +1,8 @@
 /// <reference types="cypress" />
 
-describe('CoVi Book Sprint 2 Testing', () => {
-    it('test home page', () => {
-        cy.visit('http://localhost:3000')
-        cy.contains('Welcome to Covi-Book!')
-        cy.contains('A website you can check your vaccination info and more!').should('exist')
-        cy.contains('Login').should('not.exist')
-        cy.get('div')
-        cy.contains('Vaccine List')
-    })
+describe('CoVi Book Sprint 3 Testing', () => {
 
-    it('test login with records', () => {
+    it('test login with login', () => {
         cy.visit('http://localhost:3000/login')
         cy.contains('Login')
         cy.get('input')
@@ -22,7 +14,7 @@ describe('CoVi Book Sprint 2 Testing', () => {
 
         cy.contains('Records').click()
         cy.url().should('eq', 'http://localhost:3000/records')
-        cy.contains('Go Back').click()
+        
     })
 
     it('test sign up', () => {
@@ -42,19 +34,32 @@ describe('CoVi Book Sprint 2 Testing', () => {
         cy.visit('http://localhost:3000/list')
         cy.contains('Sign Up').should('not.exist')
         cy.get('input')
-        cy.get('button').should('exist')
+        cy.get('button').click({ multiple: true }).should('exist')
         cy.contains('Login')
         cy.contains('Sign up')
         cy.contains('Home')
         cy.contains('Book').click()
     })
 
-    it('test Vaccine List', () => {
+    it('test Homepage', () => {
         cy.visit('http://localhost:3000/user')
-        cy.get('button').should('exist')
-        cy.contains('Below are your basic information:')
-        cy.contains('What would you like to do?')
+        cy.contains('Schedule an Appointment')
+        cy.contains('Fill Details for Vaccination Certifcate')
+        cy.contains('Covid data dashboard')
         cy.url().should('include', 'user')
     })
+
+    it('test Update Information', () => {
+        cy.visit('http://localhost:3000/update')
+        cy.contains('First Name')
+        cy.contains('Last Name')
+        cy.contains('SSN')
+        cy.contains('Generate Certifiacate')
+        cy.get('input')
+        cy.get('button')
+        cy.contains('Generate Certifiacate').should('exist')
+        cy.url().should('include', 'update')
+    })
+
 
 })
