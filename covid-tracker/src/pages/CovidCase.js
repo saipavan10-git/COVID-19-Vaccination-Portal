@@ -25,11 +25,7 @@ function CovidCase() {
         }).then(function (response) {
             setDataValue(response.data);
         })
-
-
     });
-
-
 
     return (
         <>

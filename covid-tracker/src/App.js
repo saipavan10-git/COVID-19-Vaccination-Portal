@@ -12,6 +12,7 @@ import CovidCase from "./pages/CovidCase";
 import Search from "./pages/Search";
 import SearchResult from "./pages/SearchResult";
 import Code from "./pages/Code";
+import Contact from "./pages/Contact";
 function App() {
   const [name, setName] = useState('');
   const [name2, set2Name] = useState('');
@@ -100,6 +101,7 @@ function App() {
         <Route path="/search" element={<Search />} />
         <Route path="/searchResult" element={<SearchResult />} />
         <Route path="/code" element={<Code />} />
+        <Route path='/contact' element={<Contact />} />
       </Routes>
     </Router>
   );
