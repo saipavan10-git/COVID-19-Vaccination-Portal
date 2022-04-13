@@ -12,18 +12,23 @@ import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import axios from 'axios';
+
 function CovidCase() {
     const [dataValue, setDataValue] = useState([]);
 
     useEffect(() => {
 
-        fetch('https://api.covidtracking.com/v1/us/daily.json', {
-            headers: { 'Content-Type': 'application/json' },
-        }).then((response) => response.json())
-            .then((data) => {
-                setDataValue(data);
-            })
+        axios({
+            method: 'get',
+            url: 'https://api.covidtracking.com/v1/us/daily.json',
+        }).then(function (response) {
+            setDataValue(response.data);
+        })
+
+
     });
+
 
 
     return (
