@@ -26,6 +26,7 @@ func RunServer() {
 	// r.GET("/v1/receive",receiveFront)
 	// r.GET("/v1/test/result", searchResult)
 	// r.POST("/v1/test/result",searchRecord)
+	r.POST("/v1/survey", survey)
 
 	fmt.Println("Hello!")
 	r.Run(":4000")

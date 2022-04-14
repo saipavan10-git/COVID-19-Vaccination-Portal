@@ -49,3 +49,18 @@ type Testing struct {
 	Email string `json:"x"`
 	Code  int    `json:"y"`
 }
+
+type Survey struct {
+	A1  string `json:"answer1"`
+	A2  string `json:"answer2"`
+	A3  string `json:"answer3"`
+	A4  string `json:"answer4"`
+	A5  string `json:"answer5"`
+	A6  string `json:"answer6"`
+	A7  string `json:"answer7"`
+	A8  string `json:"answer8"`
+	A9  string `json:"answer9"`
+	A10 string `json:"answer10"`
+	A11 string `json:"answer11"`
+	A12 string `json:"answer12"`
+}
