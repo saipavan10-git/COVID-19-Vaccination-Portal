@@ -13,6 +13,7 @@ import Search from "./pages/Search";
 import SearchResult from "./pages/SearchResult";
 import Code from "./pages/Code";
 import Contact from "./pages/Contact";
+import Survey from "./pages/Survey";
 function App() {
   const [name, setName] = useState('');
   const [name2, set2Name] = useState('');
@@ -102,6 +103,7 @@ function App() {
         <Route path="/searchResult" element={<SearchResult />} />
         <Route path="/code" element={<Code />} />
         <Route path='/contact' element={<Contact />} />
+        <Route path='/survey' element={<Survey />} />
       </Routes>
     </Router>
   );

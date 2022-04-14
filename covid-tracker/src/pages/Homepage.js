@@ -85,6 +85,9 @@ function Homepage(props) {
       <div className="inputStyle">
 
         <img src={require('../images/vaccineBooking.png')} className="imgSize" />
+        <div syle={{ marginTop: "20px" }}></div>
+        <Button variant="contained" component={Link}
+          to="/survey">Survey</Button>
       </div>
       <div style={{ marginTop: "100px" }}></div>
       <Box sx={{ flexGrow: 1 }}>
@@ -246,11 +249,13 @@ function Homepage(props) {
               <Item2>
                 <>
                   <h2>
-                    Contact us
+                    Learn more!
                   </h2>
                   <hr></hr>
                   <a component={Link}
                     href="/contact"><p style={{ fontSize: "15px", textDecoration: "underline" }}>Contact us</p></a>
+                  <a component={Link}
+                    href="/survey"><p style={{ fontSize: "15px", textDecoration: "underline" }}>Survey</p></a>
                 </>
               </Item2>
               <div style={{ marginTop: "200px" }}></div>

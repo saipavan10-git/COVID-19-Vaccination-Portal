@@ -405,6 +405,21 @@ func displayCert(c *gin.Context) {
 
 }
 
+func survey(c *gin.Context) {
+	db, _ := gorm.Open("sqlite3", "db/survey.db")
+	defer db.Close()
+	db.AutoMigrate(&models.Survey{})
+	var survey models.Survey
+	err := c.ShouldBindJSON(&survey)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Bad Request"})
+		return
+	}
+
+	log.Println(survey)
+	db.Create(&survey)
+}
+
 // func receiveFront(c *gin.Context) {
 
 // 	body, err := ioutil.ReadAll(r.Body)
