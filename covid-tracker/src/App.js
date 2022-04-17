@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VaccineList from "./pages/VaccineList";
 import UserInfo from "./pages/UserInfo";
 import UpdateUser from "./pages/UpdateUser";
+import AdminPage from "./pages/AdminPage";
 import Middleware from "./pages/Middleware";
 import CovidCase from "./pages/CovidCase";
 import Search from "./pages/Search";
@@ -106,6 +107,7 @@ function App() {
         <Route path="/code" element={<Code />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/survey' element={<Survey />} />
+        <Route path="/AdminPage" element={<AdminPage/>}/>
       </Routes>
     </Router>
   );
