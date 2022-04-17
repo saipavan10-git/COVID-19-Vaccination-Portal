@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import Homepage from "./pages/Homepage";
 import Login from "./pages/Login";
+import AdminLogin from "./pages/AdminLogin";
 import Signup from "./pages/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import VaccineList from "./pages/VaccineList";
@@ -93,6 +94,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage name={name} setName={setName} set2Name={set2Name} setEmail={setEmail} />} />
         <Route path="/login" element={<Login setName={setName} name={name} />} />
+        <Route path="/adminlogin" element={<AdminLogin setName={setName} name={name} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/list" element={<VaccineList name={name} email={email} />} />
         <Route path="/user" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} change={change} birthdate={birthdate} />} />
