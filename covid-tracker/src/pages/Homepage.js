@@ -47,13 +47,16 @@ function Homepage(props) {
 
   let showOrNot;
   let showOrNot2;
+  let showOrNot3
   let status;
   let logout;
   if (!props.name) {
     showOrNot = <Button color="inherit" component={Link}
       to="/login">Login</Button>
     showOrNot2 = <Button color="inherit" component={Link}
-      to="/signup">Sign up</Button>
+    to="/signup">Sign up</Button>
+    showOrNot3 = <Button color="inherit" component={Link}
+    to="/adminlogin">Admin Login</Button>
     // status = <h2>Currently you are not signed in.</h2>
   } else {
     showOrNot = <Button color="inherit" component={Link}
@@ -68,12 +71,11 @@ function Homepage(props) {
         <AppBar>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a component={Link} href={!props.name ? "/login" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+              <a component={Link} href={!props.name ? "/" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
             </Typography>
             {showOrNot}
             {showOrNot2}
-            <Button color="inherit" component={Link}
-              to="/list">Vaccine List</Button>
+            {showOrNot3}
             {logout}
           </Toolbar>
         </AppBar>

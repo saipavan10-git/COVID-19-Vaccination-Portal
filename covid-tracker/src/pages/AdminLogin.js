@@ -59,7 +59,7 @@ function AdminLogin(props) {
         <AppBar>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a component={Link} href={!props.name ? "/login" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
+              <a component={Link} href={!props.name ? "/" : "/user"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
             </Typography>
           </Toolbar>
         </AppBar>
