@@ -107,7 +107,7 @@ function App() {
         <Route path="/code" element={<Code />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/survey' element={<Survey />} />
-        <Route path="/AdminPage" element={<AdminPage/>}/>
+        <Route path="/AdminPage" element={<UserInfo name={name} name2={name2} email={email} setName={setName} set2Name={set2Name} setEmail={setEmail} vaccine={vaccine} vaccineId={vaccineId} vaccineNum={vaccineNum} state={state} zipCode={zipCode} change={change} birthdate={birthdate} />} />
       </Routes>
     </Router>
   );
