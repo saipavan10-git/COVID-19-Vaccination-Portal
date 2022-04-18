@@ -10,58 +10,111 @@ import Box from '@mui/material/Box';
 
 function AdminPage(props) {
 
-    let navigate = useNavigate();
-    const logOut = async () => {
-        await fetch('http://localhost:4000/v1/logout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-        });
-        props.setName('');
-        props.setEmail('');
-        props.set2Name('');
 
-        navigate('/');
+  //  Counter is a state initialized to 0
+  const [counter, setCounter] = useState(0)
+    
+  // Function is called everytime increment button is clicked
+  const handleClick1 = () => {
+    // Counter state is incremented
+    setCounter(counter + 1)
+  }
+  
+  // Function is called everytime decrement button is clicked
+  const handleClick2 = () => {
+    // Counter state is decremented
+    if (counter>0) {setCounter(counter - 1)}
+  }
+
+  function addVaccine(values) {
+    
+    let you = {
+        "num": counter,
+        "vaccine_name":values.name,
+        "vaccine_num": parseInt(values.vaccineNum),
+        "state": values.vaccineState,
+        "zip_code": parseInt(values.zipCode),
+        "available": 1,
+        
     }
-
-    function Counter() {
-        // Set the initial count state to zero, 0
-        const [count, setCount] = useState(0);
-
-        // Create handleIncrement event handler
-        const handleIncrement = () => {
-            setCount(prevCount => prevCount + 1);
-        };
-
-        //Create handleDecrement event handler
-        const handleDecrement = () => {
-            setCount(prevCount => prevCount - 1);
-        };
+    const requestOptions = {
+        method: "POST",
+        body: JSON.stringify(you),
     };
+    
+    fetch("http://localhost:4000/v1/addVaccine", requestOptions)
+        .then((response) => console.log(""))
+        .then((data) => {
+            console.log(data);
 
-    let logout = <Button color="inherit" component={Link} to="/" onClick={logOut}>log out</Button>
+        });
+        alert(`added successfully!`)
+    window.location.reload();
+}
 
-  return (
-    <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a component={Link} href={"/AdminPage"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
-            </Typography>
-            {logout}
-          </Toolbar>
-        </AppBar>
-      </Box>
+
+    return (      
+      <>
       <div className="inputStyle">
-        <div className="space"></div>
-        <h1>
-          Vaccine-<span className="colorchange">data</span>:
-        </h1>
-        <div style={{ marginTop: "20px" }}></div>
+      <h1> Add vaccine to backend </h1>
+      <Formik
+                    enableReinitialize
+                    initialValues={{ name: "", vaccineState: "", num: "", vaccineNum:"", zipCode:"" }}
+                    onSubmit={(values) => {
+                        console.log(values);
+                        addVaccine(values);
+                    }}
+                >{({ values, handleChange, handleSubmit}) => (
+                  <Form onSubmit={handleSubmit}>
+                  <InputLabel>Vaccine Name</InputLabel>
+                  <Input
+                  name="name"
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.name}></Input>
+                  <div className="space40"></div>
+                  <InputLabel>Vaccine Dose #</InputLabel>
+                  <Input
+                  name="vaccineNum"
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.vaccineNum}></Input>
+                  <div className="space40"></div>
+                  <InputLabel>Zip Code</InputLabel>
+                  <Input
+                  name="zipCode"
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.zipCode}></Input>
+                  <div className="space40"></div>
+                  <InputLabel>State</InputLabel>
+                  <Input
+                  name="vaccineState"
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.vaccineState}></Input>
+                  <div className="space40"></div>
+                  <InputLabel>counter</InputLabel>
+                  {counter}
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  {/* <Input
+                  name="num"
+                  
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.num}></Input> */}
+                  <Button 
+                  variant="contained"
+            onClick={handleClick1} >+</Button>
+            &nbsp;&nbsp;
+          <Button 
+          variant="contained"
+            onClick={handleClick2}>-</Button>
+                  <div className="space40"></div>
+                  <Button variant="contained" type="submit"> Submit</Button>
+                </Form>
+)}
+  </Formik>
 
       </div>
-    </>
-  );
+      </>
+        
+
+    )
 }
 export default AdminPage;

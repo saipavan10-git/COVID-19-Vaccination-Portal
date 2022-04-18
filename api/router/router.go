@@ -23,6 +23,7 @@ func RunServer() {
 	r.POST("/v1/updateUser", updateUser)
 	r.POST("/v1/searchCode", searchCode)
 	r.GET("/v1/displayCert", displayCert)
+	r.POST("/v1/addVaccine", addVaccine)
 	// r.GET("/v1/receive",receiveFront)
 	// r.GET("/v1/test/result", searchResult)
 	// r.POST("/v1/test/result",searchRecord)

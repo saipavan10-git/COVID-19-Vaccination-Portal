@@ -420,6 +420,35 @@ func survey(c *gin.Context) {
 	db.Create(&survey)
 }
 
+func addVaccine(c *gin.Context) {
+	db, _ := gorm.Open("sqlite3","db/vaccine.db")
+	defer db.Close()
+	var vaccine models.VaccineStore
+	
+	err := c.ShouldBindJSON(&vaccine)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "Bad Request"})
+	}
+	log.Println(vaccine);
+
+
+	for i:=0; i<vaccine.Num; i++ {
+		var count int
+		db.Table("vaccines").Count(&count)
+		count++
+		vaccineStore := models.Vaccine {
+			ID: count,
+			Name:vaccine.Name,
+			VaccineNum: vaccine.VaccineNum,
+			State: vaccine.State,
+			ZipCode: vaccine.ZipCode,
+			Available: vaccine.Available,
+		}
+		log.Println(vaccineStore)
+		db.Create(&vaccineStore)
+	}
+}
+
 // func receiveFront(c *gin.Context) {
 
 // 	body, err := ioutil.ReadAll(r.Body)
