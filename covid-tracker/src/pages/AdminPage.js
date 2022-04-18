@@ -16,167 +16,111 @@ import * as Yup from 'yup';
 
 function AdminPage(props) {
 
-  const [inputPassError, setInputPassError] = useState(false);
-  const [inputEmailError, setInputEmailError] = useState(false);
-  const validate = Yup.object({
-    email: Yup.string()
-      .email('Email is invalid')
-      .required('Email is required'),
-
-    password: Yup.string()
-      .min(6, 'Password must be at least 6 charaters')
-      .required('Password is required'),
-  })
-
-  let navigate = useNavigate();
-  function sayHello(m) {
-    console.log(JSON.stringify(m));
-    const requestOptions = {
-      method: "POST",
-      body: JSON.stringify(m),
-      credentials: 'include',
-      headers: { 'Content-Type': 'application/json' },
-    };
-
-    function Counter() {
-        // Set the initial count state to zero, 0
-        const [count, setCount] = useState(0);
-
-        // Create handleIncrement event handler
-        const handleIncrement = () => {
-            setCount(prevCount => prevCount + 1);
-        };
-
-        //Create handleDecrement event handler
-        const handleDecrement = () => {
-            setCount(prevCount => prevCount - 1);
-        };
-    };
-
-    // eslint-disable-next-line no-unused-vars
-    const response = fetch("http://localhost:4000/v1/login", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          alert(
-            data.error.message
-          )
-        } else {
-          navigate('/user');
-          window.location.reload();
-        }
-
-      });
+  //  Counter is a state initialized to 0
+  const [counter, setCounter] = useState(0)
+    
+  // Function is called everytime increment button is clicked
+  const handleClick1 = () => {
+    // Counter state is incremented
+    setCounter(counter + 1)
   }
-  return (
-    <>
-      <Box sx={{ flexGrow: 1 }}>
-        <AppBar>
-          <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              <a component={Link} href={"/AdminPage"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
-            </Typography>
-          </Toolbar>
-        </AppBar>
-      </Box>
+  
+  // Function is called everytime decrement button is clicked
+  const handleClick2 = () => {
+    // Counter state is decremented
+    if (counter>0) {setCounter(counter - 1)}
+  }
+
+  function addVaccine(values) {
+    
+    let you = {
+        "num": counter,
+        "vaccine_name":values.name,
+        "vaccine_num": parseInt(values.vaccineNum),
+        "state": values.vaccineState,
+        "zip_code": parseInt(values.zipCode),
+        "available": 1,
+        
+    }
+    const requestOptions = {
+        method: "POST",
+        body: JSON.stringify(you),
+    };
+    
+    fetch("http://localhost:4000/v1/addVaccine", requestOptions)
+        .then((response) => console.log(""))
+        .then((data) => {
+            console.log(data);
+
+        });
+        alert(`added successfully!`)
+    window.location.reload();
+}
+
+    return (      
+      <>
       <div className="inputStyle">
-        <div className="space"></div>
-        <h1>
-          Vaccine-<span className="colorchange">data</span>:
-        </h1>
-        <div style={{ marginTop: "20px" }}></div>
+      <h1> Add vaccine to backend </h1>
+      <Formik
+                    enableReinitialize
+                    initialValues={{ name: "", vaccineState: "", num: "", vaccineNum:"", zipCode:"" }}
+                    onSubmit={(values) => {
+                        console.log(values);
+                        addVaccine(values);
+                    }}
+                >{({ values, handleChange, handleSubmit}) => (
+                  <Form onSubmit={handleSubmit}>
+                  <InputLabel>Vaccine Name</InputLabel>
+                  <Input
+                  name="name"
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.name}></Input>
+                  <div className="space40"></div>
+                  <InputLabel>Vaccine Dose #</InputLabel>
+                  <Input
+                  name="vaccineNum"
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.vaccineNum}></Input>
+                  <div className="space40"></div>
+                  <InputLabel>Zip Code</InputLabel>
+                  <Input
+                  name="zipCode"
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.zipCode}></Input>
+                  <div className="space40"></div>
+                  <InputLabel>State</InputLabel>
+                  <Input
+                  name="vaccineState"
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.vaccineState}></Input>
+                  <div className="space40"></div>
+                  <InputLabel>counter</InputLabel>
+                  {counter}
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  {/* <Input
+                  name="num"
+                  
+                  onChange={(e) => { handleChange(e) }}
+                  value={values.num}></Input> */}
+                  <Button 
+                  variant="contained"
+            onClick={handleClick1} >+</Button>
+            &nbsp;&nbsp;
+          <Button 
+          variant="contained"
+            onClick={handleClick2}>-</Button>
+                  <div className="space40"></div>
+                  <Button variant="contained" type="submit"> Submit</Button>
+                </Form>
+)}
+  </Formik>
 
-        <Formik
 
-          initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => {
-            console.log(values);
-            sayHello(values);
-          }}
-          validationSchema={validate}
-        >
-          {({ values, handleChange, handleSubmit, errors, touched }) => (
-            <Form onSubmit={handleSubmit}>
-              <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
-              <Input
-                error={inputEmailError}
-                onChange={(e) => { handleChange(e); setInputEmailError(false); }}
-                value={values.email}
-                inputProps={{
-                  style: {
-                    fontSize: "25px",
-                    fontFamily: "Georgia",
-                    color: "#3876e9",
-                    width: "300px",
-                  },
-                }}
-                name="email"
-                placeholder="Email"
-                type="email"
-                startAdornment={
-                  <InputAdornment position="start">
-                    <AccountCircle
-                      style={{ fontSize: "32px", color: "#3876e9" }}
-                    />
-                  </InputAdornment>
-                }
-              />
-              {errors.email && touched.email ? (setInputEmailError(true), (
-                <div style={{ color: "red" }}>{errors.email}</div>
-              )) : null}
-
-              {/* make space between email and password input */}
-              <div style={{ marginTop: "20px" }}></div>
-
-              {/* input password */}
-              <InputLabel htmlFor="input-with-icon-adornment"></InputLabel>
-              <Input
-                error={inputPassError}
-                onChange={(e) => { handleChange(e); setInputPassError(false); }}
-                value={values.password}
-                inputProps={{
-                  style: {
-                    fontSize: "25px",
-                    fontFamily: "Georgia",
-                    color: "#3876e9",
-                    width: "300px",
-                  },
-                }}
-                type="password"
-                name="password"
-                placeholder="Password"
-                startAdornment={
-                  <InputAdornment position="start">
-                    <LockIcon style={{ fontSize: "32px", color: "#3876e9" }} />
-                  </InputAdornment>
-                }
-              />
-
-              {errors.password && touched.password ? ((setInputPassError(true),
-                <div style={{ color: "red" }}>{errors.password}</div>
-              )) : null}
-
-              {/* make space between email and password input */}
-              <div style={{ marginTop: "40px" }}></div>
-
-              {/* submit button */}
-              <Button
-                variant="outlined"
-                style={{
-                  fontSize: "18px",
-                  color: "#3876e9",
-                  borderColor: "orange",
-                }}
-                type="submit"
-              >
-                Login
-              </Button>
-
-            </Form>
-          )}
-        </Formik>
+     
       </div>
-    </>
-  );
+      </>
+        
+
+    )
 }
 export default AdminPage;

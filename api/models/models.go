@@ -9,6 +9,17 @@ type Vaccine struct {
 	Available  int    `json:"available"`
 }
 
+type VaccineStore struct {
+	Num		   int	  `json:"num"`
+	ID         int    `json:"id"`
+	Name       string `json:"vaccine_name"`
+	VaccineNum int    `json:"vaccine_num"`
+	State      string `json:"state"`
+	ZipCode    int    `json:"zip_code"`
+	Available  int    `json:"available"`
+}
+
+
 type User struct {
 	Email     string `json:"email"`
 	Password  string `json:"password"`
