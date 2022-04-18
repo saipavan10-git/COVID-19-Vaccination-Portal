@@ -39,7 +39,7 @@ function AdminPage(props) {
         };
     };
 
-    let logout = <Button color="inherit" component={Link} to="/login" onClick={logOut}>log out</Button>
+    let logout = <Button color="inherit" component={Link} to="/" onClick={logOut}>log out</Button>
 
   return (
     <>
