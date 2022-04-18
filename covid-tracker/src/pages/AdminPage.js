@@ -1,18 +1,28 @@
 import React, { useState } from "react";
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import LockIcon from "@mui/icons-material/Lock";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Formik, Form } from "formik";
+import { useNavigate } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 function AdminPage(props) {
+
+    let navigate = useNavigate();
+    const logOut = async () => {
+        await fetch('http://localhost:4000/v1/logout', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: 'include',
+        });
+        props.setName('');
+        props.setEmail('');
+        props.set2Name('');
+
+        navigate('/');
+    }
 
     function Counter() {
         // Set the initial count state to zero, 0
@@ -29,6 +39,8 @@ function AdminPage(props) {
         };
     };
 
+    let logout = <Button color="inherit" component={Link} to="/login" onClick={logOut}>log out</Button>
+
   return (
     <>
       <Box sx={{ flexGrow: 1 }}>
@@ -37,6 +49,7 @@ function AdminPage(props) {
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
               <a component={Link} href={"/AdminPage"} className="home">Co<span className="colorchange" >Vi</span>-Book</a>
             </Typography>
+            {logout}
           </Toolbar>
         </AppBar>
       </Box>

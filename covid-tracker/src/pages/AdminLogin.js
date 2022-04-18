@@ -47,7 +47,7 @@ function AdminLogin(props) {
             data.error.message
           )
         } else {
-          navigate('/user');
+          navigate('/AdminPage');
           window.location.reload();
         }
 
