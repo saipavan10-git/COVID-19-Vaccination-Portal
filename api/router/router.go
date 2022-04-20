@@ -26,7 +26,12 @@ func RunServer() {
 	// r.GET("/v1/receive",receiveFront)
 	// r.GET("/v1/test/result", searchResult)
 	// r.POST("/v1/test/result",searchRecord)
+
 	r.POST("/v1/survey", survey)
+	r.POST("/v1/adminlogin", CORSMiddleware(), admin_login)
+	// r.POST("/v1/admin_user", CORSMiddleware(), admin_user)
+	// r.POST("/v1/admin_logout", CORSMiddleware(), admin_logout)
+	// r.POST("/v1/newvacs", CORSMiddleware(), add_newVacs)
 
 	fmt.Println("Hello!")
 	r.Run(":4000")

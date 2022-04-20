@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "@mui/material/Input";
 import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
@@ -13,8 +13,22 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 function AdminLogin(props) {
+
+  const [dataValue, setDataValue] = useState([]);
+
+    useEffect(() => {
+
+        axios({
+            method: 'post',
+            url: 'http://localhost:4000/v1/adminlogin',
+        }).then(function (response) {
+            setDataValue(response.data);
+        })
+    });
+
 
   const [inputPassError, setInputPassError] = useState(false);
   const [inputEmailError, setInputEmailError] = useState(false);
@@ -39,19 +53,19 @@ function AdminLogin(props) {
     };
 
     // eslint-disable-next-line no-unused-vars
-    const response = fetch("http://localhost:4000/v1/login", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.error) {
-          alert(
-            data.error.message
-          )
-        } else {
-          navigate('/AdminPage');
-          window.location.reload();
-        }
+    // const response = fetch("http://localhost:4000/v1/adminlogin", requestOptions)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     if (data.error) {
+    //       alert(
+    //         data.error.message
+    //       )
+    //     } else {
+    //       navigate('/login');
+    //       window.location.reload();
+    //     }
 
-      });
+    //   });
   }
   return (
     <>

@@ -64,3 +64,19 @@ type Survey struct {
 	A11 string `json:"answer11"`
 	A12 string `json:"answer12"`
 }
+
+type Admin struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+	Fname    string `json:"fName"`
+	Lname    string `json:"lName"`
+}
+
+type AddVaccine struct {
+	ID         int    `json:"id"`
+	Name       string `json:"vaccine_name"`
+	VaccineNum int    `json:"vaccine_num"`
+	State      string `json:"state"`
+	ZipCode    int    `json:"zip_code"`
+	Available  int    `json:"available"`
+}

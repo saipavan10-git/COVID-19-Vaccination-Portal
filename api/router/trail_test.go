@@ -396,7 +396,7 @@ func Test17(t *testing.T) {
 func Test18(t *testing.T) {
 	router := setupRouter()
 	w := httptest.NewRecorder()
-	req, _ := http.NewRequest("GET", "/v1/vaccines", nil)
+	req, _ := http.NewRequest("GET", "/vaccines", nil)
 	router.ServeHTTP(w, req)
 	//MockConnectDatabase()
 	res := w.Result()
