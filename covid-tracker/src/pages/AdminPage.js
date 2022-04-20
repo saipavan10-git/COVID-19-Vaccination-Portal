@@ -12,7 +12,7 @@ function AdminPage(props) {
 
     let navigate = useNavigate();
     const logOut = async () => {
-        await fetch('http://localhost:4000/v1/logout', {
+        await fetch('http://localhost:4000/v1/admin_logout', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             credentials: 'include',
