@@ -12,7 +12,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func MockConnectDatabase() {
+func ConnectDatabase() {
 	database, err := gorm.Open("sqlite3", "db/user.db")
 	database.AutoMigrate(&models.User{})
 	database.LogMode(false)
