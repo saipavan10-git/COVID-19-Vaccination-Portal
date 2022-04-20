@@ -487,6 +487,7 @@ func adminlogin(c *gin.Context) {
 
 	var findUser models.Admin
 	db.Where("email = ?", user.Email).Take(&findUser)
+
 	log.Println(findUser.Email)
 
 	var empty models.Admin
