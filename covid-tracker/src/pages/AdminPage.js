@@ -57,7 +57,7 @@ function AdminPage(props) {
     return (      
       <>
       <div className="inputStyle">
-      <h1> Add vaccine to backend </h1>
+      <h1> Add Available Vaccines </h1>
       <Formik
                     enableReinitialize
                     initialValues={{ name: "", vaccineState: "", num: "", vaccineNum:"", zipCode:"" }}
@@ -67,25 +67,25 @@ function AdminPage(props) {
                     }}
                 >{({ values, handleChange, handleSubmit}) => (
                   <Form onSubmit={handleSubmit}>
-                  <InputLabel>Vaccine Name</InputLabel>
+                  <InputLabel style={{color:"orange" , fontSize:'16pt'}}>Vaccine Name</InputLabel>
                   <Input
                   name="name"
                   onChange={(e) => { handleChange(e) }}
                   value={values.name}></Input>
                   <div className="space40"></div>
-                  <InputLabel>Vaccine Dose #</InputLabel>
+                  <InputLabel style={{color:"orange" , fontSize:'16pt'}}>Vaccine Dose #</InputLabel>
                   <Input
                   name="vaccineNum"
                   onChange={(e) => { handleChange(e) }}
                   value={values.vaccineNum}></Input>
                   <div className="space40"></div>
-                  <InputLabel>Zip Code</InputLabel>
+                  <InputLabel style={{color:"orange" , fontSize:'16pt'}}>Zip Code</InputLabel>
                   <Input
                   name="zipCode"
                   onChange={(e) => { handleChange(e) }}
                   value={values.zipCode}></Input>
                   <div className="space40"></div>
-                  <InputLabel>State</InputLabel>
+                  <InputLabel style={{color:"orange" , fontSize:'16pt'}}>State</InputLabel>
                   <Input
                   name="vaccineState"
                   onChange={(e) => { handleChange(e) }}
