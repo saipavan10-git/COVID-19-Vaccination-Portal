@@ -469,51 +469,44 @@ func survey(c *gin.Context) {
 
 // }
 
-func admin_login(c *gin.Context) {
-	db, _ := gorm.Open("sqlite3", "db/admin.db")
-	log.Println("1")
-	db.AutoMigrate(&models.Admin{})
-	log.Println("2")
-	defer db.Close()
-	log.Println("3")
+//
 
-	var admin models.Admin
-	log.Println("4")
-	err := c.ShouldBindJSON(&admin)
-	log.Println("5")
+func adminlogin(c *gin.Context) {
+	db, _ := gorm.Open("sqlite3", "db/admin.db")
+	defer db.Close()
+
+	var user models.Admin
+
+	err := c.ShouldBindJSON(&user)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Not found!"})
-		log.Println("6")
 		return
 	}
-	//encryptedPassword, _ := bcrypt.GenerateFromPassword([]byte(user.Password), 14)
-	var findAdmin models.Admin
-	log.Println("7")
-	db.Where("email = ?", admin.Email).Take(&findAdmin)
-	log.Println("8")
+	log.Println("Im here")
+	log.Println(user.Email)
+
+	var findUser models.Admin
+	db.Where("email = ?", user.Email).Take(&findUser)
+	log.Println(findUser.Email)
 
 	var empty models.Admin
-	log.Println("9")
+	log.Println("Hey")
+	log.Println(findUser)
 
-	log.Println(findAdmin)
-	log.Println("10")
-
-	if findAdmin == empty {
-		log.Println("11")
-
+	if findUser == empty {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "User not found!"})
+		log.Println("Hey 2")
 		return
 	}
 
-	if err := bcrypt.CompareHashAndPassword([]byte(findAdmin.Password), []byte(admin.Password)); err != nil {
+	if err := bcrypt.CompareHashAndPassword([]byte(findUser.Password), []byte(user.Password)); err != nil {
+		log.Println("Hey 3")
 		c.JSON(http.StatusBadRequest, gin.H{"error": "User not found!"})
-		log.Println("12")
-
 		return
 	} else {
 
 		claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-			Issuer:    admin.Email,
+			Issuer:    user.Email,
 			ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
 		})
 

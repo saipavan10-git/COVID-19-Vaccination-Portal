@@ -68,8 +68,6 @@ type Survey struct {
 type Admin struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
-	Fname    string `json:"fName"`
-	Lname    string `json:"lName"`
 }
 
 type AddVaccine struct {

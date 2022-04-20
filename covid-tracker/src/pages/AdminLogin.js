@@ -23,7 +23,7 @@ function AdminLogin(props) {
 
         axios({
             method: 'post',
-            url: 'http://localhost:4000/v1/adminlogin',
+            url: 'http://localhost:4000/v1/AdminLogin',
         }).then(function (response) {
             setDataValue(response.data);
         })
@@ -53,19 +53,19 @@ function AdminLogin(props) {
     };
 
     // eslint-disable-next-line no-unused-vars
-    // const response = fetch("http://localhost:4000/v1/adminlogin", requestOptions)
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     if (data.error) {
-    //       alert(
-    //         data.error.message
-    //       )
-    //     } else {
-    //       navigate('/login');
-    //       window.location.reload();
-    //     }
+    const response = fetch("http://localhost:4000/v1/AdminLogin", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert(
+            data.error.message
+          )
+        } else {
+          navigate('/AdminLogin');
+          window.location.reload();
+        }
 
-    //   });
+      });
   }
   return (
     <>
