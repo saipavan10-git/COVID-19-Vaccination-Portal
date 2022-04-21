@@ -421,32 +421,125 @@ func survey(c *gin.Context) {
 }
 
 func addVaccine(c *gin.Context) {
-	db, _ := gorm.Open("sqlite3","db/vaccine.db")
+	db, _ := gorm.Open("sqlite3", "db/vaccine.db")
 	defer db.Close()
 	var vaccine models.VaccineStore
-	
+
 	err := c.ShouldBindJSON(&vaccine)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"message": "Bad Request"})
 	}
-	log.Println(vaccine);
+	log.Println(vaccine)
 
-
-	for i:=0; i<vaccine.Num; i++ {
+	for i := 0; i < vaccine.Num; i++ {
 		var count int
 		db.Table("vaccines").Count(&count)
 		count++
-		vaccineStore := models.Vaccine {
-			ID: count,
-			Name:vaccine.Name,
+		vaccineStore := models.Vaccine{
+			ID:         count,
+			Name:       vaccine.Name,
 			VaccineNum: vaccine.VaccineNum,
-			State: vaccine.State,
-			ZipCode: vaccine.ZipCode,
-			Available: vaccine.Available,
+			State:      vaccine.State,
+			ZipCode:    vaccine.ZipCode,
+			Available:  vaccine.Available,
 		}
 		log.Println(vaccineStore)
 		db.Create(&vaccineStore)
 	}
+}
+
+func adminlogin(c *gin.Context) {
+	db, _ := gorm.Open("sqlite3", "db/admin.db")
+	defer db.Close()
+
+	var user models.Admin
+	log.Println(user)
+	err := c.ShouldBindJSON(&user)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Not found!"})
+		return
+	}
+
+	var findUser models.Admin
+	db.Where("email = ?", user.Email).Take(&findUser)
+	log.Println(findUser)
+	var empty models.Admin
+	log.Println(findUser.Email)
+
+	if findUser == empty {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "User not found!"})
+		log.Println("1")
+		return
+	}
+
+	if err := bcrypt.CompareHashAndPassword([]byte(findUser.Password), []byte(user.Password)); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "User not found!"})
+		return
+	} else {
+
+		claims := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
+			Issuer:    user.Email,
+			ExpiresAt: time.Now().Add(time.Hour * 24).Unix(),
+		})
+
+		token, _ := claims.SignedString([]byte(SecretKey))
+
+		if err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "could not log in!"})
+			return
+		} else {
+			c.SetCookie("token", token, 3600, "/", "localhost", false, true)
+			c.JSON(http.StatusOK, gin.H{"token": token})
+
+		}
+	}
+
+}
+
+func adminuser(c *gin.Context) {
+	db, _ := gorm.Open("sqlite3", "db/admin.db")
+	defer db.Close()
+	cook, err := c.Cookie("token")
+	if err != nil {
+		if err == http.ErrNoCookie {
+			// If the cookie is not set, return an unauthorized status
+			// app.errorJSON(w, err)
+			// w.WriteHeader(http.StatusUnauthorized)
+			return
+		}
+		// w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	tknStr := cook
+
+	tkn, err := jwt.ParseWithClaims(tknStr, &jwt.StandardClaims{}, func(token *jwt.Token) (interface{}, error) {
+		return []byte(SecretKey), nil
+	})
+
+	if err != nil {
+		if err == jwt.ErrSignatureInvalid {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "could not log in!"})
+			return
+		}
+		c.JSON(http.StatusBadRequest, gin.H{"error": "could not log in!"})
+		return
+	}
+
+	claims := tkn.Claims.(*jwt.StandardClaims)
+	var user models.Admin
+
+	db.Where("email = ?", claims.Issuer).Take(&user)
+	log.Println("123123123", user)
+	i = claims.Issuer
+	c.JSON(http.StatusOK, gin.H{"message": user})
+}
+
+//logout
+func adminlogout(c *gin.Context) {
+	i = "\"\""
+
+	c.SetCookie("token", "", -1000, "/", "localhost", false, true)
+	log.Println(i)
 }
 
 // func receiveFront(c *gin.Context) {
