@@ -1,26 +1,29 @@
-# Sprint 3 Accomplishments 
+# Sprint 4 Accomplishments 
 **Functionalities Implemented**
-* Added Vaccine Certificate Page
-* Updated Vaccine Slot Record Dynamically
-* Added Live Covid data Dashboard
-* Implented Authentication for Vaccine Certificate
+* Added Admin User(hospital management/healthcare providers) Login Page
+* Used framework in the backend to improve the application response times
+* Revamped the UI to improve asthectics using to Material Design specifications
+* Added Vaccination slots addition page
+* Added trustworthy Information sources to know about happenings of COVID-19 
 * Squashed Redirecting Bugs and Removed Unnecessary pages
+* Added Survey page to known more about the users
 * Added Unit Tests for backend
 * Cypress Testing for FrontEnd is Implemented
 
 **Front-End**
-* Added Profile page with Dynamic Data Updation
-* Slot cancellation is Implemented
-* Vaccine Certificate page created
-* User can update data of Last and First Doses
+* Added Admin user page for Dynamic Data Updation of vaccination slots
+* Added Admin login page
+* Created landing page with links to various credible information sources
+* Revamped the UI and added more asthetic elements 
+* Created survey page to gather info about the web app 
 * Cypress Test is done over different functionalities and pages
 
 **Back-End**
-* Dynamic data Retrivial for Vaccine Slots
-* User Information stored in the databade
-* Authenticated certificate with a unique code which was generated on random
-* Booking records are stored in database and data updation is done dynamically
-* Appointement Cancellation and slot availbility updated on database
+* Dynamic data updation for Vaccine Slots as created by the admin user
+* Refactored the backend using gin framework to improve decrease the load times
+* Retrived data from the survey page and stored it in a database
+* Added admin users database containing the credentials of the admin users for retrival and updation
+* Created APIs for various functions
 * Unit tests were done to check the functioning 
 
 ## **Screenshots**
