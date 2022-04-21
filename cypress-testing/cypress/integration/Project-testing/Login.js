@@ -28,10 +28,6 @@ describe('login Page', () => {
   
   })
   
-<<<<<<< Updated upstream
-  
-=======
->>>>>>> Stashed changes
   it(' Checking Invalid Login credentials', () => {
     loginWith('Srisai123@gmail.com','12345678')
     cy.url().should('eq', 'http://localhost:3000/login')

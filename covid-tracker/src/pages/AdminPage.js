@@ -108,6 +108,8 @@ function AdminPage(props) {
             onClick={handleClick2}>-</Button>
                   <div className="space40"></div>
                   <Button variant="contained" type="submit"> Submit</Button>
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <Button variant="contained" component={Link} to="/AdminLogin">Back</Button>
                 </Form>
 )}
   </Formik>
