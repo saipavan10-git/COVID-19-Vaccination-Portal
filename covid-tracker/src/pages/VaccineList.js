@@ -249,6 +249,7 @@ export default class VaccineList extends Component {
                       <td>
 
                         <Button
+                          id="vaccinebook"
                           onClick={() => {
                             sayHello(m, this.props.email);
                           }}

@@ -18,7 +18,7 @@ function Code() {
         <>
             <h1>Your code is:{name}</h1>
             <h1>Please save this code for future reference.</h1>
-            <div className="inputStyle"><Button component={Link}
+            <div className="inputStyle"><Button id="goback" component={Link}
                 to="/user" variant="contained">Go back</Button></div>
 
 

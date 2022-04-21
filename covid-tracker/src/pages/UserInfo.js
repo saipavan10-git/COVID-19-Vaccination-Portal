@@ -169,7 +169,7 @@ function UserInfo(props) {
                             <Item>
                                 <h3>What would you like to do?</h3>
                                 <div className="space40"></div>
-                                <Button variant="contained" component={Link}
+                                <Button id="mappointment" variant="contained" component={Link}
                                     to="/list">Schedule an Appointment </Button>
                                 <div className="space40" ></div>
                                 <Button variant="contained" component={Link}
