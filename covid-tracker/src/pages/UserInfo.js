@@ -84,7 +84,7 @@ function UserInfo(props) {
         // vaccine = <>{props.vaccine}</>
     } else {
 
-        logout = <Button color="inherit" component={Link} to="/login" onClick={logOut}>log out</Button>
+        logout = <Button id="mlogout" color="inherit" component={Link} to="/login" onClick={logOut}>log out</Button>
         // vaccine = <Button color="inherit" component={Link} to="/Certificate" onClick={logOut}>log out</Button>
     }
 

@@ -95,6 +95,7 @@ function Login(props) {
                     width: "300px",
                   },
                 }}
+                id="memail"
                 name="email"
                 placeholder="Email"
                 type="email"
@@ -127,6 +128,7 @@ function Login(props) {
                     width: "300px",
                   },
                 }}
+                id="mpassword"
                 type="password"
                 name="password"
                 placeholder="Password"
@@ -146,6 +148,7 @@ function Login(props) {
 
               {/* submit button */}
               <Button
+                id="mlogin"
                 variant="outlined"
                 style={{
                   fontSize: "18px",
@@ -165,6 +168,7 @@ function Login(props) {
                   color: "#3876e9",
                   borderColor: "orange",
                 }}
+                id="msignup"
                 component={Link}
                 to="/signup"
               >
