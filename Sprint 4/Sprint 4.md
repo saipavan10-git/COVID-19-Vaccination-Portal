@@ -44,7 +44,7 @@
 ![image](https://user-images.githubusercontent.com/32958525/164363488-30c1a325-361e-4e29-a78a-b53ed4f2db83.png)
 ## Demo
 
-Link to Working Demo for Sprint 4 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%203/Sprint%203.mp4)
+Link to Working Demo for Sprint 4 [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%204/Sprint%204.mp4)
 
 ## Team Members
 
