@@ -12,13 +12,13 @@ In this project we are designing a web application where users can book their va
 ## Backend Unit Tests Demo
 
 ## API Documentation
-The API Documentation and other documentation related to the project can be found on our [wiki page](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/wiki)
+The API Documentation and other documentation related to the project can be found on our [wiki page](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/wiki).
 
 ## Project Board
- The project board can be found [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/projects/1), we used a both project board and milestones to keep a track of our project progress. Our milestones for each sprint can be found [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/milestones?state=closed)
+ The project board can be found [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/projects/1), we used a both project board and milestones to keep a track of our project progress. Our milestones for each sprint can be found [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/milestones?state=closed).
 
 ## Sprint 4 Deliverables
-
+The accomplishments for sprint 4 can be found in this [link](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/edit/main/Sprint%204/Sprint%204.md).
 
 ## Team Members
 
