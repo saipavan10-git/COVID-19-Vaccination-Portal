@@ -18,7 +18,7 @@ The API Documentation and other documentation related to the project can be foun
  The project board can be found [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/projects/1), we used a both project board and milestones to keep a track of our project progress. Our milestones for each sprint can be found [here](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/milestones?state=closed).
 
 ## Sprint 4 Deliverables
-The accomplishments for sprint 4 can be found in this [link](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/edit/main/Sprint%204/Sprint%204.md).
+The accomplishments for sprint 4 can be found in this [link](https://github.com/saipavan10-git/COVID-19-Vaccination-Portal/blob/main/Sprint%204/Sprint%204.md).
 
 ## Team Members
 
