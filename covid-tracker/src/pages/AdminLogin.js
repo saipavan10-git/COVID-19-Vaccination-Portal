@@ -39,7 +39,7 @@ function AdminLogin(props) {
     };
 
     // eslint-disable-next-line no-unused-vars
-    const response = fetch("http://localhost:4000/v1/login", requestOptions)
+    const response = fetch("http://localhost:4000/v1/AdminLogin", requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data.error) {

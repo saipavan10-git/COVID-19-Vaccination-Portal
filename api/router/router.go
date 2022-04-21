@@ -28,6 +28,9 @@ func RunServer() {
 	// r.GET("/v1/test/result", searchResult)
 	// r.POST("/v1/test/result",searchRecord)
 	r.POST("/v1/survey", survey)
+	r.POST("/v1/AdminLogin", adminlogin)
+	r.POST("/v1/AdminUser", adminuser)
+	r.POST("/v1/AdminLogout", adminlogout)
 
 	fmt.Println("Hello!")
 	r.Run(":4000")
