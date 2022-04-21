@@ -95,7 +95,7 @@ function UserInfo(props) {
             <div className="space40">State: {props.state}</div>
             <div className="space40">Zip Code: {props.zipCode}</div>
             <div className="space40"></div>
-            <Button variant="outlined" onClick={handleClickOpen}>
+            <Button id="cancel" variant="outlined" onClick={handleClickOpen}>
                 Cancel Appointment
             </Button>
             <Dialog
@@ -109,7 +109,7 @@ function UserInfo(props) {
                 </DialogTitle>
 
                 <DialogActions>
-                    <Button onClick={deleteBooking}>
+                    <Button id="yescancel" onClick={deleteBooking}>
                         Yes
                     </Button>
                     <Button onClick={handleClose}>No</Button>
